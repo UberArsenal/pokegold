@@ -27,6 +27,16 @@ NewBarkTownFlypointCallback:
 NewBarkTownCrystalIntroScene:
         checkevent EVENT_BEAT_CRYSTAL_IN_NEW_BARK
         iftrue .AlreadyFought
+        disappear NEWBARKTOWN_CRYSTAL
+        end
+
+.AlreadyFought:
+        setscene SCENE_NEWBARKTOWN_NOOP
+        end
+
+NewBarkTownCrystalEncounterTrigger:
+        checkevent EVENT_BEAT_CRYSTAL_IN_NEW_BARK
+        iftrue .Finish
         special FadeOutMusic
         disappear NEWBARKTOWN_CRYSTAL
         moveobject NEWBARKTOWN_CRYSTAL, 6, 13
@@ -74,7 +84,7 @@ NewBarkTownCrystalIntroScene:
         writetext CrystalPostBattleWinText
         waitbutton
         closetext
-        sjump .Finish
+        sjump .AfterBattle
 
 .PlayerLost:
         playmusic MUSIC_RIVAL_AFTER
@@ -83,17 +93,15 @@ NewBarkTownCrystalIntroScene:
         waitbutton
         closetext
 
-.Finish:
+.AfterBattle:
         turnobject PLAYER, DOWN
         applymovement NEWBARKTOWN_CRYSTAL, NewBarkTown_CrystalLeavesMovement
         disappear NEWBARKTOWN_CRYSTAL
         setevent EVENT_BEAT_CRYSTAL_IN_NEW_BARK
         setscene SCENE_NEWBARKTOWN_NOOP
         special RestartMapMusic
-        end
 
-.AlreadyFought:
-        setscene SCENE_NEWBARKTOWN_NOOP
+.Finish:
         end
 
 NewBarkTown_TeacherStopsYouScene1:
@@ -436,9 +444,10 @@ NewBarkTown_MapEvents:
 	warp_event  3, 11, PLAYERS_NEIGHBORS_HOUSE, 1
 	warp_event 11, 13, ELMS_HOUSE, 1
 
-	def_coord_events
-	coord_event  1,  8, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU, NewBarkTown_TeacherStopsYouScene1
-	coord_event  1,  9, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU, NewBarkTown_TeacherStopsYouScene2
+        def_coord_events
+        coord_event  6,  4, SCENE_NEWBARKTOWN_CRYSTAL_INTRO, NewBarkTownCrystalEncounterTrigger
+        coord_event  1,  8, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU, NewBarkTown_TeacherStopsYouScene1
+        coord_event  1,  9, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU, NewBarkTown_TeacherStopsYouScene2
 
 	def_bg_events
 	bg_event  8,  8, BGEVENT_READ, NewBarkTownSign
