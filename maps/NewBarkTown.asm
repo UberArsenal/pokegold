@@ -1,12 +1,14 @@
 	object_const_def
-	const NEWBARKTOWN_TEACHER
-	const NEWBARKTOWN_FISHER
-	const NEWBARKTOWN_RIVAL
+        const NEWBARKTOWN_TEACHER
+        const NEWBARKTOWN_FISHER
+        const NEWBARKTOWN_RIVAL
+        const NEWBARKTOWN_CRYSTAL
 
 NewBarkTown_MapScripts:
 	def_scene_scripts
-	scene_script NewBarkTownNoop1Scene, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU
-	scene_script NewBarkTownNoop2Scene, SCENE_NEWBARKTOWN_NOOP
+        scene_script NewBarkTownNoop1Scene, SCENE_NEWBARKTOWN_TEACHER_STOPS_YOU
+        scene_script NewBarkTownCrystalIntroScene, SCENE_NEWBARKTOWN_CRYSTAL_INTRO
+        scene_script NewBarkTownNoop2Scene, SCENE_NEWBARKTOWN_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, NewBarkTownFlypointCallback
@@ -18,13 +20,85 @@ NewBarkTownNoop2Scene:
 	end
 
 NewBarkTownFlypointCallback:
-	setflag ENGINE_FLYPOINT_NEW_BARK
-	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
-	endcallback
+        setflag ENGINE_FLYPOINT_NEW_BARK
+        clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
+        endcallback
+
+NewBarkTownCrystalIntroScene:
+        checkevent EVENT_BEAT_CRYSTAL_IN_NEW_BARK
+        iftrue .AlreadyFought
+        special FadeOutMusic
+        disappear NEWBARKTOWN_CRYSTAL
+        moveobject NEWBARKTOWN_CRYSTAL, 6, 13
+        appear NEWBARKTOWN_CRYSTAL
+        applymovement NEWBARKTOWN_CRYSTAL, NewBarkTown_CrystalApproachMovement
+        turnobject PLAYER, DOWN
+        showemote EMOTE_SHOCK, PLAYER, 15
+        playmusic MUSIC_LASS_ENCOUNTER
+        opentext
+        writetext CrystalIntroText
+        waitbutton
+        closetext
+        checkevent EVENT_GOT_TOTODILE_FROM_ELM
+        iftrue .CrystalHasCyndaquil
+        checkevent EVENT_GOT_CHIKORITA_FROM_ELM
+        iftrue .CrystalHasTotodile
+.CrystalHasChikorita:
+        winlosstext CrystalBattleWinText, CrystalBattleLossText
+        setlasttalked NEWBARKTOWN_CRYSTAL
+        loadtrainer LASS, CRYSTAL_CHIKORITA
+        sjump .StartBattle
+
+.CrystalHasCyndaquil:
+        winlosstext CrystalBattleWinText, CrystalBattleLossText
+        setlasttalked NEWBARKTOWN_CRYSTAL
+        loadtrainer LASS, CRYSTAL_CYNDAQUIL
+        sjump .StartBattle
+
+.CrystalHasTotodile:
+        winlosstext CrystalBattleWinText, CrystalBattleLossText
+        setlasttalked NEWBARKTOWN_CRYSTAL
+        loadtrainer LASS, CRYSTAL_TOTODILE
+
+.StartBattle:
+        loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+        startbattle
+        dontrestartmapmusic
+        reloadmap
+        iftrue .PlayerWon
+        sjump .PlayerLost
+
+.PlayerWon:
+        playmusic MUSIC_RIVAL_AFTER
+        opentext
+        writetext CrystalPostBattleWinText
+        waitbutton
+        closetext
+        sjump .Finish
+
+.PlayerLost:
+        playmusic MUSIC_RIVAL_AFTER
+        opentext
+        writetext CrystalPostBattleLossText
+        waitbutton
+        closetext
+
+.Finish:
+        turnobject PLAYER, DOWN
+        applymovement NEWBARKTOWN_CRYSTAL, NewBarkTown_CrystalLeavesMovement
+        disappear NEWBARKTOWN_CRYSTAL
+        setevent EVENT_BEAT_CRYSTAL_IN_NEW_BARK
+        setscene SCENE_NEWBARKTOWN_NOOP
+        special RestartMapMusic
+        end
+
+.AlreadyFought:
+        setscene SCENE_NEWBARKTOWN_NOOP
+        end
 
 NewBarkTown_TeacherStopsYouScene1:
-	playmusic MUSIC_MOM
-	turnobject NEWBARKTOWN_TEACHER, LEFT
+        playmusic MUSIC_MOM
+        turnobject NEWBARKTOWN_TEACHER, LEFT
 	opentext
 	writetext Text_WaitPlayer
 	waitbutton
@@ -102,11 +176,14 @@ NewBarkTownTeacherScript:
 	end
 
 NewBarkTownFisherScript:
-	jumptextfaceplayer Text_ElmDiscoveredNewMon
+        jumptextfaceplayer Text_ElmDiscoveredNewMon
+
+NewBarkTownCrystalScript:
+        end
 
 NewBarkTownRivalScript:
-	opentext
-	writetext NewBarkTownRivalText1
+        opentext
+        writetext NewBarkTownRivalText1
 	waitbutton
 	closetext
 	turnobject NEWBARKTOWN_RIVAL, LEFT
@@ -191,11 +268,33 @@ NewBarkTown_RivalShovesYouOutMovement:
 	step_end
 
 NewBarkTown_RivalReturnsToTheShadowsMovement:
-	step RIGHT
-	step_end
+        step RIGHT
+        step_end
+
+NewBarkTown_CrystalApproachMovement:
+        step UP
+        step UP
+        step UP
+        step UP
+        step UP
+        step UP
+        step UP
+        step UP
+        step_end
+
+NewBarkTown_CrystalLeavesMovement:
+        step DOWN
+        step DOWN
+        step DOWN
+        step DOWN
+        step DOWN
+        step DOWN
+        step DOWN
+        step DOWN
+        step_end
 
 Text_GearIsImpressive:
-	text "Wow, your #GEAR"
+        text "Wow, your #GEAR"
 	line "is impressive!"
 
 	para "Did your mom get"
@@ -284,12 +383,49 @@ NewBarkTownElmsLabSignText:
 	done
 
 NewBarkTownElmsHouseSignText:
-	text "ELM'S HOUSE"
-	done
+        text "ELM'S HOUSE"
+        done
+
+CrystalIntroText:
+        text "My name is CRYSTAL!"
+        line "I'm also a #MON"
+        cont "TRAINER!"
+
+        para "I see you just"
+        line "got that starter"
+        cont "from ELM!"
+
+        para "Let's see how"
+        line "good you are!"
+        done
+
+CrystalBattleWinText:
+        text "Okay, okay!"
+        line "You're the real"
+        cont "deal!"
+        done
+
+CrystalBattleLossText:
+        text "Guess I'm a"
+        line "little ahead"
+        cont "after all!"
+        done
+
+CrystalPostBattleWinText:
+        text "You're tough!"
+
+        para "See ya later!"
+        done
+
+CrystalPostBattleLossText:
+        text "Don't sweat it!"
+
+        para "Catch you later!"
+        done
 
 MrChronoText:
-	text "I'm MR.CHRONO."
-	prompt
+        text "I'm MR.CHRONO."
+        prompt
 
 NewBarkTown_MapEvents:
 	db 0, 0 ; filler
@@ -311,6 +447,7 @@ NewBarkTown_MapEvents:
 	bg_event  9, 13, BGEVENT_READ, NewBarkTownElmsHouseSign
 
 	def_object_events
-	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
-	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
-	object_event  3,  2, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownRivalScript, EVENT_RIVAL_NEW_BARK_TOWN
+        object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
+        object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
+        object_event  3,  2, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownRivalScript, EVENT_RIVAL_NEW_BARK_TOWN
+        object_event  6, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NewBarkTownCrystalScript, EVENT_BEAT_CRYSTAL_IN_NEW_BARK

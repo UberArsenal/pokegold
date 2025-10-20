@@ -174,11 +174,14 @@ DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 	const DANA1
 	const ELLEN
 	const CONNIE2 ; unused
-	const CONNIE3 ; unused
-	const DANA2
-	const DANA3
+        const CONNIE3 ; unused
+        const DANA2
+        const DANA3
+        const CRYSTAL_CHIKORITA
+        const CRYSTAL_CYNDAQUIL
+        const CRYSTAL_TOTODILE
 
-	trainerclass JANINE ; 1a
+        trainerclass JANINE ; 1a
 	const JANINE1
 
 	trainerclass COOLTRAINERM ; 1b
