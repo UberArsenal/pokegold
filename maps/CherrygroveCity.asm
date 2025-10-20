@@ -24,79 +24,104 @@ CherrygroveCityFlypointCallback:
 	endcallback
 
 CherrygroveCityGuideGent:
-	faceplayer
-	opentext
-	writetext GuideGentIntroText
-	yesorno
-	iffalse .No
-	sjump .Yes
-.Yes:
-	writetext GuideGentTourText1
-	waitbutton
-	closetext
-	playmusic MUSIC_SHOW_ME_AROUND
-	follow CHERRYGROVECITY_GRAMPS, PLAYER
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
-	opentext
-	writetext GuideGentPokecenterText
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
-	turnobject PLAYER, UP
-	opentext
-	writetext GuideGentMartText
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement3
-	turnobject PLAYER, UP
-	opentext
-	writetext GuideGentRoute30Text
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement4
-	turnobject PLAYER, LEFT
-	opentext
-	writetext GuideGentSeaText
-	waitbutton
-	closetext
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement5
-	turnobject PLAYER, UP
-	pause 60
-	turnobject CHERRYGROVECITY_GRAMPS, LEFT
-	turnobject PLAYER, RIGHT
-	opentext
-	writetext GuideGentGiftText
-	promptbutton
-	getstring STRING_BUFFER_4, .mapcardname
-	scall .JumpstdReceiveItem
-	setflag ENGINE_MAP_CARD
-	writetext GotMapCardText
-	promptbutton
-	writetext GuideGentPokegearText
-	waitbutton
-	closetext
-	stopfollow
-	special RestartMapMusic
-	turnobject PLAYER, UP
-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
-	playsound SFX_ENTER_DOOR
-	disappear CHERRYGROVECITY_GRAMPS
-	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
-	waitsfx
-	end
+       faceplayer
+       turnobject PLAYER, UP
+       turnobject CHERRYGROVECITY_GRAMPS, DOWN
+       sjump CherrygroveCityGuideGentGiveMap
+
+CherrygroveCityGuideGentTrigger:
+       checkflag ENGINE_MAP_CARD
+       iftrue .Done
+       turnobject PLAYER, UP
+       turnobject CHERRYGROVECITY_GRAMPS, DOWN
+       sjump CherrygroveCityGuideGentGiveMap
+
+.Done:
+       end
+
+CherrygroveCityGuideGentGiveMap:
+       opentext
+       writetext GuideGentMapFirstText
+       promptbutton
+       getstring STRING_BUFFER_4, .mapcardname
+       scall .JumpstdReceiveItem
+       setflag ENGINE_MAP_CARD
+       writetext GotMapCardText
+       promptbutton
+       writetext GuideGentOfferTourText
+       yesorno
+       iffalse .Decline
+       writetext GuideGentTourText1
+       waitbutton
+       closetext
+       playmusic MUSIC_SHOW_ME_AROUND
+       follow CHERRYGROVECITY_GRAMPS, PLAYER
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
+       opentext
+       writetext GuideGentPokecenterText
+       waitbutton
+       closetext
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
+       turnobject PLAYER, UP
+       opentext
+       writetext GuideGentMartText
+       waitbutton
+       closetext
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement3
+       turnobject PLAYER, UP
+       opentext
+       writetext GuideGentRoute30Text
+       waitbutton
+       closetext
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement4
+       turnobject PLAYER, LEFT
+       opentext
+       writetext GuideGentSeaText
+       waitbutton
+       closetext
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement5
+       turnobject PLAYER, UP
+       pause 60
+       turnobject CHERRYGROVECITY_GRAMPS, LEFT
+       turnobject PLAYER, RIGHT
+       opentext
+       writetext GuideGentHouseText
+       promptbutton
+       writetext GuideGentPokegearText
+       waitbutton
+       closetext
+       stopfollow
+       special RestartMapMusic
+       turnobject PLAYER, UP
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
+       playsound SFX_ENTER_DOOR
+       disappear CHERRYGROVECITY_GRAMPS
+       clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+       waitsfx
+       end
+
+.Decline:
+       writetext GuideGentDeclineText
+       waitbutton
+       closetext
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement3
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement4
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement5
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
+       playsound SFX_ENTER_DOOR
+       disappear CHERRYGROVECITY_GRAMPS
+       clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+       waitsfx
+       end
 
 .JumpstdReceiveItem:
-	jumpstd ReceiveItemScript
-	end
+       jumpstd ReceiveItemScript
+       end
 
 .mapcardname
-	db "MAP CARD@"
-
-.No:
-	writetext GuideGentNoText
-	waitbutton
-	closetext
-	end
+       db "MAP CARD@"
 
 CherrygroveRivalSceneSouth:
 	moveobject CHERRYGROVECITY_RIVAL, 39, 7
@@ -333,19 +358,28 @@ CherrygroveCity_RivalExitsStageLeft:
 	big_step LEFT
 	step_end
 
-GuideGentIntroText:
-	text "You're a rookie"
-	line "trainer, aren't"
-	cont "you? I can tell!"
+GuideGentMapFirstText:
+       text "Hey there, young"
+       line "man! I see you're"
+       cont "in a hurry!"
 
-	para "That's OK! Every-"
-	line "one is a rookie"
-	cont "at some point!"
+       para "I won't waste too"
+       line "much of your time,"
+       cont "but you will get"
+       cont "lost without"
+       cont "knowing where to"
+       cont "go!"
 
-	para "If you'd like, I"
-	line "can teach you a"
-	cont "few things."
-	done
+       para "Here's this MAP"
+       line "CARD for your"
+       cont "#GEAR!"
+       done
+
+GuideGentOfferTourText:
+       text "Would you still"
+       line "like the tour"
+       cont "around town?"
+       done
 
 GuideGentTourText1:
 	text "OK, then!"
@@ -397,16 +431,17 @@ GuideGentSeaText:
 	cont "water."
 	done
 
-GuideGentGiftText:
-	text "Here…"
+GuideGentHouseText:
+       text "Here…"
 
-	para "It's my house!"
-	line "Thanks for your"
-	cont "company."
+       para "It's my house!"
+       line "Thanks for your"
+       cont "company."
 
-	para "Let me give you a"
-	line "small gift."
-	done
+       para "Feel free to stop"
+       line "by if you need a"
+       cont "breather."
+       done
 
 GotMapCardText:
 	text "<PLAYER>'s #GEAR"
@@ -422,13 +457,16 @@ GuideGentPokegearText:
 	line "your journey!"
 	done
 
-GuideGentNoText:
-	text "Oh… It's something"
-	line "I enjoy doing…"
+GuideGentDeclineText:
+       text "All right, then!"
+       line "Good luck out"
+       cont "there."
 
-	para "Fine. Come see me"
-	line "when you like."
-	done
+       para "Your way out of"
+       line "town is ROUTE 30"
+       cont "just past the"
+       cont "#MON MART."
+       done
 
 CherrygroveRivalText_Seen:
 	text "…"
@@ -555,6 +593,7 @@ CherrygroveCity_MapEvents:
 	warp_event 31, 11, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, 1
 
 	def_coord_events
+	coord_event 32,  7, -1, CherrygroveCityGuideGentTrigger
 	coord_event 33,  6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneNorth
 	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneSouth
 
