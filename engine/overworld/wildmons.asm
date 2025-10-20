@@ -311,9 +311,7 @@ ChooseWildEncounter:
 	add hl, bc ; this selects our mon
 	ld a, [hli]
 	ld b, a
-; If the Pokemon is encountered by surfing, we need to give the levels some variety.
-	call CheckOnWater
-	jr nz, .ok
+
 ; Check if we buff the wild mon, and by how much.
 	call Random
 	cp 35 percent
