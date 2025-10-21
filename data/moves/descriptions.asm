@@ -1136,8 +1136,8 @@ PresentDescription:
 	next "restore HP.@"
 
 FrustrationDescription:
-	db   "An attack based on"
-	next "lack of loyalty.@"
+	db   "A dark strike that"
+	next "may land critical.@"
 
 SafeguardDescription:
 	db   "Prevents all"
