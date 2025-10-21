@@ -177,6 +177,9 @@ MomGivesPokegearText:
 
 	para "Oh, the day of the"
 	line "week isn't set."
+
+	para "You mustn't forget"
+	line "that!"
 	done
 
 IsItDSTText:
@@ -197,13 +200,11 @@ ComeHomeForDSTText:
 	done
 
 KnowTheInstructionsText:
-	text "Of course you"
-	line "know how to"
-	cont "work your own"
-	cont "#GEAR! Haha!"
-	
-	para "Tell PROF. ELM"
-	line "I said Hi!"
+	text "Don't you just"
+	line "turn the #GEAR"
+
+	para "on and select the"
+	line "PHONE icon?"
 	done
 
 DontKnowTheInstructionsText:
@@ -216,8 +217,14 @@ DontKnowTheInstructionsText:
 	done
 
 InstructionsNextText:
-	text "Don't be out"
-	line "too late dear!"
+	text "Phone numbers are"
+	line "stored in memory."
+
+	para "Just choose a name"
+	line "you want to call."
+
+	para "Gee, isn't that"
+	line "convenient?"
 	done
 
 HurryUpElmIsWaitingText:

@@ -231,7 +231,7 @@ Moves:
 	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, NORMAL,       100,  5,   0
 	move RETURN,       EFFECT_RETURN,              1, NORMAL,       100, 20,   0
 	move PRESENT,      EFFECT_PRESENT,             1, NORMAL,        90, 15,   0
-	move FRUSTRATION,  EFFECT_NORMAL_HIT,         60, DARK,         100, 20,   0
+	move FRUSTRATION,  EFFECT_FRUSTRATION,         1, NORMAL,       100, 20,   0
 	move SAFEGUARD,    EFFECT_SAFEGUARD,           0, NORMAL,       100, 25,   0
 	move PAIN_SPLIT,   EFFECT_PAIN_SPLIT,          0, NORMAL,       100, 20,   0
 	move SACRED_FIRE,  EFFECT_SACRED_FIRE,       100, FIRE,          95,  5,  50

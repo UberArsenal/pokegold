@@ -84,9 +84,7 @@ DoPoisonStep::
 	or c
 	jr nz, .not_fainted
 
-; the mon has fainted, reset its HP to 1 and its status OK
-	inc hl
-	inc [hl]
+; the mon has fainted, reset its status, set carry, and return %10
 	ld a, MON_STATUS
 	call GetPartyParamLocation
 	ld [hl], 0
@@ -111,14 +109,15 @@ DoPoisonStep::
 .Script_MonFaintedToPoison:
 	callasm .PlayPoisonSFX
 	opentext
-	callasm .CheckRecovered
+	callasm .CheckWhitedOut
+	iffalse .whiteout
 	closetext
 	end
 
 .whiteout
 	farsjump OverworldWhiteoutScript
 
-.CheckRecovered:
+.CheckWhitedOut:
 	xor a
 	ld [wCurPartyMon], a
 	ld de, wPoisonStepPartyFlags
@@ -130,7 +129,7 @@ DoPoisonStep::
 	ld c, HAPPINESS_POISONFAINT
 	farcall ChangeHappiness
 	farcall GetPartyNickname
-	ld hl, .PoisonRecoveryText
+	ld hl, .PoisonFaintText
 	call PrintText
 
 .mon_not_fainted
@@ -141,9 +140,15 @@ DoPoisonStep::
 	ld a, [wPartyCount]
 	cp [hl]
 	jr nz, .party_loop
+	predef CheckPlayerPartyForFitMon
+	ld a, d
+	ld [wScriptVar], a
 	ret
 
-.PoisonRecoveryText:
+.PoisonFaintText:
 	text_far _PoisonFaintText
 	text_end
 
+.PoisonWhiteoutText: ; unreferenced
+	text_far _PoisonWhiteoutText
+	text_end
