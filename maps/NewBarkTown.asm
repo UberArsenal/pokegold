@@ -250,8 +250,17 @@ Text_ElmDiscoveredNewMon:
 	text "Yo, <PLAYER>!"
 
 	para "I hear PROF.ELM"
-	line "discovered some"
-	cont "new #MON."
+	line "is looking for"
+	cont "you, my guy!"
+	
+	para "By the way dude,"
+	line "those RUNNING"
+	cont "SHOES are tough!"
+	
+	para "You can hold the"
+	line "B button down to"
+	cont "pick up some"
+	cont "killer speed!"
 	done
 
 NewBarkTownRivalText1:
