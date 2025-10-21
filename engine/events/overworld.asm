@@ -587,7 +587,7 @@ TrySurfOW::
 
 ; Must be facing water.
 	ld a, [wFacingTileID]
-	call GetTilePermission
+	call GetTileCollision
 	cp WATER_TILE
 	jr nz, .quit
 
@@ -1507,24 +1507,10 @@ AskRockSmashText:
 	text_end
 
 HasRockSmash:
-; Step 1
-	ld a, TM_ROCK_SMASH
-	ld [wCurItem], a
-	ld hl, wNumItems
-	call CheckItem
-	jr z, .no
-
-; Step 2
-	ld d, ROCK_SMASH
-	call CheckPartyCanLearnMove
-       and a
-	jr z, .yes
-
-; Step 3
 	ld d, ROCK_SMASH
 	call CheckPartyMove
 	jr nc, .yes
-.no
+; no
 	ld a, 1
 	jr .done
 .yes
@@ -2109,4 +2095,23 @@ CanUseTeleport:
 .yes
 	ld a, MONMENUITEM_TELEPORT
 	call AddMonMenuItem	
+	ret
+
+CanUseSoftboiled:
+	ld a, SOFTBOILED
+	call CheckMonKnowsMove
+	and a
+	ret nz
+	ld a, MONMENUITEM_SOFTBOILED
+	call AddMonMenuItem
+	ret
+	
+CanUseMilkdrink:
+	ld a, MILK_DRINK
+	call CheckMonKnowsMove
+	and a
+	ret nz
+
+	ld a, MONMENUITEM_MILKDRINK
+	call AddMonMenuItem
 	ret

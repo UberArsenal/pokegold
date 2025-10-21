@@ -124,6 +124,7 @@ GetMonSubmenuItems:
 	jr nz, .skip_moves
 
 	call CanUseFlash
+	call CanUseRockSmash
 	call CanUseFly
 	call CanUseDig
 	call Can_Use_Sweet_Scent
@@ -365,23 +366,4 @@ MonSubMenu_GetNextEvoAttackByte:
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarByte
 	inc hl
-	ret
-
-CanUseSoftboiled:
-	ld a, SOFTBOILED
-	call CheckMonKnowsMove
-	and a
-	ret nz
-	ld a, MONMENUITEM_SOFTBOILED
-	call AddMonMenuItem
-	ret
-	
-CanUseMilkdrink:
-	ld a, MILK_DRINK
-	call CheckMonKnowsMove
-	and a
-	ret nz
-
-	ld a, MONMENUITEM_MILKDRINK
-	call AddMonMenuItem
 	ret
