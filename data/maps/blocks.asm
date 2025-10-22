@@ -268,6 +268,9 @@ Route39_Blocks:
 PlayersHouse1F_Blocks:
 	INCBIN "maps/PlayersHouse1F.blk"
 
+Route40SafariZoneGateF1_Blocks:
+    INCBIN "maps/Route40SafariZoneGateF1.blk"
+
 Route38EcruteakGate_Blocks:
 Route42EcruteakGate_Blocks:
 Route32RuinsOfAlphGate_Blocks:

@@ -45,11 +45,12 @@ ENDM
 	map_const OLIVINE_CAFE,                                 4,  4 ;  7
 	map_const OLIVINE_MART,                                 6,  4 ;  8
 	map_const ROUTE_38_ECRUTEAK_GATE,                       5,  4 ;  9
-	map_const ROUTE_39_BARN,                                4,  4 ; 10
-	map_const ROUTE_39_FARMHOUSE,                           4,  4 ; 11
-	map_const ROUTE_38,                                    20,  9 ; 12
-	map_const ROUTE_39,                                    10, 18 ; 13
-	map_const OLIVINE_CITY,                                20, 18 ; 14
+    map_const SAFARI_ZONE_GATE_F1,                          5,  4 ; 10
+    map_const ROUTE_39_BARN,                                4,  4 ; 11
+    map_const ROUTE_39_FARMHOUSE,                           4,  4 ; 12
+    map_const ROUTE_38,                                    20,  9 ; 13
+    map_const ROUTE_39,                                    10, 18 ; 14
+    map_const OLIVINE_CITY,   							   20, 18 ; 15
 	endgroup
 
 	newgroup MAHOGANY                                             ;  2

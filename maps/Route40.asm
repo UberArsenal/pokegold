@@ -276,9 +276,9 @@ Route40_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event 12,  3, ROUTE_38_ECRUTEAK_GATE, 1
-	warp_event 13,  3, ROUTE_38_ECRUTEAK_GATE, 2
-
+		warp_event 12,  3, SAFARI_ZONE_GATE_F1, 1
+        warp_event 13,  3, SAFARI_ZONE_GATE_F1, 2
+		
 	def_coord_events
 
 	def_bg_events

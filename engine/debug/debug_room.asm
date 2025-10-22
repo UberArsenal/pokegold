@@ -2,6 +2,7 @@
 	const_def
 	const DEBUGROOMMENU_PAGE_1 ; 0
 	const DEBUGROOMMENU_PAGE_2 ; 1
+	const DEBUGROOMMENU_PAGE_3 ; 2
 DEF DEBUGROOMMENU_NUM_PAGES EQU const_value
 
 	; _DebugRoom.Strings and _DebugRoom.Jumptable indexes
@@ -19,6 +20,7 @@ DEF DEBUGROOMMENU_NUM_PAGES EQU const_value
 	const DEBUGROOMMENUITEM_BTL_REC_CLR  ; a
 	const DEBUGROOMMENUITEM_POKEDEX_CLR  ; b
 	const DEBUGROOMMENUITEM_HALT_CHK_CLR ; c
+	const DEBUGROOMMENUITEM_BADGE_GET    ; d
 
 _DebugRoom:
 	ldh a, [hJoyDown]
@@ -87,6 +89,7 @@ _DebugRoom:
 	db "BTL REC CLR@"
 	db "#DEX CLR@"
 	db "HALT CHK CLR@"
+	db "BADGE GET@"
 
 .Jumptable:
 ; entries correspond to DEBUGROOMMENUITEM_* constants
@@ -103,6 +106,7 @@ _DebugRoom:
 	dw DebugRoomMenu_BtlRecClr
 	dw DebugRoomMenu_PokedexClr
 	dw DebugRoomMenu_HaltChkClr
+	dw DebugRoomMenu_BadgeGet
 
 .MenuItems:
 ; entries correspond to DEBUGROOMMENU_* constants
@@ -126,6 +130,12 @@ _DebugRoom:
 	db DEBUGROOMMENUITEM_POKEDEX_COMP
 	db DEBUGROOMMENUITEM_POKEDEX_CLR
 	db DEBUGROOMMENUITEM_DECORATE_ALL
+	db DEBUGROOMMENUITEM_NEXT
+	db -1
+
+	; DEBUGROOMMENU_PAGE_3
+	db 2
+	db DEBUGROOMMENUITEM_BADGE_GET
 	db DEBUGROOMMENUITEM_NEXT
 	db -1
 
@@ -1380,3 +1390,178 @@ DebugRoomMenu_BtlRecClr:
 	call ByteFill
 	call CloseSRAM
 	ret
+
+DebugRoomMenu_BadgeGet:
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call VerticalMenu
+	call CloseWindow
+	ret c
+	ld a, [wMenuCursorY]
+	dec a
+	ld c, a
+	call .PreparePromptStrings
+	ld hl, .BadgePromptText
+	call MenuTextbox
+	call YesNoBox
+	push af
+	call CloseWindow
+	pop af
+	jr c, .disable_badge
+	call .EnableBadge
+	ret
+
+.disable_badge
+	call .DisableBadge
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 15, SCREEN_HEIGHT - 1
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db NUM_JOHTO_BADGES ; items
+.BadgeNames:
+	db "ZEPHYR BADGE@"
+	db "HIVE BADGE@"
+	db "PLAIN BADGE@"
+	db "FOG BADGE@"
+	db "MINERAL BADGE@"
+	db "STORM BADGE@"
+	db "GLACIER BADGE@"
+	db "RISING BADGE@"
+
+.PreparePromptStrings:
+	ld hl, .BadgeNames
+	ld a, c
+	call GetNthString
+	ld de, wStringBuffer1
+.copy_badge_name
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp "@"
+	jr nz, .copy_badge_name
+	call .ComputeBadgeMask
+	ld d, a
+	ld hl, wJohtoBadges
+	ld a, [hl]
+	and d
+	jr z, .badge_off
+	ld hl, .StatusOnString
+	jr .copy_status
+
+.badge_off
+	ld hl, .StatusOffString
+
+.copy_status
+	call .CopyStringToBuffer2
+	ret
+
+.EnableBadge:
+	call .SetBadgeFlags
+	ld hl, .EnabledString
+	call .CopyStringToBuffer2
+	ld hl, .BadgeResultText
+	call MenuTextbox
+	call DebugRoom_JoyWaitABSelect
+	call CloseWindow
+	ret
+
+.DisableBadge:
+	call .ClearBadgeFlags
+	ld hl, .DisabledString
+	call .CopyStringToBuffer2
+	ld hl, .BadgeResultText
+	call MenuTextbox
+	call DebugRoom_JoyWaitABSelect
+	call CloseWindow
+	ret
+
+.CopyStringToBuffer2:
+	ld de, wStringBuffer2
+.copy_loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp "@"
+	jr nz, .copy_loop
+	ret
+
+.ComputeBadgeMask:
+	ld a, c
+	and a
+	ld b, a
+	ld a, 1
+	jr z, .mask_done
+
+.mask_loop
+	add a, a
+	dec b
+	jr nz, .mask_loop
+
+.mask_done
+	ret
+
+.SetBadgeFlags:
+	call .ComputeBadgeMask
+	ld d, a
+	ld hl, wJohtoBadges
+	ld a, [hl]
+	or d
+	ld [hl], a
+	ld a, BANK(sPlayerData3)
+	call OpenSRAM
+	ld hl, sPlayerData3 + (wJohtoBadges - wPlayerData3)
+	ld a, [hl]
+	or d
+	ld [hl], a
+	call CloseSRAM
+	call DebugRoom_SaveChecksum
+	ret
+
+.ClearBadgeFlags:
+	call .ComputeBadgeMask
+	ld d, a
+	ld hl, wJohtoBadges
+	ld a, [hl]
+	ld e, a
+	ld a, d
+	cpl
+	and e
+	ld [hl], a
+	ld a, BANK(sPlayerData3)
+	call OpenSRAM
+	ld hl, sPlayerData3 + (wJohtoBadges - wPlayerData3)
+	ld a, [hl]
+	ld e, a
+	ld a, d
+	cpl
+	and e
+	ld [hl], a
+	call CloseSRAM
+	call DebugRoom_SaveChecksum
+	ret
+
+.BadgePromptText:
+	text_ram wStringBuffer1
+	text " is "
+	text_ram wStringBuffer2
+	text "."
+	line "YES: Enable"
+	cont "NO: Disable"
+	done
+
+.BadgeResultText:
+	text_ram wStringBuffer1
+	text " "
+	text_ram wStringBuffer2
+	done
+
+.StatusOnString:    db "ON@"
+.StatusOffString:   db "OFF@"
+.EnabledString:     db "ENABLED.@"
+.DisabledString:    db "DISABLED.@"

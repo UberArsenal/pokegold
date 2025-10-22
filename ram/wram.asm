@@ -1044,6 +1044,9 @@ wDebugRoomRTCCurDay::  dw
 NEXTU
 ; debug room GB ID values
 wDebugRoomGBID:: dw
+NEXTU
+; debug room badge menu state
+wDebugRoomBadgeIndex:: db
 ENDU
 
 ENDC

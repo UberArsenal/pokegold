@@ -60,7 +60,7 @@ RGBLINK ?= $(RGBDS)rgblink
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all gold silver gold_debug silver_debug clean tidy compare tools
+.PHONY: all gold silver gold_debug silver_debug debug clean tidy compare tools
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -70,6 +70,7 @@ gold:         pokegold.gbc
 silver:       pokesilver.gbc
 gold_debug:   pokegold_debug.gbc
 silver_debug: pokesilver_debug.gbc
+debug:		  gold_debug silver_debug
 gold_vc:      pokegold.patch
 silver_vc:    pokesilver.patch
 
