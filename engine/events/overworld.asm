@@ -542,12 +542,21 @@ FlyFunction:
 	dw .FailFly
 
 .TryFly:
-	ld de, ENGINE_STORMBADGE
-	call CheckBadge
-	jr c, .nostormbadge
-	call GetMapEnvironment
-	call CheckOutdoorMap
-	jr z, .outdoors
+        ld hl, wVisitedSpawns
+        ld c, SPAWN_DEBUG
+        ld b, CHECK_FLAG
+        ld d, 0
+        predef SmallFarFlagAction
+        ld a, c
+        and a
+        jr nz, .skip_badge_check
+        ld de, ENGINE_STORMBADGE
+        call CheckBadge
+        jr c, .nostormbadge
+.skip_badge_check
+        call GetMapEnvironment
+        call CheckOutdoorMap
+        jr z, .outdoors
 	jr .indoors
 
 .outdoors

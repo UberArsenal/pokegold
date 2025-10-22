@@ -21,6 +21,7 @@ DEF DEBUGROOMMENU_NUM_PAGES EQU const_value
 	const DEBUGROOMMENUITEM_POKEDEX_CLR  ; b
 	const DEBUGROOMMENUITEM_HALT_CHK_CLR ; c
 	const DEBUGROOMMENUITEM_BADGE_GET    ; d
+	const DEBUGROOMMENUITEM_FLY_FAST_TRAVEL ; e
 
 _DebugRoom:
 	ldh a, [hJoyDown]
@@ -90,6 +91,7 @@ _DebugRoom:
 	db "#DEX CLR@"
 	db "HALT CHK CLR@"
 	db "BADGE GET@"
+	db "FLY-FT@"
 
 .Jumptable:
 ; entries correspond to DEBUGROOMMENUITEM_* constants
@@ -107,6 +109,7 @@ _DebugRoom:
 	dw DebugRoomMenu_PokedexClr
 	dw DebugRoomMenu_HaltChkClr
 	dw DebugRoomMenu_BadgeGet
+	dw DebugRoomMenu_FlyFastTravel
 
 .MenuItems:
 ; entries correspond to DEBUGROOMMENU_* constants
@@ -134,8 +137,9 @@ _DebugRoom:
 	db -1
 
 	; DEBUGROOMMENU_PAGE_3
-	db 2
+	db 3
 	db DEBUGROOMMENUITEM_BADGE_GET
+	db DEBUGROOMMENUITEM_FLY_FAST_TRAVEL
 	db DEBUGROOMMENUITEM_NEXT
 	db -1
 
@@ -1565,3 +1569,90 @@ DebugRoomMenu_BadgeGet:
 .StatusOffString:   db "OFF@"
 .EnabledString:     db "ENABLED.@"
 .DisabledString:    db "DISABLED.@"
+
+DebugRoomMenu_FlyFastTravel:
+        ld hl, .PromptText
+        call MenuTextbox
+        call YesNoBox
+        push af
+        call CloseWindow
+        pop af
+        ret c
+        call .EnableFlypoints
+        ld hl, .EnabledText
+        call MenuTextbox
+        call DebugRoom_JoyWaitABSelect
+        call CloseWindow
+        ret
+
+.EnableFlypoints:
+        ld hl, .FlypointSpawns
+.loop
+        ld a, [hli]
+        cp -1
+        jr z, .done
+        ld c, a
+        push hl
+        ld hl, wVisitedSpawns
+        ld b, SET_FLAG
+        ld d, 0
+        predef SmallFarFlagAction
+        pop hl
+        jr .loop
+
+.done
+        ld a, BANK(sGameData)
+        call OpenSRAM
+        ld hl, wVisitedSpawns
+        ld de, sCurMapData + (wVisitedSpawns - wCurMapData)
+        ld bc, (NUM_SPAWNS + 7) / 8
+.copy_loop
+        ld a, [hli]
+        ld [de], a
+        inc de
+        dec bc
+        ld a, b
+        or c
+        jr nz, .copy_loop
+        call CloseSRAM
+        call DebugRoom_SaveChecksum
+        ret
+
+.PromptText:
+        text "Enable all Fly destinations?"
+        line "YES: Unlock"
+        cont "NO: Cancel"
+        done
+
+.EnabledText:
+        text "All Fly spots unlocked."
+        done
+
+.FlypointSpawns:
+        db SPAWN_HOME
+        db SPAWN_DEBUG
+        db SPAWN_NEW_BARK
+        db SPAWN_CHERRYGROVE
+        db SPAWN_VIOLET
+        db SPAWN_AZALEA
+        db SPAWN_GOLDENROD
+        db SPAWN_ECRUTEAK
+        db SPAWN_OLIVINE
+        db SPAWN_CIANWOOD
+        db SPAWN_MAHOGANY
+        db SPAWN_LAKE_OF_RAGE
+        db SPAWN_BLACKTHORN
+        db SPAWN_MT_SILVER
+        db SPAWN_PALLET
+        db SPAWN_VIRIDIAN
+        db SPAWN_PEWTER
+        db SPAWN_CERULEAN
+        db SPAWN_ROCK_TUNNEL
+        db SPAWN_VERMILION
+        db SPAWN_LAVENDER
+        db SPAWN_SAFFRON
+        db SPAWN_CELADON
+        db SPAWN_FUCHSIA
+        db SPAWN_CINNABAR
+        db SPAWN_INDIGO
+        db -1

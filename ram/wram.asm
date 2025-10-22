@@ -1049,6 +1049,9 @@ NEXTU
 wDebugRoomBadgeIndex:: db
 ENDU
 
+SECTION "Debug Room Badge Mask", WRAM0
+wDebugRoomBadgeMask:: db
+
 ENDC
 
 
