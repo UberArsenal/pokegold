@@ -25,14 +25,15 @@ Route40SafariZoneGateF1_MapEvents:
         db 0, 0 ; filler
 
         def_warp_events
+		warp_event  4,  0, JOHTO_SAFARI_ZONE, 1
+        warp_event  5,  0, JOHTO_SAFARI_ZONE, 2
         warp_event  4,  7, ROUTE_40, 1
         warp_event  5,  7, ROUTE_40, 2
 
         def_coord_events
 
         def_bg_events
-        bg_event  4,  0, BGEVENT_UP, Route40SafariZoneGateF1LockedDoorScript
-        bg_event  5,  0, BGEVENT_UP, Route40SafariZoneGateF1LockedDoorScript
+        
 
         def_object_events
         object_event  0,  3, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route40SafariZoneGateF1ReceptionistScript, -1

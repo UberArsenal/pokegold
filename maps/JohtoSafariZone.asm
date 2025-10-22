@@ -1,9 +1,9 @@
-SafariZoneBeta_MapScripts:
+JohtoSafariZone_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
 
-SafariZoneBeta_MapEvents:
+JohtoSafariZone_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events

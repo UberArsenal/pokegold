@@ -953,8 +953,8 @@ VermilionPortPassage_Blocks:
 FuchsiaGym_Blocks:
 	INCBIN "maps/FuchsiaGym.blk"
 
-SafariZoneBeta_Blocks:
-	INCBIN "maps/SafariZoneBeta.blk"
+JohtoSafariZone_Blocks:
+	INCBIN "maps/JohtoSafariZone.blk"
 
 UndergroundPath_Blocks:
 	INCBIN "maps/UndergroundPath.blk"
