@@ -1122,13 +1122,20 @@ RandomEncounter::
 	call CheckWildEncounterCooldown
 	jr c, .nope
 	call CanEncounterWildMon
-	jr nc, .nope
-	ld hl, wStatusFlags2
-	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
-	jr nz, .bug_contest
-	farcall TryWildEncounter
-	jr nz, .nope
-	jr .ok
+    jr nc, .nope
+    ld hl, wStatusFlags2
+    bit STATUSFLAGS2_SAFARI_GAME_F, [hl]
+    jr nz, .safari
+    bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
+    jr nz, .bug_contest
+    farcall TryWildEncounter
+    jr nz, .nope
+    jr .ok
+
+.safari
+    call _TryWildEncounter_JohtoSafari
+    jr nc, .nope
+    jr .ok_safari
 
 .bug_contest
 	call _TryWildEncounter_BugContest
@@ -1142,8 +1149,13 @@ RandomEncounter::
 
 .ok
 	ld a, BANK(WildBattleScript)
-	ld hl, WildBattleScript
-	jr .done
+    ld hl, WildBattleScript
+    jr .done
+
+.ok_safari
+    ld a, BANK(JohtoSafariBattleScript)
+    ld hl, JohtoSafariBattleScript
+    jr .done
 
 .ok_bug_contest
 	ld a, BANK(BugCatchingContestBattleScript)
@@ -1185,11 +1197,18 @@ CanEncounterWildMon::
 	ret
 
 _TryWildEncounter_BugContest:
-	call TryWildEncounter_BugContest
-	ret nc
-	call ChooseWildEncounter_BugContest
-	farcall CheckRepelEffect
-	ret
+call TryWildEncounter_BugContest
+    ret nc
+    call ChooseWildEncounter_BugContest
+    farcall CheckRepelEffect
+    ret
+
+_TryWildEncounter_JohtoSafari:
+    call JohtoSafari_TryEncounter
+    ret nc
+    call JohtoSafari_ChooseEncounter
+    farcall CheckRepelEffect
+    ret
 
 ChooseWildEncounter_BugContest::
 ; Pick a random mon out of ContestMons.

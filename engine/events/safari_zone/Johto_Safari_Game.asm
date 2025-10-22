@@ -29,17 +29,17 @@ DEF BATTLETYPE_SAFARI EQU BATTLETYPE_NORMAL
 ; Expected call site: Safari Zone gate attendant before the player is allowed
 ; to enter the reserve.
 JohtoSafari_StartSession::
-        ld a, JOHTO_SAFARI_MAX_BALLS
-        ld [wSafariBallsRemaining], a
-        ld hl, wSafariTimeRemaining
+    ld a, JOHTO_SAFARI_MAX_BALLS
+    ld [wSafariBallsRemaining], a
+    ld hl, wSafariTimeRemaining
         ld a, LOW(JOHTO_SAFARI_MAX_STEPS)
         ld [hli], a
-        ld a, HIGH(JOHTO_SAFARI_MAX_STEPS)
-        ld [hl], a
-        ld hl, wStatusFlags2
-        set STATUSFLAGS2_SAFARI_GAME_F, [hl]
-        xor a
-        ret
+    ld a, HIGH(JOHTO_SAFARI_MAX_STEPS)
+    ld [hl], a
+    ld hl, wStatusFlags2
+    set STATUSFLAGS2_SAFARI_GAME_F, [hl]
+    xor a
+    ret
 
 ; ---------------------------------------------------------------------------
 ; Step counter management
@@ -65,50 +65,7 @@ JohtoSafari_DecrementStepCounter::
         dec [hl]
         dec hl
         xor a
-        ret
-
-.time_up
-        ld [hl], 0
-        dec hl
-        ld [hl], 0
-        scf
-        ret
-
-; Bridges the step counter to the scripting engine. Returns 1 in wScriptVar
-; when the player has exhausted their step quota.
-JohtoSafari_StepWatcherAsm::
-        call JohtoSafari_DecrementStepCounter
-        jr nc, .okay
-        ld a, 1
-        jr .store
-
-.okay
-        xor a
-
-.store
-        ld [wScriptVar], a
-        ret
-
-; ---------------------------------------------------------------------------
-; Ball tracking helper
-; ---------------------------------------------------------------------------
-; Simple routine to restore the default Safari Ball inventory. This mirrors how
-; the Bug Catching Contest replenishes Park Balls each attempt.
-JohtoSafari_ResetBallCount::
-        ld a, JOHTO_SAFARI_MAX_BALLS
-        ld [wSafariBallsRemaining], a
-        ret
-
-; ---------------------------------------------------------------------------
-; Encounter script (draft)
-; ---------------------------------------------------------------------------
-; This closely mirrors BugCatchingContestBattleScript, minus the contest rank
-; logic. Once a Safari-specific battle mode exists, replace the placeholder
-; battle type below.
-JohtoSafariBattleScript::
-        loadvar VAR_BATTLETYPE, BATTLETYPE_SAFARI ; TODO: dedicated Safari rules
-        randomwildmon
-        startbattle
+@@ -112,44 +112,95 @@ JohtoSafariBattleScript::
         reloadmapafterbattle
         readmem wSafariBallsRemaining
         iffalse JohtoSafari_OutOfBallsScript
@@ -134,10 +91,12 @@ JohtoSafari_OutOfBallsScript::
 ; Placeholder warp handler. The final implementation should fade out and warp
 ; the player back to the Safari Zone entrance map before resetting their party.
 JohtoSafari_ReturnToGateScript::
-        closetext
-        clearflag ENGINE_SAFARI_ZONE
-        ; TODO: Define warp back to the Safari Zone entrance gate.
-        end
+    closetext
+    clearflag ENGINE_SAFARI_ZONE
+    warpsound
+    warpfacing DOWN, SAFARI_ZONE_GATE_F1, 4, 3
+    special RestartMapMusic
+    end
 
 ; ---------------------------------------------------------------------------
 ; Draft text stubs
@@ -149,7 +108,56 @@ JohtoSafariTimeUpText:
         done
 
 JohtoSafariOutOfBallsText:
-        text "You've used up all"
-        line "of the SAFARI BALLS."
-        cont "Time to check in."
-        done
+    text "You've used up all"
+    line "of the SAFARI BALLS."
+    cont "Time to check in."
+    done
+
+; ---------------------------------------------------------------------------
+; Encounter helpers
+; ---------------------------------------------------------------------------
+JohtoSafari_ChooseEncounter::
+    call Random
+    cp 100 << 1
+    jr nc, JohtoSafari_ChooseEncounter
+    srl a
+    ld hl, SafariMons
+    ld de, 4
+.check_mon
+    sub [hl]
+    jr c, .select_mon
+    add hl, de
+    jr .check_mon
+
+.select_mon
+    inc hl
+    ld a, [hli]
+    ld [wTempWildMonSpecies], a
+    ld d, [hli]
+    ld a, [hl]
+    ld e, a
+    sub d
+    jr nz, .random_level
+    ld a, d
+    jr .store_level
+
+.random_level
+    ld c, a
+    inc c
+    call Random
+    ldh a, [hRandomAdd]
+    call SimpleDivide
+    add d
+
+.store_level
+    ld [wCurPartyLevel], a
+    xor a
+    ret
+
+JohtoSafari_TryEncounter::
+    farcall TryWildEncounter
+    ret nz
+    scf
+    ret
+
+INCLUDE "data/wild/safari_zone_mons.asm"

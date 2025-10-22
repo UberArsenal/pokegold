@@ -2372,3 +2372,4 @@ JohtoGrassWildMons:
 	end_grass_wildmons
 
 	db -1 ; end
+

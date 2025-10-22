@@ -267,10 +267,18 @@ ApplyCleanseTagEffectOnEncounterRate::
 	ret
 
 ChooseWildEncounter:
-	call LoadWildMonDataPointer
-	jp nc, .nowildbattle
-	call CheckEncounterRoamMon
-	jp c, .startwildbattle
+        ld hl, wStatusFlags2
+        bit STATUSFLAGS2_SAFARI_GAME_F, [hl]
+        jr z, .not_safari
+        call ChooseSafariWildEncounter
+        ret
+
+.not_safari
+        call LoadWildMonDataPointer
+        jp nc, .nowildbattle
+        call CheckEncounterRoamMon
+        jp c, .startwildbattle
+
 
 	inc hl
 	inc hl
@@ -358,6 +366,51 @@ ChooseWildEncounter:
 .startwildbattle
 	xor a
 	ret
+
+ChooseSafariWildEncounter:
+.loop
+        call Random
+        cp 100 << 1
+        jr nc, .loop
+        srl a
+
+        ld hl, SafariMons
+        ld de, 4
+
+.check_mon
+        sub [hl]
+        jr c, .got_mon
+        add hl, de
+        jr .check_mon
+
+.got_mon
+        inc hl
+        ld a, [hli]
+        ld [wTempWildMonSpecies], a
+
+        ld a, [hli]
+        ld d, a
+        ld a, [hl]
+        sub d
+        jr nz, .random_level
+
+        ld a, d
+        jr .store_level
+
+.random_level
+        ld c, a
+        inc c
+        call Random
+        ldh a, [hRandomAdd]
+        call SimpleDivide
+        add d
+
+.store_level
+        ld [wCurPartyLevel], a
+        xor a
+        ret
+
+INCLUDE "data/wild/safari_zone_mons.asm"
 
 INCLUDE "data/wild/probabilities.asm"
 
