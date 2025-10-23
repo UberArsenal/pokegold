@@ -43,6 +43,8 @@ JohtoSafari_StartSession::
     ret
 
 JohtoSafari_ResetBallCount::
+; Clears the session state, timer, and any Safari Balls still in the bag.
+    call JohtoSafari_ClearSafariBallItem
     xor a
     ld [wSafariBallsRemaining], a
     ld hl, wSafariTimeRemaining
@@ -52,6 +54,56 @@ JohtoSafari_ResetBallCount::
     res STATUSFLAGS2_SAFARI_GAME_F, [hl]
     ld [wScriptVar], a
     ret
+
+JohtoSafari_GiveSafariBalls::
+; Attempts to add the Safari Ball stack to the bag and returns success
+; in wScriptVar for map scripts to branch on.
+    ld a, SAFARI_BALL
+    ld [wCurItem], a
+    ld a, JOHTO_SAFARI_MAX_BALLS
+    ld [wItemQuantityChange], a
+    ld hl, wNumBalls
+    call ReceiveItem
+    jr nc, .bag_full
+    ld a, TRUE
+    jr .store_result
+
+.bag_full
+    xor a
+
+.store_result
+    ld [wScriptVar], a
+    ret
+
+JohtoSafari_ClearSafariBallItem::
+; Removes any remaining Safari Balls from the bag's Balls pocket.
+    ld a, SAFARI_BALL
+    ld [wCurItem], a
+    ld a, -1
+    ld [wCurItemQuantity], a
+    ld hl, wNumBalls
+    ld e, l
+    ld d, h
+    inc de
+
+.loop
+    ld a, [de]
+    cp -1
+    ret z
+    cp SAFARI_BALL
+    jr nz, .next
+    inc de
+    ld a, [de]
+    ld [wItemQuantityChange], a
+    ld hl, wNumBalls
+    call RemoveItemFromPocket
+    ret
+
+.next
+    inc de
+    inc de
+    jr .loop
+
 
 ; ---------------------------------------------------------------------------
 ; Step counter management
@@ -132,7 +184,7 @@ JohtoSafari_OutOfBallsScript::
 ; the player back to the Safari Zone entrance map before resetting their party.
 JohtoSafari_ReturnToGateScript::
     closetext
-    clearflag ENGINE_SAFARI_ZONE
+    callasm JohtoSafari_ResetBallCount
     warpsound
     warpfacing DOWN, SAFARI_ZONE_GATE_F1, 4, 3
     special RestartMapMusic

@@ -31,9 +31,12 @@ Route40SafariZoneGateF1ReceptionistScript:
     playsound SFX_TRANSACTION
     writetext Route40SafariZoneGateF1ReceptionistThankYouText
     waitbutton
+	callasm JohtoSafari_GiveSafariBalls
+    iffalse Route40SafariZoneGateF1ReceptionistNoBagSpace
     playsound SFX_GOT_SAFARI_BALLS
     writetext Route40SafariZoneGateF1ReceptionistBallsText
     waitbutton
+	itemnotify
     closetext
     setflag ENGINE_SAFARI_ZONE
     applymovement PLAYER, Route40SafariZoneGateF1_PlayerToSafariMovement
@@ -56,6 +59,15 @@ Route40SafariZoneGateF1ReceptionistNoMoney:
     waitbutton
     closetext
     end
+
+Route40SafariZoneGateF1ReceptionistNoBagSpace:
+    givemoney YOUR_MONEY, ROUTE40SAFARIZONEGATEF1_SESSION_PRICE
+    special PlaceMoneyTopRight
+    writetext Route40SafariZoneGateF1ReceptionistNoBagSpaceText
+    waitbutton
+    closetext
+    end
+
 
 Route40SafariZoneGateF1Npc1Script:
     jumptextfaceplayer Route40SafariZoneGateF1NpcPlaceholderText
@@ -144,7 +156,7 @@ Route40SafariZoneGateF1ReceptionistThankYouText:
     done
 
 Route40SafariZoneGateF1ReceptionistBallsText:
-    text "Here are your"
+    text "Here are 30"
     line "SAFARI BALLS."
 
     para "We'll guide you"
@@ -170,6 +182,16 @@ Route40SafariZoneGateF1ReceptionistSessionActiveText:
     para "Please proceed"
     line "through the gate."
     done
+
+Route40SafariZoneGateF1ReceptionistNoBagSpaceText:
+    text "It looks like your"
+    line "PACK is full."
+
+    para "Make some room"
+    line "for the SAFARI"
+    cont "BALLS first."
+    done
+
 
 Route40SafariZoneGateF1NpcPlaceholderText:
     text "NPC has not been"
