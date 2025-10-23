@@ -716,16 +716,31 @@ LassGroup:
 	db -1 ; end
 
 	; LASS (14)
-	db "DANA@", TRAINERTYPE_MOVES
-	db 21, FLAAFFY,    TACKLE, GROWL, THUNDERSHOCK, THUNDER_WAVE
-	db 21, PSYDUCK,    SCRATCH, TAIL_WHIP, DISABLE, CONFUSION
-	db -1 ; end
+        db "DANA@", TRAINERTYPE_MOVES
+        db 21, FLAAFFY,    TACKLE, GROWL, THUNDERSHOCK, THUNDER_WAVE
+        db 21, PSYDUCK,    SCRATCH, TAIL_WHIP, DISABLE, CONFUSION
+        db -1 ; end
 
-	; LASS (15)
-	db "DANA@", TRAINERTYPE_MOVES
-	db 29, PSYDUCK,    SCRATCH, DISABLE, CONFUSION, SCREECH
-	db 29, AMPHAROS,   TACKLE, THUNDERSHOCK, THUNDER_WAVE, COTTON_SPORE
-	db -1 ; end
+        ; LASS (15)
+        db "DANA@", TRAINERTYPE_MOVES
+        db 29, PSYDUCK,    SCRATCH, DISABLE, CONFUSION, SCREECH
+        db 29, AMPHAROS,   TACKLE, THUNDERSHOCK, THUNDER_WAVE, COTTON_SPORE
+        db -1 ; end
+
+        ; LASS (16)
+        db "CRYSTAL@", TRAINERTYPE_NORMAL
+        db 5, CHIKORITA
+        db -1 ; end
+
+        ; LASS (17)
+        db "CRYSTAL@", TRAINERTYPE_NORMAL
+        db 5, CYNDAQUIL
+        db -1 ; end
+
+        ; LASS (18)
+        db "CRYSTAL@", TRAINERTYPE_NORMAL
+        db 5, TOTODILE
+        db -1 ; end
 
 JanineGroup:
 	; JANINE (1)
