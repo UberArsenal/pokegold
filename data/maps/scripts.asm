@@ -149,7 +149,6 @@ INCLUDE "maps/Route37.asm"
 INCLUDE "maps/Route38.asm"
 INCLUDE "maps/Route39.asm"
 INCLUDE "maps/Route40.asm"
-INCLUDE "maps/Route40SafariZoneGateF1.asm"
 INCLUDE "maps/Route41.asm"
 INCLUDE "maps/Route42.asm"
 
