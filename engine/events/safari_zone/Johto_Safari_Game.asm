@@ -39,6 +39,18 @@ JohtoSafari_StartSession::
     ld hl, wStatusFlags2
     set STATUSFLAGS2_SAFARI_GAME_F, [hl]
     xor a
+	ld [wScriptVar], a
+    ret
+
+JohtoSafari_ResetBallCount::
+    xor a
+    ld [wSafariBallsRemaining], a
+    ld hl, wSafariTimeRemaining
+    ld [hli], a
+    ld [hl], a
+    ld hl, wStatusFlags2
+    res STATUSFLAGS2_SAFARI_GAME_F, [hl]
+    ld [wScriptVar], a
     ret
 
 ; ---------------------------------------------------------------------------
@@ -57,19 +69,47 @@ JohtoSafari_DecrementStepCounter::
         ret
 
 .borrow
-        ld [hl], $ff
-        inc hl
-        ld a, [hl]
-        and a
-        jr z, .time_up
-        dec [hl]
-        dec hl
-        xor a
-@@ -112,44 +112,95 @@ JohtoSafariBattleScript::
-        reloadmapafterbattle
-        readmem wSafariBallsRemaining
-        iffalse JohtoSafari_OutOfBallsScript
-        end
+    ld [hl], $ff
+    inc hl
+    ld a, [hl]
+    and a
+    jr z, .time_up
+    dec [hl]
+    dec hl
+    xor a
+    ret
+
+.time_up
+    dec hl
+    ld [hli], a ; low byte already zeroed
+    ld [hl], a
+    scf
+    ret
+
+JohtoSafari_StepWatcherAsm::
+    call JohtoSafari_DecrementStepCounter
+    jr nc, .keep_going
+    ld a, 1
+    jr .store_result
+
+.keep_going
+    xor a
+
+.store_result
+    ld [wScriptVar], a
+    ret
+
+; ---------------------------------------------------------------------------
+; Battle flow
+; ---------------------------------------------------------------------------
+JohtoSafariBattleScript::
+    loadvar VAR_BATTLETYPE, BATTLETYPE_SAFARI
+    randomwildmon
+    startbattle
+    reloadmapafterbattle
+    readmem wSafariBallsRemaining
+    iffalse JohtoSafari_OutOfBallsScript
+    end
 
 ; ---------------------------------------------------------------------------
 ; Shared termination flow for both timers.
@@ -117,41 +157,7 @@ JohtoSafariOutOfBallsText:
 ; Encounter helpers
 ; ---------------------------------------------------------------------------
 JohtoSafari_ChooseEncounter::
-    call Random
-    cp 100 << 1
-    jr nc, JohtoSafari_ChooseEncounter
-    srl a
-    ld hl, SafariMons
-    ld de, 4
-.check_mon
-    sub [hl]
-    jr c, .select_mon
-    add hl, de
-    jr .check_mon
-
-.select_mon
-    inc hl
-    ld a, [hli]
-    ld [wTempWildMonSpecies], a
-    ld d, [hli]
-    ld a, [hl]
-    ld e, a
-    sub d
-    jr nz, .random_level
-    ld a, d
-    jr .store_level
-
-.random_level
-    ld c, a
-    inc c
-    call Random
-    ldh a, [hRandomAdd]
-    call SimpleDivide
-    add d
-
-.store_level
-    ld [wCurPartyLevel], a
-    xor a
+farcall ChooseSafariWildEncounter
     ret
 
 JohtoSafari_TryEncounter::
@@ -159,5 +165,3 @@ JohtoSafari_TryEncounter::
     ret nz
     scf
     ret
-
-INCLUDE "data/wild/safari_zone_mons.asm"
