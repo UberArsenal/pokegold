@@ -903,6 +903,19 @@ CountStep:
 .skip_poison
 	farcall DoBikeStep
 
+ld hl, wStatusFlags2
+        bit STATUSFLAGS2_SAFARI_GAME_F, [hl]
+        jr z, .done
+
+        farcall JohtoSafari_StepWatcherAsm
+        ld a, [wScriptVar]
+        and a
+        jr z, .done
+
+        ld a, BANK(JohtoSafari_TimeUpScript)
+        ld hl, JohtoSafari_TimeUpScript
+        call FarQueueScript
+
 .done
 	xor a
 	ret

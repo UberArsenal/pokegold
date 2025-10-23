@@ -4,7 +4,6 @@ JohtoSafariZone_MapScripts:
 
     def_callbacks
         callback MAPCALLBACK_NEWMAP, JohtoSafariZoneEnterCallback
-        callback MAPCALLBACK_STEPCYCLE, JohtoSafariZoneStepCallback
 
 JohtoSafariZoneNoopScene:
     end
@@ -14,13 +13,6 @@ JohtoSafariZoneEnterCallback:
     iffalse .Done
     callasm JohtoSafari_StartSession
 .Done:
-    endcallback
-
-JohtoSafariZoneStepCallback:
-    callasm JohtoSafari_StepWatcherAsm
-    iffalse .KeepExploring
-    sdefer JohtoSafari_TimeUpScript
-.KeepExploring:
     endcallback
 
 JohtoSafariZone_MapEvents:

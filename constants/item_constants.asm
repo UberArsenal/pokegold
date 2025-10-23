@@ -181,7 +181,7 @@
 	const BERRY        ; ad
 	const GOLD_BERRY   ; ae
 	const SQUIRTBOTTLE ; af
-	const ITEM_B0      ; b0
+	const SAFARI_BALL  ; b0
 	const PARK_BALL    ; b1
 	const RAINBOW_WING ; b2
 	const ITEM_B3      ; b3
@@ -300,6 +300,5 @@ DEF USE_SCRIPT_VAR EQU $00
 DEF ITEM_FROM_MEM  EQU $ff
 
 ; leftovers from red
-DEF SAFARI_BALL    EQU $08 ; MOON_STONE
 DEF MOON_STONE_RED EQU $0a ; BURN_HEAL
 DEF FULL_HEAL_RED  EQU $34 ; X_SPEED
