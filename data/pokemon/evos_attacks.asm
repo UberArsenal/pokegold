@@ -2920,11 +2920,13 @@ ShuckleEvosAttacks:
 
 HeracrossEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, TACKLE
+	db 1, HORN_ATTACK
+	db 1, FOCUS_ENERGY
 	db 1, LEER
-	db 6, HORN_ATTACK
+	db 6, LOW_KICK
 	db 12, ENDURE
-	db 19, FURY_ATTACK
+	db 19, KARATE_CHOP
+	db 23, LEECH_LIFE
 	db 27, COUNTER
 	db 35, TAKE_DOWN
 	db 44, REVERSAL
@@ -2933,15 +2935,18 @@ HeracrossEvosAttacks:
 
 SneaselEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SCRATCH
+	db 1, FURY_SWIPES
 	db 1, LEER
+	db 1, THIEF
 	db 9, QUICK_ATTACK
-	db 17, SCREECH
+	db 13, SCREECH
+	db 17, POWDER_SNOW
+	db 21, HAZE
 	db 25, FAINT_ATTACK
-	db 33, FURY_SWIPES
-	db 41, AGILITY
-	db 49, SLASH
-	db 57, BEAT_UP
+	db 29, BEAT_UP
+	db 37, AGILITY
+	db 44, FRUSTRATION
+	db 53, BLIZZARD
 	db 0 ; no more level-up moves
 
 TeddiursaEvosAttacks:

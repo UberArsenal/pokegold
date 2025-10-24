@@ -46,16 +46,18 @@ MartCherrygrove:
 	db -1 ; end
 
 MartCherrygroveDex:
-	db 5 ; # items
+	db 7 ; # items
 	db POKE_BALL
 	db POTION
 	db ANTIDOTE
 	db PARLYZ_HEAL
 	db AWAKENING
+	db RARE_CANDY
+	db REPEL
 	db -1 ; end
 
 MartViolet:
-	db 10 ; # items
+	db 11 ; # items
 	db POKE_BALL
 	db POTION
 	db ESCAPE_ROPE
@@ -65,12 +67,14 @@ MartViolet:
 	db X_DEFEND
 	db X_ATTACK
 	db X_SPEED
-	db FLOWER_MAIL
+	db RARE_CANDY
+	db REPEL
 	db -1 ; end
 
 MartAzalea:
-	db 9 ; # items
+	db 11 ; # items
 	db CHARCOAL
+	db SILVERPOWDER
 	db POKE_BALL
 	db POTION
 	db SUPER_POTION
@@ -78,7 +82,8 @@ MartAzalea:
 	db REPEL
 	db ANTIDOTE
 	db PARLYZ_HEAL
-	db FLOWER_MAIL
+	db RARE_CANDY
+	db REPEL
 	db -1 ; end
 
 MartCianwood:
@@ -91,7 +96,7 @@ MartCianwood:
 	db -1 ; end
 
 MartGoldenrod2F1:
-	db 7 ; # items
+	db 9 ; # items
 	db POTION
 	db SUPER_POTION
 	db ANTIDOTE
@@ -99,14 +104,17 @@ MartGoldenrod2F1:
 	db AWAKENING
 	db BURN_HEAL
 	db ICE_HEAL
+	db REPEL
+	db SUPER_REPEL
 	db -1 ; end
 
 MartGoldenrod2F2:
-	db 8 ; # items
+	db 9 ; # items
 	db POKE_BALL
 	db GREAT_BALL
 	db ESCAPE_ROPE
 	db REPEL
+	db SUPER_REPEL
 	db REVIVE
 	db FULL_HEAL
 	db POKE_DOLL
@@ -125,12 +133,13 @@ MartGoldenrod3F:
 	db -1 ; end
 
 MartGoldenrod4F:
-	db 5 ; # items
+	db 6 ; # items
 	db PROTEIN
 	db IRON
 	db CARBOS
 	db CALCIUM
 	db HP_UP
+	db PP_UP
 	db -1 ; end
 
 MartGoldenrod5F1:
@@ -141,28 +150,31 @@ MartGoldenrod5F1:
 	db -1 ; end
 
 MartGoldenrod5F2:
-	db 4 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_HEADBUTT
-	db -1 ; end
-
-MartGoldenrod5F3:
-	db 4 ; # items
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
-	db TM_ROCK_SMASH
-	db -1 ; end
-
-MartGoldenrod5F4:
 	db 5 ; # items
 	db TM_THUNDERPUNCH
 	db TM_FIRE_PUNCH
 	db TM_ICE_PUNCH
 	db TM_HEADBUTT
+	db TM_ROLLOUT
+	db -1 ; end
+
+MartGoldenrod5F3:
+	db 5 ; # items
+	db TM_THUNDERPUNCH
+	db TM_FIRE_PUNCH
+	db TM_ICE_PUNCH
 	db TM_ROCK_SMASH
+	db TM_ROLLOUT
+	db -1 ; end
+
+MartGoldenrod5F4:
+	db 6 ; # items
+	db TM_THUNDERPUNCH
+	db TM_FIRE_PUNCH
+	db TM_ICE_PUNCH
+	db TM_HEADBUTT
+	db TM_ROCK_SMASH
+	db TM_ROLLOUT
 	db -1 ; end
 
 MartOlivine:
