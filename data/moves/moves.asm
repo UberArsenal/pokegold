@@ -75,7 +75,7 @@ Moves:
 	move BLIZZARD,     EFFECT_FREEZE_HIT,        120, ICE,           70,  5,  10
 	move PSYBEAM,      EFFECT_CONFUSE_HIT,        65, PSYCHIC_TYPE, 100, 20,  10
 	move BUBBLEBEAM,   EFFECT_SPEED_DOWN_HIT,     65, WATER,        100, 20,  10
-	move AURORA_BEAM,  EFFECT_ATTACK_DOWN_HIT,    65, ICE,          100, 20,  10
+	move AURORA_BEAM,  EFFECT_ATTACK_DOWN_HIT,    70, ICE,          100, 20,  10
 	move HYPER_BEAM,   EFFECT_HYPER_BEAM,        150, NORMAL,        90,  5,   0
 	move PECK,         EFFECT_NORMAL_HIT,         35, FLYING,       100, 35,   0
 	move DRILL_PECK,   EFFECT_NORMAL_HIT,         80, FLYING,       100, 20,   0
@@ -205,11 +205,11 @@ Moves:
 	move MUD_SLAP,     EFFECT_ACCURACY_DOWN_HIT,  20, GROUND,       100, 10, 100
 	move OCTAZOOKA,    EFFECT_ACCURACY_DOWN_HIT,  65, WATER,         85, 10,  50
 	move SPIKES,       EFFECT_SPIKES,              0, GROUND,       100, 20,   0
-	move ZAP_CANNON,   EFFECT_PARALYZE_HIT,      100, ELECTRIC,      50,  5, 100
+	move ZAP_CANNON,   EFFECT_PARALYZE_HIT,      100, ELECTRIC,      80,  5, 100
 	move FORESIGHT,    EFFECT_FORESIGHT,           0, NORMAL,       100, 40,   0
 	move DESTINY_BOND, EFFECT_DESTINY_BOND,        0, GHOST,        100,  5,   0
 	move PERISH_SONG,  EFFECT_PERISH_SONG,         0, NORMAL,       100,  5,   0
-	move ICY_WIND,     EFFECT_SPEED_DOWN_HIT,     55, ICE,           95, 15, 100
+	move ICY_WIND,     EFFECT_SPEED_DOWN_HIT,     60, ICE,           95, 15, 100
 	move DETECT,       EFFECT_PROTECT,             0, FIGHTING,     100,  5,   0
 	move BONE_RUSH,    EFFECT_MULTI_HIT,          25, GROUND,        80, 10,   0
 	move LOCK_ON,      EFFECT_LOCK_ON,             0, NORMAL,       100,  5,   0

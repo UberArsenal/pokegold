@@ -1959,9 +1959,9 @@ ZapdosEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, PECK
 	db 1, THUNDERSHOCK
-	db 13, THUNDER_WAVE
-	db 25, AGILITY
-	db 37, DETECT
+	db 13, MIND_READER
+	db 25, REFLECT
+	db 37, ZAP_CANNON
 	db 49, DRILL_PECK
 	db 61, LIGHT_SCREEN
 	db 73, THUNDER
@@ -2428,25 +2428,32 @@ TogeticEvosAttacks:
 NatuEvosAttacks:
 	db EVOLVE_LEVEL, 25, XATU
 	db 0 ; no more evolutions
-	db 1, PECK
+	db 1, FURY_ATTACK
 	db 1, LEER
-	db 10, NIGHT_SHADE
+	db 7, CONFUSION
+	db 15, WING_ATTACK
 	db 20, TELEPORT
-	db 30, FUTURE_SIGHT
-	db 40, CONFUSE_RAY
+	db 25, MIRROR_COAT
+	db 25, LIGHT_SCREEN
+	db 30, PSYBEAM
+	db 36, CONFUSE_RAY
+	db 42, BARRIER
 	db 50, PSYCHIC_M
 	db 0 ; no more level-up moves
 
 XatuEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, PECK
+	db 1, FURY_ATTACK
 	db 1, LEER
-	db 1, NIGHT_SHADE
-	db 10, NIGHT_SHADE
+	db 7, CONFUSION
+	db 15, WING_ATTACK
 	db 20, TELEPORT
-	db 35, FUTURE_SIGHT
-	db 50, CONFUSE_RAY
-	db 65, PSYCHIC_M
+	db 25, MIRROR_COAT
+	db 25, LIGHT_SCREEN
+	db 30, PSYBEAM
+	db 36, CONFUSE_RAY
+	db 42, BARRIER
+	db 50, PSYCHIC_M
 	db 0 ; no more level-up moves
 
 MareepEvosAttacks:
@@ -2611,7 +2618,7 @@ AipomEvosAttacks:
 	db 16, SCREECH
 	db 20, BEAT_UP
 	db 26, DIZZY_PUNCH
-	db 31, AGILITY
+	db 31, SWAGGER
 	db 36, FRUSTRATION
 	db 44, MEGA_PUNCH
 	db 54, DOUBLE_EDGE
@@ -2655,6 +2662,7 @@ YanmaEvosAttacks:
 	db 31, DETECT
 	db 37, DRAGON_RAGE
 	db 43, FOCUS_ENERGY
+	db 50, DRAGONBREATH
 	db 0 ; no more level-up moves
 
 WooperEvosAttacks:
@@ -2981,15 +2989,13 @@ SlugmaEvosAttacks:
 MagcargoEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SMOG
-	db 1, EMBER
-	db 1, ROCK_THROW
 	db 8, EMBER
 	db 15, ROCK_THROW
 	db 22, HARDEN
 	db 29, AMNESIA
 	db 36, FLAMETHROWER
-	db 48, ROCK_SLIDE
-	db 60, BODY_SLAM
+	db 43, ROCK_SLIDE
+	db 50, BODY_SLAM
 	db 0 ; no more level-up moves
 
 SwinubEvosAttacks:
@@ -3190,7 +3196,11 @@ TyrogueEvosAttacks:
 	db EVOLVE_STAT, 20, ATK_GT_DEF, HITMONLEE
 	db EVOLVE_STAT, 20, ATK_EQ_DEF, HITMONTOP
 	db 0 ; no more evolutions
-	db 1, TACKLE
+	db 1, POUND
+	db 1, LEER
+	db 6, LOW_KICK
+	db 10, FOCUS_ENERGY
+	db 15, KARATE_CHOP
 	db 0 ; no more level-up moves
 
 HitmontopEvosAttacks:
@@ -3226,12 +3236,13 @@ ElekidEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, QUICK_ATTACK
 	db 1, LEER
-	db 9, THUNDERPUNCH
+	db 9, THUNDERSHOCK
+	db 13, THUNDER_WAVE
 	db 17, LIGHT_SCREEN
-	db 25, SWIFT
-	db 33, SCREECH
-	db 41, THUNDERBOLT
-	db 49, THUNDER
+	db 25, THUNDERPUNCH
+	db 33, THUNDERBOLT
+	db 41, THUNDER
+	db 58, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 MagbyEvosAttacks:
@@ -3252,9 +3263,9 @@ MiltankEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 4, GROWL
-	db 8, DEFENSE_CURL
-	db 13, STOMP
-	db 19, MILK_DRINK
+	db 8, MILK_DRINK
+	db 13, DEFENSE_CURL
+	db 19, ROLLOUT
 	db 26, BIDE
 	db 34, ROLLOUT
 	db 43, BODY_SLAM
