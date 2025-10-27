@@ -232,9 +232,9 @@ ElmDirectionsScript:
 	closetext
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
-	setscene SCENE_ELMSLAB_AIDE_GIVES_POTION
-	setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_NOOP
-	end
+        setscene SCENE_ELMSLAB_AIDE_GIVES_POTION
+        setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_CRYSTAL_INTRO
+        end
 
 ElmDescribesMrPokemonScript:
 	writetext ElmDescribesMrPokemonText
