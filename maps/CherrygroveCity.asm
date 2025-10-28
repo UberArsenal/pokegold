@@ -124,7 +124,7 @@ CherrygroveCityGuideGentGiveMap:
        db "MAP CARD@"
 
 CherrygroveRivalSceneSouth:
-	moveobject CHERRYGROVECITY_RIVAL, 39, 7
+	applymovement PLAYER, CherrygroveCity_RivalMeetPoint
 CherrygroveRivalSceneNorth:
 	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -205,7 +205,10 @@ CherrygroveRivalSceneNorth:
 	waitbutton
 	closetext
 	applymovement PLAYER, CherrygroveCity_RivalTakesIDBack
-	pause 6
+	turnobject CHERRYGROVECITY_RIVAL, LEFT
+	pause 10
+	turnobject CHERRYGROVECITY_RIVAL, RIGHT
+	opentext
 	writetext CherrygroveRivalText_YouSeenMyName
 	waitbutton
 	closetext
@@ -427,6 +430,11 @@ CherrygroveCity_RivalExitsStageLeft2:
 	big_step LEFT
 	step_end
 
+CherrygroveCity_RivalMeetPoint:
+	step UP
+	turn_head RIGHT
+	step_end
+
 GuideGentMapFirstText:
        text "Hey there, young"
        line "man! I see you're"
@@ -641,7 +649,7 @@ CherrygroveRivalText_YouSeenMyName:
 	cont "good for you."
 	
 	para "...Wimp."
-
+	done
 CherrygroveTeacherText_NoMapCard:
 	text "Did you talk to"
 	line "the old man by the"

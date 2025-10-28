@@ -516,6 +516,17 @@ CopScript:
 	writetext ElmsLabOfficerText2
 	waitbutton
 	closetext
+	pause 3
+	applymovement ELMSLAB_OFFICER, OfficerPromisesElm
+	opentext
+	writetext ElmsLabOfficerText3
+	waitbutton
+	closetext
+	pause 3
+	opentext
+	writetext ElmText_ThankYouOfficerText
+	waitbutton
+	closetext
 	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
 	disappear ELMSLAB_OFFICER
 	setscene SCENE_ELMSLAB_NOOP
@@ -587,6 +598,10 @@ MeetCopScript_WalkUp:
 	step UP
 	step UP
 	turn_head RIGHT
+	step_end
+
+OfficerPromisesElm:
+	turn_head UP
 	step_end
 
 OfficerLeavesMovement:
@@ -820,6 +835,19 @@ ElmsLabHealingMachineText2:
 ElmAfterTheftText1:
 	text "ELM: <PLAYER>, this"
 	line "is terrible…"
+	
+	para "There was really"
+	line "nothing my assist-"
+	cont "ants or myself"
+	cont "could do..."
+	
+	para "I really hope that"
+	line "#MON is ok.."
+	
+	para "That thief could"
+	line "do anything to it."
+	
+	para "..."
 
 	para "Oh, yes, what was"
 	line "MR.#MON's big"
@@ -837,7 +865,7 @@ ElmAfterTheftText3:
 	done
 
 ElmAfterTheftText4:
-	text "But… Is it a"
+	text "No way.. Is this a"
 	line "#MON EGG?"
 
 	para "If it is, it is a"
@@ -848,30 +876,32 @@ ElmAfterTheftText5:
 	text "ELM: What?!?"
 
 	para "PROF.OAK gave you"
-	line "a #DEX?"
+	line "a #DEX too?!"
 
-	para "<PLAYER>, is that"
-	line "true? Th-that's"
-	cont "incredible!"
+	para "<PLAYER>, That is"
+	line "incredible!"
 
-	para "He is superb at"
-	line "seeing the poten-"
-	cont "tial of people as"
-	cont "trainers."
-
-	para "Wow, <PLAYER>. You"
-	line "may have what it"
-
-	para "takes to become"
-	line "the CHAMPION."
+	para "That man has superb"
+	line "insight on people's"
+	cont "potential as #-"
+	cont "MON trainers!"
 
 	para "You seem to be"
 	line "getting on great"
 	cont "with #MON too."
+	
+	para "You know what,"
+	line "<PLAYER>?"
 
 	para "You should take"
 	line "the #MON GYM"
-	cont "challenge."
+	cont "challenge!"
+	
+	para "It might be very"
+	line "challenging but"
+	cont "I believe you"
+	cont "will grow into"
+	cont "a fine trainer!"
 
 	para "The closest GYM"
 	line "would be the one"
@@ -879,15 +909,15 @@ ElmAfterTheftText5:
 	done
 
 ElmAfterTheftText6:
-	text "…<PLAYER>. The"
-	line "road to the"
-
-	para "championship will"
-	line "be a long one."
-
-	para "Before you leave,"
+	text "Before you leave,"
 	line "make sure that you"
 	cont "talk to your mom."
+	
+	para "Wouldn't want her"
+	line "worrying about"
+	cont "you magically dis-"
+	cont "appearing to go on"
+	cont "an adventure. Haha!"
 	done
 
 ElmStudyingEggText:
@@ -987,6 +1017,14 @@ ElmText_CallYou:
 	cont "thing comes up."
 	done
 
+ElmText_ThankYouOfficerText:
+	text "PROF. ELM: ..."
+	line "Thank you officer."
+	
+	para "Please keep me"
+	line "updated."
+	done
+	
 AideText_AfterTheft:
 	text "…sigh… That"
 	line "stolen #MON."
@@ -1125,12 +1163,18 @@ AideText_ExplainBalls:
 	done
 
 ElmsLabOfficerText1:
-	text "I heard a #MON"
-	line "was stolen here…"
+	text "Hello, young man."
+	line "You must be <PLAYER>."
+	
+	para "PROF. ELM called"
+	line "not too long after"
+	cont "he contacted you."
 
 	para "I was just getting"
-	line "some information"
-	cont "from PROF.ELM."
+	line "information on the"
+	cont "crime and whatever"
+	cont "visual description"
+	cont "PROF. can give us."
 
 	para "Apparently, it was"
 	line "a young male with"
@@ -1138,8 +1182,9 @@ ElmsLabOfficerText1:
 
 	para "What?"
 
-	para "You battled a"
-	line "trainer like that?"
+	para "You just seen him"
+	line "back in CHERRY-"
+	cont "GROVE??"
 
 	para "Did you happen to"
 	line "get his name?"
@@ -1153,6 +1198,15 @@ ElmsLabOfficerText2:
 	line "my investigation!"
 	done
 
+ElmsLabOfficerText3:
+	text "PROF. ELM, don't"
+	line "you worry. The"
+	cont "JOHTO Police Force"
+	cont "will work as fast"
+	cont "as we can to find"
+	cont "this culprit."
+	done
+	
 ElmsLabWindowText1:
 	text "The window's open."
 
@@ -1161,8 +1215,9 @@ ElmsLabWindowText1:
 	done
 
 ElmsLabWindowText2:
-	text "He broke in"
-	line "through here!"
+	text "So this is how"
+	line "<RIVAL> broke in!"
+
 	done
 
 ElmsLabTravelTip1Text:
