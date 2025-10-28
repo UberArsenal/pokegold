@@ -15,8 +15,8 @@ PokedexTypeSearchStrings:
 	db "PSYCHIC @"
 	db "  BUG   @"
 	db "  ROCK  @"
-	db " GHOST  @"
 	db " DRAGON @"
+	db " GHOST  @"
 	db "  DARK  @"
 	db " STEEL  @"
 	assert_table_length NUM_TYPES + 1

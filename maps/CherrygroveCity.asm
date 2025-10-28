@@ -149,7 +149,7 @@ CherrygroveRivalSceneNorth:
 	startbattle
 	dontrestartmapmusic
 	reloadmap
-	iftrue .AfterVictorious
+	iffalse .AfterVictorious
 	sjump .AfterYourDefeat
 
 .Totodile:
@@ -160,7 +160,7 @@ CherrygroveRivalSceneNorth:
 	startbattle
 	dontrestartmapmusic
 	reloadmap
-	iftrue .AfterVictorious
+	iffalse .AfterVictorious
 	sjump .AfterYourDefeat
 
 .Chikorita:
@@ -171,7 +171,7 @@ CherrygroveRivalSceneNorth:
 	startbattle
 	dontrestartmapmusic
 	reloadmap
-	iftrue .AfterVictorious
+	iffalse .AfterVictorious
 	sjump .AfterYourDefeat
 
 .AfterVictorious:
@@ -192,7 +192,24 @@ CherrygroveRivalSceneNorth:
 	playsound SFX_TACKLE
 	applymovement PLAYER, CherrygroveCity_RivalPushesYouOutOfTheWay
 	turnobject PLAYER, LEFT
-	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalExitsStageLeft
+	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalExitsStageLeft1
+	pause 20
+	showemote EMOTE_SHOCK, CHERRYGROVECITY_RIVAL, 30
+	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalLooksforID
+	turnobject CHERRYGROVECITY_RIVAL, RIGHT
+	showemote EMOTE_SHOCK, CHERRYGROVECITY_RIVAL, 30
+	follow PLAYER, CHERRYGROVECITY_RIVAL
+	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalWalksBackToYou
+	opentext
+	writetext CherrygroveRivalText_MyTrainerCard
+	waitbutton
+	closetext
+	applymovement PLAYER, CherrygroveCity_RivalTakesIDBack
+	pause 6
+	writetext CherrygroveRivalText_YouSeenMyName
+	waitbutton
+	closetext
+	applymovement CHERRYGROVECITY_RIVAL, CherrygroveCity_RivalExitsStageLeft2
 	disappear CHERRYGROVECITY_RIVAL
 	setscene SCENE_CHERRYGROVECITY_NOOP
 	special HealParty
@@ -265,7 +282,6 @@ GuideGentMovement1:
 	step LEFT
 	step UP
 	step LEFT
-	turn_head UP
 	step_end
 
 GuideGentMovement2:
@@ -275,7 +291,6 @@ GuideGentMovement2:
 	step LEFT
 	step LEFT
 	step LEFT
-	turn_head UP
 	step_end
 
 GuideGentMovement3:
@@ -330,11 +345,11 @@ GuideGentMovement6:
 	step_end
 
 CherrygroveCity_RivalWalksToYou:
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 CherrygroveCity_RivalPushesYouOutOfTheWay:
@@ -347,14 +362,68 @@ CherrygroveCity_UnusedMovementData: ; unreferenced
 	turn_head DOWN
 	step_end
 
-CherrygroveCity_RivalExitsStageLeft:
+CherrygroveCity_RivalExitsStageLeft1:
 	big_step LEFT
 	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+
+CherrygroveCity_RivalLooksforID:
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP
+	turn_head UP		
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN
+	turn_head DOWN		
+	step_end
+
+CherrygroveCity_RivalWalksBackToYou:
+	big_step DOWN
+	big_step RIGHT
+	big_step RIGHT
+	step_end
+
+CherrygroveCity_RivalTakesIDBack:
+	turn_head LEFT
+	fix_facing
+	jump_step RIGHT
+	remove_fixed_facing
+	step LEFT
+	step_end
+
+CherrygroveCity_RivalExitsStageLeft2:
 	big_step LEFT
 	big_step LEFT
 	big_step UP
 	big_step UP
-	big_step LEFT
+	big_step UP
 	big_step LEFT
 	step_end
 
@@ -471,22 +540,26 @@ GuideGentDeclineText:
 CherrygroveRivalText_Seen:
 	text "…"
 
-	para "You got a #MON"
-	line "at the LAB."
+	para "Out of my way"
+	line "wimp, I'm in a"
+	cont "hurry!"
 
-	para "What a waste."
-	line "A wimp like you."
+	para "Wait, a minute.."
 
 	para "…"
 
-	para "Don't you get what"
-	line "I'm saying?"
+	para "You're that kid"
+	line "who got the other"
+	cont "#MON."
 
-	para "Well, I too, have"
-	line "a good #MON."
+	para "I'm not gonna"
+	line "take my chances."
+	
+	para "I'm getting rid"
+	line "of you before"
+	cont "you snitch on me."
 
-	para "I'll show you"
-	line "what I mean!"
+	para "PREPARE YOURSELF!"
 	done
 
 RivalCherrygroveWinText:
@@ -497,29 +570,77 @@ RivalCherrygroveWinText:
 CherrygroveRivalText_YouLost:
 	text "…"
 
-	para "My name's ???."
+	para "Yeah that's right."
+	
+	para "This is the"
+	line "#MON from the"
+	cont "lab."
+	
+	para "Heh. From what I"
+	line "can tell, I got"
+	cont "the stronger one."
 
-	para "I'm going to be"
-	line "the world's great-"
-	cont "est #MON"
-	cont "trainer."
+	para "Since you clearly"
+	line "don't know what's"
+	cont "going on, I'll"
+	cont "spare you."
+	
+	para "You never seen"
+	line "this face, weak-"
+	cont "ling."
 	done
 
 RivalCherrygroveLossText:
-	text "Humph. That was a"
-	line "waste of time."
+	text "Humph. You're"
+	line "done."
 	done
 
 CherrygroveRivalText_YouWon:
 	text "…"
 
-	para "My name's ???."
+	para "You just got lucky"
+	line "wimp."
 
-	para "I'm going to be"
-	line "the world's great-"
-	cont "est #MON"
-	cont "trainer."
+	para "Yeah that's right."
+	
+	para "This is the"
+	line "#MON from the"
+	cont "lab."
+	
+	para "You may have beat"
+	line "me because of this"
+	cont "weakling of a "
+	cont "#MON."
+	
+	para "Tch. Whatever."
+
+	para "Since you clearly"
+	line "don't know what's"
+	cont "going on, I'll"
+	cont "spare you."
+	
+	para "You never seen"
+	line "this face, weak-"
+	cont "ling."
 	done
+
+CherrygroveRivalText_MyTrainerCard:
+	text "HEY! That's my"
+	line "trainer card!"
+	
+	para "GIVE IT!"
+	done
+
+CherrygroveRivalText_YouSeenMyName:
+	text "Great now you know"
+	line "my name."
+	
+	para "You better keep"
+	line "your mouth zipped"
+	cont "if you know what's"
+	cont "good for you."
+	
+	para "...Wimp."
 
 CherrygroveTeacherText_NoMapCard:
 	text "Did you talk to"
