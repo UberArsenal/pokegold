@@ -8,14 +8,14 @@ JohtoGrassWildMons:
 	db 3, RATTATA
 	db 4, RATTATA
 	db 5, RATTATA
-	db 3, RATTATA
+	db 3, BELLSPROUT
 	db 6, BELLSPROUT
 	db 5, RATTATA
 	db 5, RATTATA
 	; day
 	db 3, RATTATA
 	db 4, RATTATA
-	db 5, RATTATA
+	db 5, BELLSPROUT
 	db 3, RATTATA
 	db 6, BELLSPROUT
 	db 5, RATTATA
@@ -36,14 +36,14 @@ JohtoGrassWildMons:
 	db 3, RATTATA
 	db 4, RATTATA
 	db 5, RATTATA
-	db 3, RATTATA
+	db 3, BELLSPROUT
 	db 6, BELLSPROUT
 	db 5, RATTATA
 	db 5, RATTATA
 	; day
 	db 3, RATTATA
 	db 4, RATTATA
-	db 5, RATTATA
+	db 5, BELLSPROUT
 	db 3, RATTATA
 	db 6, BELLSPROUT
 	db 5, RATTATA
@@ -1521,25 +1521,25 @@ JohtoGrassWildMons:
 	db 2, ZUBAT
 	db 2, GEODUDE
 	db 4, GEODUDE
-	db 3, ZUBAT
-	db 4, ZUBAT
+	db 3, SANDSHREW
 	db 4, DUNSPARCE
+	db 4, LARVITAR
 	; day
 	db 3, GEODUDE
 	db 2, ZUBAT
 	db 2, GEODUDE
 	db 4, GEODUDE
-	db 3, ZUBAT
-	db 4, ZUBAT
+	db 3, SANDSHREW
 	db 4, DUNSPARCE
+	db 4, LARVITAR
 	; nite
 	db 3, GEODUDE
 	db 2, ZUBAT
 	db 2, GEODUDE
 	db 4, GEODUDE
-	db 3, ZUBAT
-	db 4, ZUBAT
+	db 3, SANDSHREW
 	db 4, DUNSPARCE
+	db 4, LARVITAR
 	end_grass_wildmons
 
 	def_grass_wildmons DARK_CAVE_BLACKTHORN_ENTRANCE
@@ -1615,7 +1615,7 @@ JohtoGrassWildMons:
 	db 4, PIDGEY
 	db 4, METAPOD
 	db 4, WEEDLE
-	db 5, METAPOD
+	db 5, LEDYBA
 	db 5, KAKUNA
 	; nite
 	db 3, SPINARAK
@@ -1624,7 +1624,7 @@ JohtoGrassWildMons:
 	db 4, RATTATA
 	db 4, HOOTHOOT
 	db 4, HOOTHOOT
-	db 4, HOOTHOOT
+	db 4, GASTLY
 	ELIF DEF(_SILVER)
 	; morn
 	db 3, LEDYBA
@@ -1649,7 +1649,7 @@ JohtoGrassWildMons:
 	db 4, RATTATA
 	db 4, HOOTHOOT
 	db 4, HOOTHOOT
-	db 4, HOOTHOOT
+	db 4, GASTLY
 	ENDC
 	end_grass_wildmons
 
@@ -1671,7 +1671,7 @@ JohtoGrassWildMons:
 	db 5, WEEDLE
 	db 5, CATERPIE
 	db 6, METAPOD
-	db 6, KAKUNA
+	db 6, PHANPY
 	; nite
 	db 4, SPINARAK
 	db 4, RATTATA
@@ -1679,7 +1679,7 @@ JohtoGrassWildMons:
 	db 5, RATTATA
 	db 5, SPINARAK
 	db 5, HOOTHOOT
-	db 5, HOOTHOOT
+	db 5, GASTLY
 	ELIF DEF(_SILVER)
 	; morn
 	db 4, LEDYBA
@@ -1704,7 +1704,7 @@ JohtoGrassWildMons:
 	db 5, RATTATA
 	db 5, HOOTHOOT
 	db 5, SPINARAK
-	db 5, HOOTHOOT
+	db 5, GASTLY
 	ENDC
 	end_grass_wildmons
 
@@ -1716,7 +1716,7 @@ JohtoGrassWildMons:
 	db 4, RATTATA
 	db 6, MAREEP
 	db 6, HOPPIP
-	db 6, RATTATA
+	db 6, EKANS
 	db 4, WOOPER
 	db 4, ZUBAT
 	; day
@@ -1725,7 +1725,7 @@ JohtoGrassWildMons:
 	db 6, MAREEP
 	db 6, HOPPIP
 	db 6, SPEAROW
-	db 8, RATTATA
+	db 8, EKANS
 	db 8, RATTATA
 	; nite
 	db 6, WOOPER
@@ -2297,7 +2297,7 @@ JohtoGrassWildMons:
 	db 2, GEODUDE
 	db 3, SPEAROW
 	db 3, JIGGLYPUFF
-	db 5, JIGGLYPUFF
+	db 5, PHANPY
 	; day
 	db 3, GEODUDE
 	db 2, SPEAROW
@@ -2305,7 +2305,7 @@ JohtoGrassWildMons:
 	db 2, GEODUDE
 	db 3, SPEAROW
 	db 3, JIGGLYPUFF
-	db 5, JIGGLYPUFF
+	db 5, PHANPY
 	; nite
 	db 3, GEODUDE
 	db 3, RATTATA
@@ -2313,7 +2313,7 @@ JohtoGrassWildMons:
 	db 2, GEODUDE
 	db 4, GEODUDE
 	db 3, JIGGLYPUFF
-	db 5, JIGGLYPUFF
+	db 5, LARVITAR
 	end_grass_wildmons
 
 	def_grass_wildmons SILVER_CAVE_OUTSIDE

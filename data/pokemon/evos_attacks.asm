@@ -294,24 +294,26 @@ SpearowEvosAttacks:
 	db 1, GROWL
 	db 7, LEER
 	db 13, FURY_ATTACK
-	db 25, PURSUIT
+	db 19, PURSUIT
+	db 25, WHIRLWIND
 	db 31, MIRROR_MOVE
 	db 37, DRILL_PECK
 	db 43, AGILITY
+	db 50, SKY_ATTACK
 	db 0 ; no more level-up moves
 
 FearowEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, PECK
 	db 1, GROWL
-	db 1, LEER
-	db 1, FURY_ATTACK
 	db 7, LEER
 	db 13, FURY_ATTACK
-	db 26, PURSUIT
-	db 32, MIRROR_MOVE
-	db 40, DRILL_PECK
-	db 47, AGILITY
+	db 19, PURSUIT
+	db 25, WHIRLWIND
+	db 31, MIRROR_MOVE
+	db 37, DRILL_PECK
+	db 43, AGILITY
+	db 50, SKY_ATTACK
 	db 0 ; no more level-up moves
 
 EkansEvosAttacks:
