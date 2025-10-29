@@ -98,6 +98,7 @@ AzaleaTownRivalBattleScript:
 	setscene SCENE_AZALEATOWN_NOOP
 	waitsfx
 	playmapmusic
+	specialphonecall SPECIALCALL_SILVERWARNING
 	end
 
 AzaleaTownRocket1Script:

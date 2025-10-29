@@ -1018,7 +1018,7 @@ ElmText_CallYou:
 	done
 
 ElmText_ThankYouOfficerText:
-	text "PROF. ELM: ..."
+	text "ELM: ..."
 	line "Thank you officer."
 	
 	para "Please keep me"
@@ -1191,11 +1191,24 @@ ElmsLabOfficerText1:
 	done
 
 ElmsLabOfficerText2:
-	text "OK! So <RIVAL>"
-	line "was his name."
+	text "I see.. So you"
+	line "got <RIVAL>'s"
+	cont "name from his I.D."
+	cont "after the battle."
+	
+	para "Knowing that he has"
+	line "a TRAINER card will"
+	cont "defintely help us"
+	cont "in our search."
 
-	para "Thanks for helping"
-	line "my investigation!"
+	para "Thank you very much"
+	line "for your coopera-"
+	cont "tion, <PLAYER>!"
+	
+	para "If you see him out"
+	line "there, do not hesi-"
+	cont "tate to call the"
+	cont "authorities."
 	done
 
 ElmsLabOfficerText3:

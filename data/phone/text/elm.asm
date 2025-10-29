@@ -209,3 +209,54 @@ ElmPhoneGotAholdOfSomethingNeatText:
 
 	para "See you later!"
 	done
+	
+ElmPhoneSilverWarningText:
+	text "Hey, <PLAYER>?"
+	line "Kid, we have to"
+	cont "talk..."
+	
+	para "It's about that"
+	line "boy, <RIVAL>."
+	
+	para "The Johto Police"
+	line "Force had just"
+	cont "contacted me -"
+	cont "saying that they"
+	cont "found some new"
+	cont "information."
+	
+	para "This kid.. is"
+	line "related to the"
+	cont "leader of TEAM"
+	cont "ROCKET.."
+	
+	para "From what I re-"
+	line "call, the group"
+	cont "had disbanded"
+	cont "around three"
+	cont "years ago when"
+	cont "they tried to"
+	cont "take over the"
+	cont "SILPH CO. in"
+	cont "KANTO."
+	
+	para "Listen, <PLAYER>."
+	
+	para "Be very careful.."
+	
+	para "We don't exactly"
+	line "know what this"
+	cont "kid is up to."
+	
+	para "But if he's wil-"
+	line "ling to steal..."
+	
+	para "Who knows what"
+	line "else this meance"
+	cont "migth be plan-"
+	cont "ning to do.."
+	
+	para "Stay safe,"
+	line "<PLAYER>."
+	done
+	
