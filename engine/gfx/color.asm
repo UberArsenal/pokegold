@@ -620,7 +620,21 @@ GetEnemyFrontpicPalettePointer:
 GetPlayerOrMonPalettePointer:
 	and a
 	jp nz, GetMonNormalOrShinyPalettePointer
-	ld hl, PlayerPalette
+	ld a, [wPlayerOutfit]
+	cp NUM_PLAYER_OUTFITS
+	jr c, .valid
+	xor a
+.valid
+	ld hl, PlayerOutfitPalettePointers
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld l, e
+	ld h, d
 	ret
 
 GetFrontpicPalettePointer:
@@ -1121,6 +1135,7 @@ INCLUDE "gfx/battle/exp_bar.pal"
 
 INCLUDE "data/pokemon/palettes.asm"
 
+INCLUDE "data/player/outfits.asm"
 INCLUDE "data/trainers/palettes.asm"
 
 LoadMapPals:

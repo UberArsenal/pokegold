@@ -125,6 +125,9 @@ GoldenrodCityGameCornerSign:
 GoldenrodCityNameRaterSign:
 	jumptext GoldenrodCityNameRaterSignText
 
+GoldenrodCityClothingShopSign:
+	jumptext GoldenrodCityClothingShopSignText
+
 GoldenrodCityUndergroundSignNorth:
 	jumptext GoldenrodCityUndergroundSignNorthText
 
@@ -319,6 +322,14 @@ GoldenrodCityNameRaterSignText:
 	line "Nicknames Rated"
 	done
 
+GoldenrodCityClothingShopSignText:
+        text "GOLDENROD"
+		line "APPAREL"
+
+        para "Colors for Every"
+        line "Journey!"
+        done
+
 GoldenrodCityUndergroundSignNorthText:
 	text "UNDERGROUND"
 	line "ENTRANCE"
@@ -340,7 +351,7 @@ GoldenrodCity_MapEvents:
 	warp_event  9, 13, GOLDENROD_MAGNET_TRAIN_STATION, 2
 	warp_event 33,  5, GOLDENROD_FLOWER_SHOP, 1
 	warp_event 15, 27, GOLDENROD_POKECENTER_1F, 1
-	warp_event 33,  9, GOLDENROD_PP_SPEECH_HOUSE, 1
+	warp_event 11, 25, GOLDENROD_CLOTHING_SHOP, 1
 	warp_event 15,  7, GOLDENROD_NAME_RATER, 1
 	warp_event 24, 27, GOLDENROD_DEPT_STORE_1F, 1
 	warp_event 14, 21, GOLDENROD_GAME_CORNER, 1
@@ -360,6 +371,7 @@ GoldenrodCity_MapEvents:
 	bg_event 28, 30, BGEVENT_READ, GoldenrodCityBikeShopSign
 	bg_event 16, 22, BGEVENT_READ, GoldenrodCityGameCornerSign
 	bg_event 12,  7, BGEVENT_READ, GoldenrodCityNameRaterSign
+	bg_event 12, 26, BGEVENT_READ, GoldenrodCityClothingShopSign
 	bg_event  8,  6, BGEVENT_READ, GoldenrodCityUndergroundSignNorth
 	bg_event 12, 30, BGEVENT_READ, GoldenrodCityUndergroundSignSouth
 	bg_event 16, 27, BGEVENT_READ, GoldenrodCityPokecenterSign

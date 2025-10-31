@@ -368,16 +368,46 @@ _DoesSpriteHaveFacings::
 
 _GetSpritePalette::
 	ld a, c
+	ld e, a
 	call GetMonSprite
 	jr c, .is_pokemon
 
 	ld hl, OverworldSprites + SPRITEDATA_PALETTE
+	ld a, e
 	dec a
 	ld c, a
 	ld b, 0
 	ld a, NUM_SPRITEDATA_FIELDS
 	call AddNTimes
+	ld a, e
+	cp SPRITE_CHRIS
+	jr z, .player
+	cp SPRITE_CHRIS_BIKE
+	jr z, .player
 	ld c, [hl]
+	ret
+
+.player
+	ld a, [wPlayerOutfit]
+	cp PLAYER_OUTFIT_CBLUE
+	jr z, .blue
+	cp PLAYER_OUTFIT_NGREEN
+	jr z, .green
+	cp PLAYER_OUTFIT_EPURPLE
+	jr z, .purple
+	ld c, PAL_OW_RED
+	ret
+
+.blue
+	ld c, PAL_OW_BLUE
+	ret
+
+.green
+	ld c, PAL_OW_GREEN
+	ret
+
+.purple
+	ld c, PAL_OW_PURPLE
 	ret
 
 .is_pokemon

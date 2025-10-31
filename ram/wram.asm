@@ -2400,7 +2400,9 @@ wTimeOfDayPalFlags:: db
 wTimeOfDayPalset:: db
 wCurTimeOfDay:: db
 
-	ds 1
+wPlayerOutfit:: db
+
+	ds 2
 
 wPlayerData2End::
 wPlayerData3::
@@ -2815,7 +2817,7 @@ wPokemonDataEnd::
 wGameDataEnd::
 
 
-SECTION "Stack", WRAMX
+SECTION "Stack", WRAMX ;WRAM 2
 
 	ds 2
 wStackBottom::

@@ -318,6 +318,43 @@ CheckPokerus:
 	farcall _CheckPokerus
 	jp ScriptReturnCarry
 
+ApplyPlayerOutfit:
+        ld a, [wScriptVar]
+        cp NUM_PLAYER_OUTFITS
+        jr c, .valid
+        xor a
+.valid
+        ld [wPlayerOutfit], a
+        push af
+        ld hl, wObjectStructs + OBJECT_PALETTE
+        cp PLAYER_OUTFIT_CBLUE
+        jr z, .blue
+        cp PLAYER_OUTFIT_NGREEN
+        jr z, .green
+        cp PLAYER_OUTFIT_EPURPLE
+        jr z, .purple
+        ld b, PAL_OW_RED
+        jr .set_palette
+.blue
+        ld b, PAL_OW_BLUE
+        jr .set_palette
+.green
+        ld b, PAL_OW_GREEN
+        jr .set_palette
+.purple
+        ld b, PAL_OW_PURPLE
+.set_palette
+        ld a, [hl]
+        and %11111000
+        or b
+        ld [hl], a
+        pop af
+        ld [wScriptVar], a
+        ld a, TRUE
+        ldh [hCGBPalUpdate], a
+        call DelayFrame
+        ret
+
 ResetLuckyNumberShowFlag:
 	farcall RestartLuckyNumberCountdown
 	ld hl, wLuckyNumberShowFlag

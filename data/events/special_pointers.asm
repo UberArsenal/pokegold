@@ -97,6 +97,7 @@ SpecialsPointers::
 	add_special DisplayCoinCaseBalance
 	add_special DisplayMoneyAndCoinBalance
 	add_special PlaceMoneyTopRight
+	add_special ApplyPlayerOutfit
 	add_special CheckForLuckyNumberWinners
 	add_special CheckLuckyNumberShowFlag
 	add_special ResetLuckyNumberShowFlag
