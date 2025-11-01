@@ -1964,6 +1964,7 @@ PlayRadioStationPointers:
 	dw LoadStation_PlacesAndPeople
 	dw LoadStation_LetsAllSing
 	dw LoadStation_RocketRadio
+	dw LoadStation_JohtoNewsRadio
 	assert_table_length NUM_MAP_RADIO_STATIONS
 
 LoadStation_PokemonChannel:

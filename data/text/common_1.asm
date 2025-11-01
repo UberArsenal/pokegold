@@ -1004,7 +1004,7 @@ _RocketRadioText10::
 	
 ; Johto News Radio
 
-_JohtoNewsIntroText::
+_JohtoNewsIntro1Text::
 	text_start
 	line "CASEY: JOHTO NEWS"
 	done
@@ -1016,10 +1016,15 @@ _JohtoNewsIntro2Text::
 
 _JohtoNewsText1::
 	text_start
-	line "SLOWPOKE vanish?"
+	line "SLOWPOKE are"
 	done
 
 _JohtoNewsText2::
+	text_start
+	line "vanishing??"
+	done
+
+_JohtoNewsText3::
 	text_start
 	line "Stay tuned!"
 	done

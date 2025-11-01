@@ -31,76 +31,77 @@ RadioJumptable:
 	dw PokeFluteRadio    ; $07
 	dw UnownRadio        ; $08
 	dw EvolutionRadio    ; $09
-	dw JohtoNewsRadio1   ; $0a
+	dw JohtoNewsRadio    ; $0a
 	assert_table_length NUM_RADIO_CHANNELS
 ; OaksPKMNTalk
-	dw OaksPKMNTalk2     ; $0a
-	dw OaksPKMNTalk3     ; $0b
-	dw OaksPKMNTalk4     ; $0c
-	dw OaksPKMNTalk5     ; $0d
-	dw OaksPKMNTalk6     ; $0e
-	dw OaksPKMNTalk7     ; $0f
-	dw OaksPKMNTalk8     ; $10
-	dw OaksPKMNTalk9     ; $11
-	dw PokedexShow2      ; $12
-	dw PokedexShow3      ; $13
-	dw PokedexShow4      ; $14
-	dw PokedexShow5      ; $15
+	dw OaksPKMNTalk2     ; $0b
+	dw OaksPKMNTalk3     ; $0c
+	dw OaksPKMNTalk4     ; $0d
+	dw OaksPKMNTalk5     ; $0e
+	dw OaksPKMNTalk6     ; $0f
+	dw OaksPKMNTalk7     ; $10
+	dw OaksPKMNTalk8     ; $11
+	dw OaksPKMNTalk9     ; $12
+	dw PokedexShow2      ; $13
+	dw PokedexShow3      ; $14
+	dw PokedexShow4      ; $15
+	dw PokedexShow5      ; $16
 ; Ben Music
-	dw BenMonMusic2      ; $16
-	dw BenMonMusic3      ; $17
-	dw BenFernMusic4     ; $18
-	dw BenFernMusic5     ; $19
-	dw BenFernMusic6     ; $1a
-	dw BenFernMusic7     ; $1b
-	dw FernMonMusic2     ; $1c
+	dw BenMonMusic2      ; $17
+	dw BenMonMusic3      ; $18
+	dw BenFernMusic4     ; $19
+	dw BenFernMusic5     ; $1a
+	dw BenFernMusic6     ; $1b
+	dw BenFernMusic7     ; $1c
+	dw FernMonMusic2     ; $1d
 ; Lucky Number Show
-	dw LuckyNumberShow2  ; $1d
-	dw LuckyNumberShow3  ; $1e
-	dw LuckyNumberShow4  ; $1f
-	dw LuckyNumberShow5  ; $20
-	dw LuckyNumberShow6  ; $21
-	dw LuckyNumberShow7  ; $22
-	dw LuckyNumberShow8  ; $23
-	dw LuckyNumberShow9  ; $24
-	dw LuckyNumberShow10 ; $25
-	dw LuckyNumberShow11 ; $26
-	dw LuckyNumberShow12 ; $27
-	dw LuckyNumberShow13 ; $28
-	dw LuckyNumberShow14 ; $29
-	dw LuckyNumberShow15 ; $2a
+	dw LuckyNumberShow2  ; $1e
+	dw LuckyNumberShow3  ; $1f
+	dw LuckyNumberShow4  ; $20
+	dw LuckyNumberShow5  ; $21
+	dw LuckyNumberShow6  ; $22
+	dw LuckyNumberShow7  ; $23
+	dw LuckyNumberShow8  ; $24
+	dw LuckyNumberShow9  ; $25
+	dw LuckyNumberShow10 ; $26
+	dw LuckyNumberShow11 ; $27
+	dw LuckyNumberShow12 ; $28
+	dw LuckyNumberShow13 ; $29
+	dw LuckyNumberShow14 ; $2a
+	dw LuckyNumberShow15 ; $2b
 ; People & Places
-	dw PeoplePlaces2     ; $2b
-	dw PeoplePlaces3     ; $2c
-	dw PeoplePlaces4     ; $2d
-	dw PeoplePlaces5     ; $2e
-	dw PeoplePlaces6     ; $2f
-	dw PeoplePlaces7     ; $30
+	dw PeoplePlaces2     ; $2c
+	dw PeoplePlaces3     ; $2d
+	dw PeoplePlaces4     ; $2e
+	dw PeoplePlaces5     ; $2f
+	dw PeoplePlaces6     ; $30
+	dw PeoplePlaces7     ; $31
 ; Rocket Radio
-	dw RocketRadio2      ; $31
-	dw RocketRadio3      ; $32
-	dw RocketRadio4      ; $33
-	dw RocketRadio5      ; $34
-	dw RocketRadio6      ; $35
-	dw RocketRadio7      ; $36
-	dw RocketRadio8      ; $37
-	dw RocketRadio9      ; $38
-	dw RocketRadio10     ; $39
+	dw RocketRadio2      ; $32
+	dw RocketRadio3      ; $33
+	dw RocketRadio4      ; $34
+	dw RocketRadio5      ; $35
+	dw RocketRadio6      ; $36
+	dw RocketRadio7      ; $37
+	dw RocketRadio8      ; $38
+	dw RocketRadio9      ; $39
+	dw RocketRadio10     ; $3a
 ; More Pokemon Channel stuff
-	dw OaksPKMNTalk10    ; $3a
-	dw OaksPKMNTalk11    ; $3b
-	dw OaksPKMNTalk12    ; $3c
-	dw OaksPKMNTalk13    ; $3d
-	dw OaksPKMNTalk14    ; $3e
-	dw RadioScroll       ; $3f
+	dw OaksPKMNTalk10    ; $3b
+	dw OaksPKMNTalk11    ; $3c
+	dw OaksPKMNTalk12    ; $3d
+	dw OaksPKMNTalk13    ; $3e
+	dw OaksPKMNTalk14    ; $3f
+	dw RadioScroll       ; $40
 ; More Pokemon Channel stuff
-	dw PokedexShow6      ; $40
-	dw PokedexShow7      ; $41
-	dw PokedexShow8      ; $42
+	dw PokedexShow6      ; $41
+	dw PokedexShow7      ; $42
+	dw PokedexShow8      ; $43
 ; More Johto News
-	dw JohtoNewsRadio2   ; $43
-	dw JohtoNewsRadio3   ; $44
-	dw JohtoNewsRadio4   ; $45
+	dw JohtoNewsRadio1   ; $44
+	dw JohtoNewsRadio2   ; $45
+	dw JohtoNewsRadio3   ; $46
+	dw JohtoNewsRadio4   ; $47
 	assert_table_length NUM_RADIO_SEGMENTS
 
 PrintRadioLine:
@@ -1387,25 +1388,25 @@ EvolutionRadio:
 	ld [wNumRadioLinesPrinted], a
 	ret
 
-JohtoNewsRadio1:
+JohtoNewsRadio:
 	call StartRadioStation
-	ld hl, JohtoNewsIntroText
-	ld a, JOHTO_NEWS_RADIO_2
+	text_far, _JohtoNewsIntro1Text
+	jp NextRadioLine
+
+JohtoNewsRadio1:
+	text_far, _JohtoNewsIntro2Text
 	jp NextRadioLine
 	
 JohtoNewsRadio2:
-	ld hl, JohtoNewsIntro2Text
-	ld a, JOHTO_NEWS_RADIO_3
+	text_far, _JohtoNewsText1
 	jp NextRadioLine
 
 JohtoNewsRadio3:
-	ld hl, JohtoNewsText1
-	ld a, JOHTO_NEWS_RADIO_4
+	text_far, _JohtoNewsText2
 	jp NextRadioLine
 
 JohtoNewsRadio4:
-	ld hl, JohtoNewsText2
-	ld a, JOHTO_NEWS_RADIO_1
+	text_far, _JohtoNewsText3
 	jp NextRadioLine
 
 
