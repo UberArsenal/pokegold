@@ -1440,6 +1440,7 @@ RadioChannels:
 	dbw 16, .PKMNTalkAndPokedexShow ; 04.5
 	dbw 28, .PokemonMusic           ; 07.5
 	dbw 32, .LuckyChannel           ; 08.5
+	dbw 44, .JohtoNewsRadio			; 11.5
 	dbw 52, .RuinsOfAlphRadio       ; 13.5
 	dbw 64, .PlacesAndPeople        ; 16.5
 	dbw 72, .LetsAllSing            ; 18.5
@@ -1509,6 +1510,11 @@ RadioChannels:
 .NoSignal:
 	call NoRadioStation
 	ret
+
+.JohtoNewsRadio:
+	call .InJohto
+	jr c, .NoSignal
+	jp LoadStation_JohtoNewsRadio
 
 .InJohto:
 ; if in Johto or on the S.S. Aqua, set carry
@@ -1635,6 +1641,17 @@ LoadStation_EvolutionRadio:
 	ld de, UnownStationName
 	ret
 
+LoadStation_JohtoNewsRadio:
+	ld a, JOHTO_NEWS_RADIO
+	ld [wCurRadioLine], a
+	xor a
+	ld [wNumRadioLinesPrinted], a
+	ld a, BANK(PlayRadioShow)
+	ld hl, PlayRadioShow
+	call Radio_BackUpFarCallParams
+	ld de, JohtoNewsName
+	ret
+
 DummyLoadStation: ; unreferenced
 	ret
 
@@ -1704,6 +1721,7 @@ UnownStationName:     db "?????@"
 PlacesAndPeopleName:  db "Places & People@"
 LetsAllSingName:      db "Let's All Sing!@"
 PokeFluteStationName: db "# FLUTE@"
+JohtoNewsName:		  db "JOHTO NEWS!@"
 
 _TownMap:
 	ld hl, wOptions

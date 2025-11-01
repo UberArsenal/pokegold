@@ -1,3 +1,5 @@
+	
+	
 	object_const_def
 	const GOLDENRODCLOTHINGSHOP_CLERK
 	const GOLDENRODCLOTHINGSHOP_STYLIST
@@ -433,29 +435,29 @@ GoldenrodClothingShopChangingRoomExitText:
 GoldenrodClothingShop_MenuData:
 	db STATICMENU_CURSOR
 	db 4
-	db "Cherrygrove Blue@"
-	db "National Green@"
-	db "Executive Purple@"
-	db "Cancel@"
+	db "C.GROVE BLUE@"
+	db "NAT. GREEN@"
+	db "EXEC. PURPLE@"
+	db "EXIT@"
 
 GoldenrodClothingShopMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 0, 2, 15, TEXTBOX_Y - 1
+	menu_coords 0, 0, 15, 9
 	dw GoldenrodClothingShop_MenuData
 	db 1
 
 GoldenrodClothingShopChangingRoomMenuData:
-	db STATICMENU_CURSOR | STATICMENU_ENABLE_SELECT
+	db STATICMENU_CURSOR
 	db 5
-	db "Johto Classic@"
-	db "Cherrygrove Blue@"
-	db "National Green@"
-	db "Executive Purple@"
-	db "Exit@"
+	db "JOHTO CLASSIC@"
+	db "C.GROVE BLUE@"
+	db "NAT. GREEN@"
+	db "EXEC. PURPLE@"
+	db "EXIT@"
 
 GoldenrodClothingShopChangingRoomMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 0, 2, 16, TEXTBOX_Y - 1
+	menu_coords 0, 0, 16, 11
 	dw GoldenrodClothingShopChangingRoomMenuData
 	db 1
 

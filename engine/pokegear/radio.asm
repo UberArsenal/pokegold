@@ -31,6 +31,7 @@ RadioJumptable:
 	dw PokeFluteRadio    ; $07
 	dw UnownRadio        ; $08
 	dw EvolutionRadio    ; $09
+	dw JohtoNewsRadio1   ; $0a
 	assert_table_length NUM_RADIO_CHANNELS
 ; OaksPKMNTalk
 	dw OaksPKMNTalk2     ; $0a
@@ -96,6 +97,10 @@ RadioJumptable:
 	dw PokedexShow6      ; $40
 	dw PokedexShow7      ; $41
 	dw PokedexShow8      ; $42
+; More Johto News
+	dw JohtoNewsRadio2   ; $43
+	dw JohtoNewsRadio3   ; $44
+	dw JohtoNewsRadio4   ; $45
 	assert_table_length NUM_RADIO_SEGMENTS
 
 PrintRadioLine:
@@ -1381,6 +1386,28 @@ EvolutionRadio:
 	ld a, 1
 	ld [wNumRadioLinesPrinted], a
 	ret
+
+JohtoNewsRadio1:
+	call StartRadioStation
+	ld hl, JohtoNewsIntroText
+	ld a, JOHTO_NEWS_RADIO_2
+	jp NextRadioLine
+	
+JohtoNewsRadio2:
+	ld hl, JohtoNewsIntro2Text
+	ld a, JOHTO_NEWS_RADIO_3
+	jp NextRadioLine
+
+JohtoNewsRadio3:
+	ld hl, JohtoNewsText1
+	ld a, JOHTO_NEWS_RADIO_4
+	jp NextRadioLine
+
+JohtoNewsRadio4:
+	ld hl, JohtoNewsText2
+	ld a, JOHTO_NEWS_RADIO_1
+	jp NextRadioLine
+
 
 CopyRadioTextToRAM:
 	ld a, [hl]

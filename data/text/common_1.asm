@@ -1001,6 +1001,28 @@ _RocketRadioText10::
 	text_pause
 	text "Is he listening?"
 	done
+	
+; Johto News Radio
+
+_JohtoNewsIntroText::
+	text_start
+	line "CASEY: JOHTO NEWS"
+	done
+
+_JohtoNewsIntro2Text::
+	text_start
+	line "with CASEY MAPLE!"
+	done
+
+_JohtoNewsText1::
+	text_start
+	line "SLOWPOKE vanish?"
+	done
+
+_JohtoNewsText2::
+	text_start
+	line "Stay tuned!"
+	done
 
 _AskFloorElevatorText::
 	text "Which floor?"
