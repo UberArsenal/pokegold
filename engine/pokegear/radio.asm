@@ -1390,25 +1390,49 @@ EvolutionRadio:
 
 JohtoNewsRadio:
 	call StartRadioStation
-	ld hl, _JohtoNewsIntro1Text
+	ld hl, JohtoNewsIntro1Text
+	ld a, JOHTO_NEWS_RADIO_1
 	jp NextRadioLine
 
 JohtoNewsRadio1:
-	ld hl, _JohtoNewsIntro2Text
+	ld hl, JohtoNewsIntro2Text
+	ld a, JOHTO_NEWS_RADIO_2
 	jp NextRadioLine
 	
 JohtoNewsRadio2:
-	ld hl, _JohtoNewsText1
+	ld hl, JohtoNewsText1
+	ld a, JOHTO_NEWS_RADIO_3
 	jp NextRadioLine
 
 JohtoNewsRadio3:
-	ld hl, _JohtoNewsText2
+	ld hl, JohtoNewsText2
+	ld a, JOHTO_NEWS_RADIO_4
 	jp NextRadioLine
 
 JohtoNewsRadio4:
-	ld hl, _JohtoNewsText3
+	ld hl, JohtoNewsText3
+	ld a, JOHTO_NEWS_RADIO
 	jp NextRadioLine
 
+JohtoNewsIntro1Text:
+        text_far _JohtoNewsIntro1Text
+        text_end
+
+JohtoNewsIntro2Text:
+        text_far _JohtoNewsIntro2Text
+        text_end
+
+JohtoNewsText1:
+        text_far _JohtoNewsText1
+        text_end
+
+JohtoNewsText2:
+        text_far _JohtoNewsText2
+        text_end
+
+JohtoNewsText3:
+        text_far _JohtoNewsText3
+        text_end
 
 CopyRadioTextToRAM:
 	ld a, [hl]
