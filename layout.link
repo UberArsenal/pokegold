@@ -278,7 +278,6 @@ WRAMX 1
 	"WRAM 1"
 	"Game Data"
 	"Party"
-WRAMX 2
 	"Stack"
 VRAM $00
 	"VRAM0"

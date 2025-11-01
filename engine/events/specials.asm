@@ -327,11 +327,11 @@ ApplyPlayerOutfit:
         ld [wPlayerOutfit], a
         push af
         ld hl, wObjectStructs + OBJECT_PALETTE
-        cp PLAYER_OUTFIT_CBLUE
+        cp PLAYER_OUTFIT_BLUE
         jr z, .blue
-        cp PLAYER_OUTFIT_NGREEN
+        cp PLAYER_OUTFIT_GREEN
         jr z, .green
-        cp PLAYER_OUTFIT_EPURPLE
+        cp PLAYER_OUTFIT_PURPLE
         jr z, .purple
         ld b, PAL_OW_RED
         jr .set_palette

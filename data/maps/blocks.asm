@@ -167,6 +167,7 @@ LakeOfRageMagikarpHouse_Blocks:
 GoldenrodHappinessRater_Blocks:
 BillsFamilysHouse_Blocks:
 GoldenrodClothingShop_Blocks:
+	INCBIN "maps/GoldenrodClothingShop.blk"
 GoldenrodNameRater_Blocks:
 VermilionFishingSpeechHouse_Blocks:
 VermilionMagnetTrainSpeechHouse_Blocks:

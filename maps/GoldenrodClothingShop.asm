@@ -1,11 +1,11 @@
-
-DEF GOLDENRODCLOTHINGSHOP_CBLUE_PRICE     EQU 1500
-DEF GOLDENRODCLOTHINGSHOP_NGREEN_PRICE    EQU 2000
-DEF GOLDENRODCLOTHINGSHOP_EPURPLE_PRICE   EQU 3500
-
 	object_const_def
 	const GOLDENRODCLOTHINGSHOP_CLERK
 	const GOLDENRODCLOTHINGSHOP_STYLIST
+
+
+DEF GOLDENRODCLOTHINGSHOP_BLUE_PRICE     EQU 1500
+DEF GOLDENRODCLOTHINGSHOP_GREEN_PRICE    EQU 2000
+DEF GOLDENRODCLOTHINGSHOP_PURPLE_PRICE   EQU 3500
 
 GoldenrodClothingShop_MapScripts:
 	def_scene_scripts
@@ -20,20 +20,20 @@ GoldenrodClothingShopClerkScript:
 	loadmenu GoldenrodClothingShopMenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, .blue
-	ifequal 2, .green
-	ifequal 3, .purple
+	ifequal 1, .BlueOption
+	ifequal 2, .GreenOption
+	ifequal 3, .PurpleOption
 	sjump .Goodbye
 
-.blue:
+.BlueOption:
 	scall GoldenrodClothingShopOfferBlue
 	sjump .MenuLoop
 
-.green:
+.GreenOption:
 	scall GoldenrodClothingShopOfferGreen
 	sjump .MenuLoop
 
-.purple:
+.PurpleOption:
 	scall GoldenrodClothingShopOfferPurple
 	sjump .MenuLoop
 
@@ -44,19 +44,19 @@ GoldenrodClothingShopClerkScript:
 	end
 
 GoldenrodClothingShopOfferBlue:
-	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_CBLUE
+	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_BLUE
 	iftrue .AlreadyOwn
 	special PlaceMoneyTopRight
 	writetext GoldenrodClothingShopBluePitchText
 	yesorno
 	iffalse .Decline
-	checkmoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_CBLUE_PRICE
+	checkmoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_BLUE_PRICE
 	ifequal HAVE_LESS, .NoMoney
-	takemoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_CBLUE_PRICE
+	takemoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_BLUE_PRICE
 	special PlaceMoneyTopRight
 	playsound SFX_TRANSACTION
 	waitsfx
-	setevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_CBLUE
+	setevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_BLUE
 	writetext GoldenrodClothingShopBluePurchaseText
 	promptbutton
 	sjump .AskToWear
@@ -69,7 +69,7 @@ GoldenrodClothingShopOfferBlue:
 	writetext GoldenrodClothingShopBlueEquipPromptText
 	yesorno
 	iffalse .NoChange
-	setval PLAYER_OUTFIT_CBLUE
+	setval PLAYER_OUTFIT_BLUE
 	special ApplyPlayerOutfit
 	writetext GoldenrodClothingShopBlueEquipText
 	waitbutton
@@ -93,19 +93,19 @@ GoldenrodClothingShopOfferBlue:
 	end
 
 GoldenrodClothingShopOfferGreen:
-	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_NGREEN
+	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_GREEN
 	iftrue .AlreadyOwn
 	special PlaceMoneyTopRight
 	writetext GoldenrodClothingShopGreenPitchText
 	yesorno
 	iffalse .Decline
-	checkmoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_NGREEN_PRICE
+	checkmoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_GREEN_PRICE
 	ifequal HAVE_LESS, .NoMoney
-	takemoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_NGREEN_PRICE
+	takemoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_GREEN_PRICE
 	special PlaceMoneyTopRight
 	playsound SFX_TRANSACTION
 	waitsfx
-	setevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_NGREEN
+	setevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_GREEN
 	writetext GoldenrodClothingShopGreenPurchaseText
 	promptbutton
 	sjump .AskToWear
@@ -118,7 +118,7 @@ GoldenrodClothingShopOfferGreen:
 	writetext GoldenrodClothingShopGreenEquipPromptText
 	yesorno
 	iffalse .NoChange
-	setval PLAYER_OUTFIT_NGREEN
+	setval PLAYER_OUTFIT_GREEN
 	special ApplyPlayerOutfit
 	writetext GoldenrodClothingShopGreenEquipText
 	waitbutton
@@ -142,19 +142,19 @@ GoldenrodClothingShopOfferGreen:
 	end
 
 GoldenrodClothingShopOfferPurple:
-	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_EPURPLE
+	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_PURPLE
 	iftrue .AlreadyOwn
 	special PlaceMoneyTopRight
 	writetext GoldenrodClothingShopPurplePitchText
 	yesorno
 	iffalse .Decline
-	checkmoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_EPURPLE_PRICE
+	checkmoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_PURPLE_PRICE
 	ifequal HAVE_LESS, .NoMoney
-	takemoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_EPURPLE_PRICE
+	takemoney YOUR_MONEY, GOLDENRODCLOTHINGSHOP_PURPLE_PRICE
 	special PlaceMoneyTopRight
 	playsound SFX_TRANSACTION
 	waitsfx
-	setevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_EPURPLE
+	setevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_PURPLE
 	writetext GoldenrodClothingShopPurplePurchaseText
 	promptbutton
 	sjump .AskToWear
@@ -167,7 +167,7 @@ GoldenrodClothingShopOfferPurple:
 	writetext GoldenrodClothingShopPurpleEquipPromptText
 	yesorno
 	iffalse .NoChange
-	setval PLAYER_OUTFIT_EPURPLE
+	setval PLAYER_OUTFIT_PURPLE
 	special ApplyPlayerOutfit
 	writetext GoldenrodClothingShopPurpleEquipText
 	waitbutton
@@ -207,33 +207,33 @@ GoldenrodClothingShopChangingRoom:
 	verticalmenu
 	closewindow
 	ifequal 1, .Classic
-	ifequal 2, .blue
-	ifequal 3, .green
-	ifequal 4, .purple
+	ifequal 2, .BlueFit
+	ifequal 3, .GreenFit
+	ifequal 4, .PurpleFit
 	sjump .Exit
 
-blue:
-	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_CBLUE
+.BlueFit:
+	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_BLUE
 	iffalse .Locked
-	setval PLAYER_OUTFIT_CBLUE
+	setval PLAYER_OUTFIT_BLUE
 	special ApplyPlayerOutfit
-	writetext GoldenrodClothingShopAzureEquipText
+	writetext GoldenrodClothingShopBlueEquipText
 	waitbutton
 	sjump .WardrobeLoop
 
-.green:
-	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_NGREEN
+.GreenFit:
+	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_GREEN
 	iffalse .Locked
-	setval PLAYER_OUTFIT_NGREEN
+	setval PLAYER_OUTFIT_GREEN
 	special ApplyPlayerOutfit
 	writetext GoldenrodClothingShopGreenEquipText
 	waitbutton
 	sjump .WardrobeLoop
 
-.purple:
-	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_EPURPLE
+.PurpleFit:
+	checkevent EVENT_GOLDENROD_CLOTHING_SHOP_BOUGHT_PURPLE
 	iffalse .Locked
-	setval PLAYER_OUTFIT_EPURPLE
+	setval PLAYER_OUTFIT_PURPLE
 	special ApplyPlayerOutfit
 	writetext GoldenrodClothingShopPurpleEquipText
 	waitbutton
@@ -272,33 +272,33 @@ GoldenrodClothingShopClerkComeAgainText:
 	para "another new look."
 	done
 
-GoldenrodClothingShopAzurePitchText:
+GoldenrodClothingShopBluePitchText:
 	text "The CHERRYGROVE"
 	line "BLUE is ¥1500."
 	cont "Shall I wrap it"
 	cont "up?"
 	done
 
-GoldenrodClothingShopAzurePurchaseText:
+GoldenrodClothingShopBluePurchaseText:
 	text "Lovely! We'll"
 	line "prepare the"
 	cont "CHERRYGROVE BLUE"
 	cont "for you!"
 	done
 
-GoldenrodClothingShopAzureOwnedText:
+GoldenrodClothingShopBlueOwnedText:
 	text "You've already"
 	line "picked up the"
 	cont "CHERRYGROVE BLUE."
 	done
 
-GoldenrodClothingShopAzureEquipPromptText:
+GoldenrodClothingShopBlueEquipPromptText:
 	text "Change into the"
 	line "CHERRYGROVE BLUE"
 	cont "right now?"
 	done
 
-GoldenrodClothingShopAzureEquipText:
+GoldenrodClothingShopBlueEquipText:
 	text "The cool BLUE"
 	line "tones suit you"
 	cont "perfectly!"
@@ -431,7 +431,7 @@ GoldenrodClothingShopChangingRoomExitText:
 	done
 
 GoldenrodClothingShop_MenuData:
-	db STATICMENU_OPTIONS
+	db STATICMENU_CURSOR
 	db 4
 	db "Cherrygrove Blue@"
 	db "National Green@"
@@ -445,7 +445,7 @@ GoldenrodClothingShopMenuHeader:
 	db 1
 
 GoldenrodClothingShopChangingRoomMenuData:
-	db STATICMENU_OPTIONS
+	db STATICMENU_CURSOR | STATICMENU_ENABLE_SELECT
 	db 5
 	db "Johto Classic@"
 	db "Cherrygrove Blue@"
@@ -463,16 +463,16 @@ GoldenrodClothingShop_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event  7,  7, GOLDENROD_CITY, 8
-	warp_event  8,  7, GOLDENROD_CITY, 8
+	warp_event  4,  7, GOLDENROD_CITY, 8
+	warp_event  5,  7, GOLDENROD_CITY, 8
 
 	def_coord_events
 
 	def_bg_events
-	bg_event  1,  0, BGEVENT_READ, GoldenrodClothingShopDisplayLeft
+	bg_event  0,  0, BGEVENT_READ, GoldenrodClothingShopDisplayLeft
 	bg_event  2,  0, BGEVENT_READ, GoldenrodClothingShopDisplayRight
-	bg_event 13,  0, BGEVENT_READ, GoldenrodClothingShopChangingRoom
+	bg_event 6,  0, BGEVENT_READ, GoldenrodClothingShopChangingRoom
 
 	def_object_events
-	object_event  8,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopClerkScript, -1
-	object_event 11,  3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopStylistScript, -1
+	object_event  3,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopClerkScript, -1
+	object_event 6,  6, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopStylistScript, -1

@@ -389,11 +389,11 @@ _GetSpritePalette::
 
 .player
 	ld a, [wPlayerOutfit]
-	cp PLAYER_OUTFIT_CBLUE
+	cp PLAYER_OUTFIT_BLUE
 	jr z, .blue
-	cp PLAYER_OUTFIT_NGREEN
+	cp PLAYER_OUTFIT_GREEN
 	jr z, .green
-	cp PLAYER_OUTFIT_EPURPLE
+	cp PLAYER_OUTFIT_PURPLE
 	jr z, .purple
 	ld c, PAL_OW_RED
 	ret

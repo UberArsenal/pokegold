@@ -2819,7 +2819,7 @@ wGameDataEnd::
 
 SECTION "Stack", WRAMX ;WRAM 2
 
-	ds 2
+
 wStackBottom::
 	ds $fc
 wStackTop::
