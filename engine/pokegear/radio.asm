@@ -1390,23 +1390,23 @@ EvolutionRadio:
 
 JohtoNewsRadio:
 	call StartRadioStation
-	text_far, _JohtoNewsIntro1Text
+	ld hl, _JohtoNewsIntro1Text
 	jp NextRadioLine
 
 JohtoNewsRadio1:
-	text_far, _JohtoNewsIntro2Text
+	ld hl, _JohtoNewsIntro2Text
 	jp NextRadioLine
 	
 JohtoNewsRadio2:
-	text_far, _JohtoNewsText1
+	ld hl, _JohtoNewsText1
 	jp NextRadioLine
 
 JohtoNewsRadio3:
-	text_far, _JohtoNewsText2
+	ld hl, _JohtoNewsText2
 	jp NextRadioLine
 
 JohtoNewsRadio4:
-	text_far, _JohtoNewsText3
+	ld hl, _JohtoNewsText3
 	jp NextRadioLine
 
 

@@ -1513,7 +1513,7 @@ RadioChannels:
 
 .JohtoNewsRadio:
 	call .InJohto
-	jr c, .NoSignal
+	jr nc, .NoSignal
 	jp LoadStation_JohtoNewsRadio
 
 .InJohto:
