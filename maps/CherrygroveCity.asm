@@ -104,13 +104,7 @@ CherrygroveCityGuideGentGiveMap:
        writetext GuideGentDeclineText
        waitbutton
        closetext
-       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
-       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
-       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement3
-       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement4
-       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement5
-       applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
-       playsound SFX_ENTER_DOOR
+       applymovement CHERRYGROVECITY_GRAMPS, GuideGentDeclineMovement
        disappear CHERRYGROVECITY_GRAMPS
        clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
        waitsfx
@@ -204,6 +198,7 @@ CherrygroveRivalSceneNorth:
 	writetext CherrygroveRivalText_MyTrainerCard
 	waitbutton
 	closetext
+	playsound SFX_TACKLE
 	applymovement PLAYER, CherrygroveCity_RivalTakesIDBack
 	turnobject CHERRYGROVECITY_RIVAL, LEFT
 	pause 10
@@ -280,11 +275,22 @@ CherrygroveCityPokecenterSign:
 CherrygroveCityMartSign:
 	jumpstd MartSignScript
 
+GuideGentDeclineMovement:
+	step LEFT
+	step LEFT
+	step UP
+	step LEFT
+	step LEFT
+	step LEFT
+	step_end
+	
+
 GuideGentMovement1:
 	step LEFT
 	step LEFT
 	step UP
 	step LEFT
+	turn_head UP
 	step_end
 
 GuideGentMovement2:
@@ -294,6 +300,7 @@ GuideGentMovement2:
 	step LEFT
 	step LEFT
 	step LEFT
+	turn_head UP
 	step_end
 
 GuideGentMovement3:

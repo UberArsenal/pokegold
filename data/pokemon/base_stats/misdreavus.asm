@@ -1,9 +1,9 @@
 	db MISDREAVUS ; 200
 
-	db  60,  60,  60,  85,  85,  85
+	db  75,  60,  60, 100, 100, 100
 	;   hp  atk  def  spd  sat  sdf
 
-	db GHOST, GHOST ; type
+	db GHOST, DARK ; type
 	db 45 ; catch rate
 	db 147 ; base exp
 	db NO_ITEM, SPELL_TAG ; items
