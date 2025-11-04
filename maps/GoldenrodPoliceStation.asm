@@ -20,6 +20,7 @@ GoldenrodPoliceStationCop1Script:
 	waitbutton
 	closetext
 	turnobject GOLDENRODPOLICESTATION_COP1, UP
+	end
 
 GoldenrodPoliceStationCop2Script:
 	faceplayer
@@ -28,7 +29,7 @@ GoldenrodPoliceStationCop2Script:
 	waitbutton
 	closetext
 	turnobject GOLDENRODPOLICESTATION_COP2, UP
-
+	end
 
 GoldenrodPoliceStationCop3Script:
 	faceplayer
@@ -37,7 +38,7 @@ GoldenrodPoliceStationCop3Script:
 	waitbutton
 	closetext
 	turnobject GOLDENRODPOLICESTATION_COP3, UP
-
+	end
 
 GoldenrodPoliceStationCop4Script:
 	faceplayer
@@ -46,7 +47,7 @@ GoldenrodPoliceStationCop4Script:
 	waitbutton
 	closetext
 	turnobject GOLDENRODPOLICESTATION_COP4, UP
-
+	end
 
 GoldenrodPoliceStationChiefScript:
 	faceplayer
@@ -55,6 +56,7 @@ GoldenrodPoliceStationChiefScript:
 	waitbutton
 	closetext
 	turnobject GOLDENRODPOLICESTATION_CHIEF, UP
+	end
 	
 GoldenrodPoliceStationCriminalScript:
 
@@ -65,12 +67,14 @@ RocketTalkScript:
 	writetext RocketTalkText
 	waitbutton
 	closetext
-
+	end
+	
 BurglarTalkScript:
 	opentext
 	writetext BurglarTalkText
 	waitbutton
 	closetext
+	end
 
 GoldenrodPoliceStationCop1Text:
 	text "Hey kid! Do NOT"
@@ -96,13 +100,15 @@ GoldenrodPoliceStationCop2Text:
 
 GoldenrodPoliceStationCop3Text:
 	text "This BURGLAR right"
-	line "here stole multiple"
-	cont "items from a store"
-	cont "in VIOLET CITY."
+	line "here stole multi-"
+	cont "ple items from a"
+	cont "store in VIOLET"
+	cont "CITY."
 	
 	para "I had to take this"
 	line "thief the longer"
-	cont "back to GOLDENROD."
+	cont "way back to GOLD-"
+	cont "ENROD."
 	
 	para "The guy wouldn't"
 	line "stop crying and"
@@ -117,60 +123,69 @@ GoldenrodPoliceStationCop4Text:
 	cont "ILEX FOREST."
 	
 	para "Idiot should have"
-	line "never got lost from"
-	cont "his crew. Ha!"
+	line "never got lost"
+	cont "from his crew. Ha!"
 	done
 
 GoldenrodPoliceStationChiefText:
 	text "I am the Chief of"
-	line "this POLICE STATION."
+	line "this POLICE STAT-"
+	cont "ION."
 	
 	para "You must be <PLAYER>."
-	line "A pleasure to meet you."
+	line "A pleasure to meet"
+	cont "you."
 	
 	para "I'm an acquaintance"
 	line "of PROF. ELM's."
 	
-	para "He contacted me person-"
-	line "ally about the SILVER"
-	cont "thief."
+	para "He called me per-"
+	line "sonally about this"
+	cont "thief SILVER."
 	
 	para "We're doing what we"
 	line "can to find him."
 	
-	para "He's a slippery one."
+	para "He's a slippery"
+	line "one."
 	
-	para "If you see him again,"
-	line "you have my FULL per-"
-	cont "mission to stop him"
-	cont "at ALL costs."
+	para "You find him again,"
+	line "you have my FULL"
+	cont "permission to stop"
+	cont "him."
+	
+	para "At ALL Costs!"
 	done
 
 RocketTalkText:
 	text "Hmph. The POLICE"
-	line "might have caught me"
+	line "might have caught"
+	cont "me this time."
 	
-	para "but I know my TEAM"
-	line "will come and rescue"
+	para "But I know my TEAM"
+	line "will come and get"
 	cont "me! Just you wait!"
 	
-	para "OFFICER: Yeah, yeah!"
-	line "Keep talking criminal!"
+	para "OFFICER: Yeah,"
+	line "Yeah!"
 	
-	para "Where your buddies at"
-	line "now??"
+	para "Keep talking cri-"
+	line "minal!!"
 	
-	para "..."
+	para "Where your buddies"
+	line "at now??"
 	
-	para "Oh ok, that's what I"
-	line "thought."
+	para "ROCKET: ..."
+	
+	para "Oh ok, that's what"
+	line "I thought!"
 	
 	para "ROCKET: Tch."
 	done
 
 BurglarTalkText:
-	text "BURGLAR: Man.. This"
-	line "blows..."
+	text "BURGLAR: Man..."
+	line "This blows..."
 	
 	para "I wish I had never"
 	line "stole in the first"
@@ -178,7 +193,9 @@ BurglarTalkText:
 	
 	para "Officer, is there"
 	line "any way you can"
-	cont "let me out? PLEAASE."
+	cont "let me out?"
+	
+	para "PLEEEEASE."
 	
 	para "OFFICER: ...."
 	
@@ -189,8 +206,8 @@ GoldenrodPoliceStation_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event  4, 11, GOLDENROD_CITY, 8
-	warp_event  5, 11, GOLDENROD_CITY, 8
+	warp_event  4, 11, GOLDENROD_CITY, 15
+	warp_event  5, 11, GOLDENROD_CITY, 15
 
 	def_coord_events
 

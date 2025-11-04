@@ -356,22 +356,22 @@ GoldenrodCity_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event 24,  7, GOLDENROD_GYM, 1
-	warp_event 29, 29, GOLDENROD_BIKE_SHOP, 1
-	warp_event 31, 21, GOLDENROD_HAPPINESS_RATER, 1
-	warp_event  5, 25, BILLS_FAMILYS_HOUSE, 1
-	warp_event  9, 13, GOLDENROD_MAGNET_TRAIN_STATION, 2
-	warp_event 33,  5, GOLDENROD_FLOWER_SHOP, 1
-	warp_event 15, 27, GOLDENROD_POKECENTER_1F, 1
-	warp_event 33,  9, GOLDENROD_CLOTHING_SHOP, 1
-	warp_event 15,  7, GOLDENROD_NAME_RATER, 1
-	warp_event 24, 27, GOLDENROD_DEPT_STORE_1F, 1
-	warp_event 14, 21, GOLDENROD_GAME_CORNER, 1
-	warp_event  5, 15, RADIO_TOWER_1F, 1
-	warp_event 19,  1, ROUTE_35_GOLDENROD_GATE, 3
-	warp_event  9,  5, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 8
-	warp_event 11, 29, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 5
-	warp_event 25, 15, GOLDENROD_POLICE_STATION, 1
+	warp_event 24,  7, GOLDENROD_GYM, 1 ; 1
+	warp_event 29, 29, GOLDENROD_BIKE_SHOP, 1 ; 2
+	warp_event 31, 21, GOLDENROD_HAPPINESS_RATER, 1 ; 3
+	warp_event  5, 25, BILLS_FAMILYS_HOUSE, 1 ; 4
+	warp_event  9, 13, GOLDENROD_MAGNET_TRAIN_STATION, 2 ; 5
+	warp_event 33,  5, GOLDENROD_FLOWER_SHOP, 1 ; 6
+	warp_event 15, 27, GOLDENROD_POKECENTER_1F, 1 ; 7
+	warp_event 15,  7, GOLDENROD_NAME_RATER, 1 ; 8
+	warp_event 24, 27, GOLDENROD_DEPT_STORE_1F, 1 ; 9
+	warp_event 14, 21, GOLDENROD_GAME_CORNER, 1 ; 10
+	warp_event  5, 15, RADIO_TOWER_1F, 1 ; 11
+	warp_event 19,  1, ROUTE_35_GOLDENROD_GATE, 3 ; 12
+	warp_event  9,  5, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 8 ; 14
+	warp_event 11, 29, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 5 ; 13
+	warp_event 25, 15, GOLDENROD_CLOTHING_SHOP, 1 ; 15
+	warp_event 33,  9, GOLDENROD_POLICE_STATION, 1 ; 16
 
 	def_coord_events
 

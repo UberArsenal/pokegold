@@ -167,6 +167,7 @@ LakeOfRageMagikarpHouse_Blocks:
 GoldenrodHappinessRater_Blocks:
 	INCBIN "maps/GoldenrodHappinessRater.blk"
 BillsFamilysHouse_Blocks:
+	INCBIN "maps/House1.blk"
 GoldenrodClothingShop_Blocks:
 	INCBIN "maps/GoldenrodClothingShop.blk"
 GoldenrodNameRater_Blocks:

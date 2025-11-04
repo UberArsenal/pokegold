@@ -254,19 +254,19 @@ ENDM
 	map_const GOLDENROD_FLOWER_SHOP,                        4,  4 ;  8
 	map_const GOLDENROD_POKECENTER_1F,                      5,  4 ;  9
 	map_const GOLDENROD_CLOTHING_SHOP,                      4,  4 ; 10
-	map_const GOLDENROD_NAME_RATER,                         4,  4 ; 11
-	map_const GOLDENROD_DEPT_STORE_1F,                      8,  4 ; 12
-	map_const GOLDENROD_DEPT_STORE_2F,                      8,  4 ; 13
-	map_const GOLDENROD_DEPT_STORE_3F,                      8,  4 ; 14
-	map_const GOLDENROD_DEPT_STORE_4F,                      8,  4 ; 15
-	map_const GOLDENROD_DEPT_STORE_5F,                      8,  4 ; 16
-	map_const GOLDENROD_DEPT_STORE_6F,                      8,  4 ; 17
-	map_const GOLDENROD_DEPT_STORE_ELEVATOR,                2,  2 ; 18
-	map_const GOLDENROD_GAME_CORNER,                       10,  7 ; 19
-	map_const ILEX_FOREST_AZALEA_GATE,                      5,  4 ; 20
-	map_const ROUTE_34_ILEX_FOREST_GATE,                    5,  4 ; 21
-	map_const DAY_CARE,                                     5,  4 ; 22
-	map_const GOLDENROD_POLICE_STATION,						6,  5 ; 23
+	map_const GOLDENROD_POLICE_STATION,						5,  6 ; 11
+	map_const GOLDENROD_NAME_RATER,                         4,  4 ; 12
+	map_const GOLDENROD_DEPT_STORE_1F,                      8,  4 ; 13
+	map_const GOLDENROD_DEPT_STORE_2F,                      8,  4 ; 14
+	map_const GOLDENROD_DEPT_STORE_3F,                      8,  4 ; 15
+	map_const GOLDENROD_DEPT_STORE_4F,                      8,  4 ; 16
+	map_const GOLDENROD_DEPT_STORE_5F,                      8,  4 ; 17
+	map_const GOLDENROD_DEPT_STORE_6F,                      8,  4 ; 18
+	map_const GOLDENROD_DEPT_STORE_ELEVATOR,                2,  2 ; 19
+	map_const GOLDENROD_GAME_CORNER,                       10,  7 ; 20
+	map_const ILEX_FOREST_AZALEA_GATE,                      5,  4 ; 21
+	map_const ROUTE_34_ILEX_FOREST_GATE,                    5,  4 ; 22
+	map_const DAY_CARE,                                     5,  4 ; 23
 	endgroup
 
 	newgroup VERMILION                                            ; 12
