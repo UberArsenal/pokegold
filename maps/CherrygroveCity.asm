@@ -4,7 +4,8 @@
 	const CHERRYGROVECITY_TEACHER
 	const CHERRYGROVECITY_YOUNGSTER
 	const CHERRYGROVECITY_FISHER
-
+	const CHERRYGROVECITY_MONSTER
+	
 CherrygroveCity_MapScripts:
 	def_scene_scripts
 	scene_script CherrygroveCityNoop1Scene, SCENE_CHERRYGROVECITY_NOOP
@@ -12,6 +13,7 @@ CherrygroveCity_MapScripts:
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, CherrygroveCityFlypointCallback
+	callback MAPCALLBACK_OBJECTS, CherrygroveCityOctilleryCallback
 
 CherrygroveCityNoop1Scene:
 	end
@@ -22,6 +24,21 @@ CherrygroveCityNoop2Scene:
 CherrygroveCityFlypointCallback:
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
 	endcallback
+
+CherrygroveCityOctilleryCallback:
+	   checkevent EVENT_LAKE_OF_RAGE_RED_GYARADOS
+       iftrue .OctilleryAppear
+       checkitem RED_SCALE
+       iftrue .OctilleryAppear
+       sjump .NoAppear
+
+.OctilleryAppear
+       appear CHERRYGROVECITY_MONSTER
+       endcallback
+
+.NoAppear
+       disappear CHERRYGROVECITY_MONSTER
+       endcallback
 
 CherrygroveCityGuideGent:
        faceplayer
@@ -262,6 +279,44 @@ MysticWaterGuy:
 .Exit:
 	closetext
 	end
+
+CherrygroveCityShinyOctilleryScript:
+       faceplayer
+       checkevent EVENT_CHERRYGROVE_CITY_SHINY_OCTILLERY
+       opentext
+       writetext CherrygroveCityShinyOctilleryText
+       cry OCTILLERY
+       pause 15
+       closetext
+       loadwildmon OCTILLERY, 40
+       loadvar VAR_BATTLETYPE, BATTLETYPE_FORCESHINY
+       startbattle
+       ifequal LOSE, .LostBattle
+       reloadmapafterbattle
+       sjump .Reward
+
+.LostBattle:
+       reloadmapafterbattle
+       end
+
+.Reward:
+       opentext
+       giveitem SCOPE_LENS
+       iffalse .NoRoom
+       writetext CherrygroveCityGotScopeLensText
+       playsound SFX_ITEM
+       waitsfx
+       itemnotify
+       closetext
+       setevent EVENT_CHERRYGROVE_CITY_SHINY_OCTILLERY
+       disappear CHERRYGROVECITY_MONSTER
+       end
+
+.NoRoom:
+       writetext CherrygroveCityNoRoomForScopeLensText
+       waitbutton
+       closetext
+       end
 
 CherrygroveCitySign:
 	jumptext CherrygroveCitySignText
@@ -718,6 +773,20 @@ GuideGentsHouseSignText:
 	text "GUIDE GENT'S HOUSE"
 	done
 
+CherrygroveCityShinyOctilleryText:
+	text "Octoooo!"
+	done 
+
+CherrygroveCityGotScopeLensText:
+       text "<PLAYER> obtained"
+       line "SCOPE LENS!"
+       done
+
+CherrygroveCityNoRoomForScopeLensText:
+       text "But <PLAYER>'s"
+       line "PACK is full!"
+       done
+
 CherrygroveCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -745,3 +814,5 @@ CherrygroveCity_MapEvents:
 	object_event 27, 12, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
 	object_event 23,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1
 	object_event  7, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MysticWaterGuy, -1
+	object_event  4, 13, SPRITE_MONSTER, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CherrygroveCityShinyOctilleryScript, EVENT_CHERRYGROVE_CITY_SHINY_OCTILLERY
+	

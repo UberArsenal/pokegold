@@ -6,12 +6,14 @@
 	const ROUTE36_FISHER
 	const ROUTE36_FRUIT_TREE
 	const ROUTE36_ARTHUR
-
+	const ROUTE36_WEIRD_TREE2
+	
 Route36_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, Route36ArthurCallback
+	callback MAPCALLBACK_OBJECTS, Route36ShinySudowoodoCallback
 
 Route36ArthurCallback:
 	readvar VAR_WEEKDAY
@@ -22,6 +24,80 @@ Route36ArthurCallback:
 .ArthurAppears:
 	appear ROUTE36_ARTHUR
 	endcallback
+
+Route36ShinySudowoodoCallback:
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .ShinySudowoodoAppear
+	checkevent EVENT_RED_IN_MT_SILVER
+	iftrue .ShinySudowoodoAppear
+	sjump .NoAppear
+	
+.ShinySudowoodoAppear:
+	appear ROUTE36_WEIRD_TREE2
+	sjump ShinySudowoodoScript
+	endcallback
+
+.NoAppear
+	disappear ROUTE36_WEIRD_TREE2
+	endcallback
+
+ShinySudowoodoScript:
+	checkitem SQUIRTBOTTLE
+	iftrue .ShinyFight
+
+	waitsfx
+	playsound SFX_SANDSTORM
+	applymovement ROUTE36_WEIRD_TREE2, SudowoodoShakeMovement
+	end
+
+.ShinyFight:
+	opentext
+	writetext UseSquirtbottleText
+	yesorno
+	iffalse DidntUseSquirtbottleScript
+	writetext UsedSquirtbottleText
+	waitbutton
+	closetext
+	waitsfx
+	playsound SFX_SANDSTORM
+	applymovement ROUTE36_WEIRD_TREE2, SudowoodoShakeMovement
+	opentext
+	writetext SudowoodoAttackedText
+	waitbutton
+	closetext
+	loadwildmon SUDOWOODO, 45
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCESHINY
+	startbattle
+	setevent EVENT_FOUGHT_SHINY_SUDOWOODO
+	ifequal DRAW, DidntCatchShinySudowoodo
+	ifequal LOSE, .LostBattle
+	disappear ROUTE36_WEIRD_TREE2
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
+	reloadmapafterbattle
+	sjump .Reward
+	end
+
+.LostBattle:
+	reloadmapafterbattle
+	end
+
+.Reward:
+       opentext
+       giveitem HARD_STONE
+       iffalse .NoRoom
+       writetext Route36GotHardStoneText
+       playsound SFX_ITEM
+       waitsfx
+       itemnotify
+       closetext
+       setevent EVENT_FOUGHT_SHINY_SUDOWOODO
+       end
+
+.NoRoom:
+       writetext Route36NoRoomForHardStoneText
+       waitbutton
+       closetext
+       end
 
 SudowoodoScript:
 	checkitem SQUIRTBOTTLE
@@ -67,6 +143,14 @@ DidntCatchSudowoodo:
 	reloadmapafterbattle
 	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Flee
 	disappear ROUTE36_WEIRD_TREE
+	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
+	special LoadUsedSpritesGFX
+	end
+
+DidntCatchShinySudowoodo:
+	reloadmapafterbattle
+	applymovement ROUTE36_WEIRD_TREE2, WeirdTreeMovement_Flee
+	disappear ROUTE36_WEIRD_TREE2
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special LoadUsedSpritesGFX
 	end
@@ -463,6 +547,16 @@ Route36TrainerTips2Text:
 	line "landmarks."
 	done
 
+Route36GotHardStoneText:
+       text "<PLAYER> obtained"
+       line "HARD STONE!"
+       done
+
+Route36NoRoomForHardStoneText:
+       text "But <PLAYER>'s"
+       line "PACK is full!"
+       done
+
 Route36_MapEvents:
 	db 0, 0 ; filler
 
@@ -488,3 +582,4 @@ Route36_MapEvents:
 	object_event 44,  9, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36RockSmashGuyScript, -1
 	object_event 21,  4, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36FruitTree, -1
 	object_event 46,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
+	object_event 35,  9, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShinySudowoodoScript, EVENT_ROUTE_36_SHINY_SUDOWOODO
