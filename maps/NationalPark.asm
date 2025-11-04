@@ -4,20 +4,41 @@
 	const NATIONALPARK_TEACHER1
 	const NATIONALPARK_YOUNGSTER1
 	const NATIONALPARK_YOUNGSTER2
-	const NATIONALPARK_TEACHER2
-	const NATIONALPARK_PERSIAN
-	const NATIONALPARK_YOUNGSTER3
-	const NATIONALPARK_POKEFAN_F2
-	const NATIONALPARK_POKEFAN_M
+        const NATIONALPARK_TEACHER2
+        const NATIONALPARK_PERSIAN
+        const NATIONALPARK_HERACROSS
+        const NATIONALPARK_YOUNGSTER3
+        const NATIONALPARK_POKEFAN_F2
+        const NATIONALPARK_POKEFAN_M
 	const NATIONALPARK_LASS2
 	const NATIONALPARK_POKE_BALL1
 	const NATIONALPARK_GAMEBOY_KID
 	const NATIONALPARK_POKE_BALL2
 
 NationalPark_MapScripts:
-	def_scene_scripts
+        def_scene_scripts
 
-	def_callbacks
+        def_callbacks
+        callback MAPCALLBACK_OBJECTS, NationalParkHeracrossCallback
+
+NationalParkHeracrossCallback:
+       checkevent EVENT_NATIONAL_PARK_SHINY_HERACROSS
+       iftrue .NoAppear
+       checkevent EVENT_NATIONAL_PARK_SHINY_HERACROSS_REWARD_READY
+       iftrue .HeracrossAppear
+       checkevent EVENT_LAKE_OF_RAGE_RED_GYARADOS
+       iftrue .HeracrossAppear
+       checkitem RED_SCALE
+       iftrue .HeracrossAppear
+       sjump .NoAppear
+
+.HeracrossAppear
+       appear NATIONALPARK_HERACROSS
+       endcallback
+
+.NoAppear
+       disappear NATIONALPARK_HERACROSS
+       endcallback
 
 NationalParkLassScript:
 	jumptextfaceplayer NationalParkLassText
@@ -52,19 +73,64 @@ NationalParkTeacher2Script:
 	jumptextfaceplayer NationalParkTeacher2Text
 
 NationalParkPersian:
-	faceplayer
-	opentext
-	writetext NationalParkPersianText
-	cry PERSIAN
-	waitbutton
-	closetext
-	end
+        faceplayer
+        opentext
+        writetext NationalParkPersianText
+        cry PERSIAN
+        waitbutton
+        closetext
+        end
+
+NationalParkShinyHeracrossScript:
+       faceplayer
+       checkevent EVENT_NATIONAL_PARK_SHINY_HERACROSS
+       iftrue .Gone
+       checkevent EVENT_NATIONAL_PARK_SHINY_HERACROSS_REWARD_READY
+       iftrue .Reward
+       opentext
+       writetext NationalParkShinyHeracrossText
+       cry HERACROSS
+       pause 15
+       closetext
+       loadwildmon HERACROSS, 30
+       loadvar VAR_BATTLETYPE, BATTLETYPE_FORCESHINY
+       startbattle
+       ifequal LOSE, .LostBattle
+       setevent EVENT_NATIONAL_PARK_SHINY_HERACROSS_REWARD_READY
+       reloadmapafterbattle
+       sjump .Reward
+
+.LostBattle:
+       reloadmapafterbattle
+       end
+
+.Reward:
+       opentext
+       giveitem SILVERPOWDER
+       iffalse .NoRoom
+       writetext NationalParkGotSilverPowderText
+       playsound SFX_ITEM
+       waitsfx
+       itemnotify
+       closetext
+       setevent EVENT_NATIONAL_PARK_SHINY_HERACROSS
+       disappear NATIONALPARK_HERACROSS
+       end
+
+.NoRoom:
+       writetext NationalParkNoRoomForSilverPowderText
+       waitbutton
+       closetext
+       end
+
+.Gone:
+       end
 
 NationalParkGameboyKidScript:
-	faceplayer
-	opentext
-	writetext NationalParkGameboyKidText
-	waitbutton
+        faceplayer
+        opentext
+        writetext NationalParkGameboyKidText
+        waitbutton
 	closetext
 	turnobject NATIONALPARK_GAMEBOY_KID, DOWN
 	end
@@ -345,12 +411,26 @@ NationalParkTeacher2Text:
 	done
 
 NationalParkPersianText:
-	text "PERSIAN: Fufushaa!"
-	done
+        text "PERSIAN: Fufushaa!"
+        done
+
+NationalParkShinyHeracrossText:
+        text "Herraaa!"
+        done
+
+NationalParkGotSilverPowderText:
+       text "<PLAYER> obtained"
+       line "SILVERPOWDER!"
+       done
+
+NationalParkNoRoomForSilverPowderText:
+       text "But <PLAYER>'s"
+       line "PACK is full!"
+       done
 
 NationalParkGameboyKidText:
-	text "I'm printing out"
-	line "my #DEX."
+       text "I'm printing out"
+       line "my #DEX."
 
 	para "You can also print"
 	line "out stuff like"
@@ -498,10 +578,11 @@ NationalPark_MapEvents:
 	object_event 27, 40, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NationalParkTeacher1Script, -1
 	object_event 11, 41, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster1Script, -1
 	object_event 10, 41, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster2Script, -1
-	object_event 17, 41, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkTeacher2Script, -1
-	object_event 26, 40, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPersian, -1
-	object_event 27, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
-	object_event 18, 29, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
+        object_event 17, 41, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkTeacher2Script, -1
+        object_event 26, 40, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPersian, -1
+        object_event 21, 28, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, NationalParkShinyHeracrossScript, EVENT_NATIONAL_PARK_SHINY_HERACROSS
+        object_event 27, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
+        object_event 18, 29, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
 	object_event 16,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
 	object_event  8, 14, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassKrise, -1
 	object_event 35, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
