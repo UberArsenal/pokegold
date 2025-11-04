@@ -13,11 +13,51 @@
 	const ILEXFOREST_BLACK_BELT
 	const ILEXFOREST_ROCKER
 	const ILEXFOREST_POKE_BALL
+	const ILEXFOREST_HERACROSS
 
 IlexForest_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_OBJECTS, IlexForestHeracrossCallback
+	
+IlexForestHeracrossCallback:
+	checkevent EVENT_LAKE_OF_RAGE_RED_GYARADOS
+	iftrue .HeracrossAppear
+	checkitem RED_SCALE
+	iftrue .HeracrossAppear
+	sjump .NoAppear
+	
+.HeracrossAppear
+	appear ILEXFOREST_HERACROSS
+	endcallback
+
+.NoAppear
+	disappear ILEXFOREST_HERACROSS
+	endcallback
+	
+ShinyHeracross:
+	faceplayer
+	opentext
+	writetext ShinyHeracrossText
+	cry HERACROSS
+	pause 15
+	closetext
+	setevent EVENT_ILEX_FOREST_SHINY_HERACROSS
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCESHINY
+	loadwildmon HERACROSS, 30
+	startbattle
+	disappear ILEXFOREST_HERACROSS
+	reloadmapafterbattle
+	opentext
+	giveitem SILVERPOWDER
+	waitsfx
+	writetext IlexForestGotSilverPowderText
+	playsound SFX_ITEM
+	waitsfx
+	itemnotify
+	setscene 0
+	end
 
 IlexForestCharcoalApprenticeScript:
 	faceplayer
@@ -656,6 +696,15 @@ Text_IlexForestShrine:
 	cont "protector…"
 	done
 
+IlexForestGotSilverPowderText:
+	text "<PLAYER> obtained"
+	line "SILVERPOWDER!"
+	done
+
+ShinyHeracrossText:
+	text "Herraaa!"
+	done
+	
 IlexForest_MapEvents:
 	db 0, 0 ; filler
 
@@ -688,3 +737,4 @@ IlexForest_MapEvents:
 	object_event  5, 28, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestCharcoalMasterScript, EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	object_event 15, 14, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestHeadbuttGuyScript, -1
 	object_event 20, 32, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestRevive, EVENT_ILEX_FOREST_REVIVE
+	object_event 25, 22, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ShinyHeracross, EVENT_ILEX_FOREST_SHINY_HERACROSS
