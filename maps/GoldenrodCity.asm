@@ -137,6 +137,9 @@ GoldenrodCityUndergroundSignSouth:
 GoldenrodCityPokecenterSign:
 	jumpstd PokecenterSignScript
 
+GoldenrodCityPoliceStationSign:
+	jumptext GoldenrodCityPoliceStationSignText
+
 GoldenrodCityPokefanMText:
 	text "They built the new"
 	line "RADIO TOWER to"
@@ -340,6 +343,15 @@ GoldenrodCityUndergroundSignSouthText:
 	line "ENTRANCE"
 	done
 
+GoldenrodCityPoliceStationSignText:
+	text "JOHTO POLICE"
+	line "STATION"
+	
+	para "PROTECTING THE"
+	line "REGION NOW AND"
+	cont "ALWAYS"
+	done
+
 GoldenrodCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -359,6 +371,7 @@ GoldenrodCity_MapEvents:
 	warp_event 19,  1, ROUTE_35_GOLDENROD_GATE, 3
 	warp_event  9,  5, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 8
 	warp_event 11, 29, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 5
+	warp_event 25, 15, GOLDENROD_POLICE_STATION, 1
 
 	def_coord_events
 
@@ -375,6 +388,7 @@ GoldenrodCity_MapEvents:
 	bg_event  8,  6, BGEVENT_READ, GoldenrodCityUndergroundSignNorth
 	bg_event 12, 30, BGEVENT_READ, GoldenrodCityUndergroundSignSouth
 	bg_event 16, 27, BGEVENT_READ, GoldenrodCityPokecenterSign
+	bg_event 22, 14, BGEVENT_READ, GoldenrodCityPoliceStationSign
 
 	def_object_events
 	object_event  7, 18, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityPokefanMScript, EVENT_GOLDENROD_CITY_CIVILIANS

@@ -266,6 +266,7 @@ ENDM
 	map_const ILEX_FOREST_AZALEA_GATE,                      5,  4 ; 20
 	map_const ROUTE_34_ILEX_FOREST_GATE,                    5,  4 ; 21
 	map_const DAY_CARE,                                     5,  4 ; 22
+	map_const GOLDENROD_POLICE_STATION,						6,  5 ; 23
 	endgroup
 
 	newgroup VERMILION                                            ; 12

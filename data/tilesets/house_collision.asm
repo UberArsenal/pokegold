@@ -8,7 +8,7 @@
 	tilecoll FLOOR, WALL, FLOOR, WALL ; 07
 	tilecoll WALL, WINDOW, FLOOR, FLOOR ; 08
 	tilecoll WALL, WALL, FLOOR, BOOKSHELF ; 09
-	tilecoll WALL, WALL, WALL, WALL ; 0a
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 0a
 	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, WARP_CARPET_DOWN ; 0b
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; 0c
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; 0d

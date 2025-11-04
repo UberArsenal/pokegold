@@ -33,30 +33,53 @@ SproutTower3FRivalScene:
 	earthquake 79
 	applymovement PLAYER, SproutTower3FPlayerApproachesRivalMovement
 	applymovement SPROUTTOWER3F_RIVAL, SproutTower3FRivalApproachesElderMovement
-	opentext
-	writetext SproutTowerElderLecturesRivalText
-	waitbutton
-	closetext
-	showemote EMOTE_SHOCK, SPROUTTOWER3F_RIVAL, 15
-	turnobject SPROUTTOWER3F_RIVAL, DOWN
-	pause 15
-	applymovement SPROUTTOWER3F_RIVAL, SproutTower3FRivalLeavesElderMovement
-	playmusic MUSIC_RIVAL_ENCOUNTER
-	opentext
-	writetext SproutTowerRivalOnlyCareAboutStrongText
-	waitbutton
-	closetext
-	turnobject SPROUTTOWER3F_RIVAL, UP
-	opentext
-	writetext SproutTowerRivalUsedEscapeRopeText
-	pause 15
-	closetext
+	    opentext
+        writetext SproutTowerElderLecturesRivalText
+        waitbutton
+        closetext
+        showemote EMOTE_SHOCK, SPROUTTOWER3F_RIVAL, 15
+        turnobject SPROUTTOWER3F_RIVAL, UP
+        pause 15
+        opentext
+        writetext SproutTowerRivalPartnersScoffText
+        waitbutton
+        closetext
+        playmusic MUSIC_RIVAL_ENCOUNTER
+        opentext
+        writetext SproutTowerRivalHideBehindTowerText
+        waitbutton
+        closetext
+		showemote EMOTE_SHOCK, SPROUTTOWER3F_RIVAL, 15
+		pause 15
+        turnobject SPROUTTOWER3F_RIVAL, DOWN
+        opentext
+        writetext SproutTowerRivalMocksKindnessText
+        waitbutton
+        closetext
+        opentext
+        writetext SproutTowerElderStrengthNotCrueltyText
+        waitbutton
+        closetext
+        turnobject SPROUTTOWER3F_RIVAL, UP
+        opentext
+        writetext SproutTowerRivalFindOwnStrengthText
+        waitbutton
+        closetext
+        opentext
+        writetext SproutTowerRivalUsedEscapeRopeText
+        pause 15
+        closetext
+	special FadeOutMusic
 	playsound SFX_WARP_TO
 	special FadeOutToBlack
 	special ReloadSpritesNoPalettes
 	disappear SPROUTTOWER3F_RIVAL
 	waitsfx
 	special FadeInFromBlack
+	opentext
+	writetext SproutTowerRivalDontFallBehindText
+	waitbutton
+	closetext
 	setscene SCENE_SPROUTTOWER3F_NOOP
 	special RestartMapMusic
 	end
@@ -146,61 +169,88 @@ SproutTower3FRivalApproachesElderMovement:
 	step UP
 	step_end
 
-SproutTower3FRivalLeavesElderMovement:
-	step RIGHT
-	step DOWN
-	step_end
 
 SproutTowerElderLecturesRivalText:
-	text "ELDER: You are in-"
-	line "deed skilled as a"
-	cont "trainer."
+	    text "ELDER: You battle"
+        line "with great skill."
 
-	para "As promised, here"
-	line "is your HM."
+        para "As promised, here"
+        line "is your HM."
 
-	para "But let me say"
-	line "this: You should"
+        para "But remember this"
+        line "-- true strength"
+        cont "comes from under-"
+        cont "standing your"
+        cont "#MON."
+		
+		para "Not ruling"
+        line "them."
 
-	para "treat your"
-	line "#MON better."
+        para "They are not tools"
+        line "of war, but part-"
+        cont "ners in your"
+        cont "journey."
+        done
 
-	para "The way you battle"
-	line "is far too harsh."
+SproutTowerRivalPartnersScoffText:
+        text "???: …Partners?"
+        line "Don't make me"
+        cont "laugh."
+        done
 
-	para "#MON are not"
-	line "tools of war…"
-	done
+SproutTowerRivalHideBehindTowerText:
+        text "???: You talk like"
+        line "you've seen the"
+        cont "world, but you"
+        cont "hide behind this"
+        cont "old tower."
+        done
 
-SproutTowerRivalOnlyCareAboutStrongText:
-	text "…"
-	line "…Humph!"
+SproutTowerRivalMocksKindnessText:
+        text "It's you again…"
+		
+        para "You actually"
+        line "listen to this"
+        cont "stuff?"
 
-	para "He claims to be"
-	line "the ELDER but"
-	cont "he's weak."
+        para "You think"
+        line "kindness wins"
+        cont "battles?"
+        done
 
-	para "It stands to"
-	line "reason."
+SproutTowerElderStrengthNotCrueltyText:
+        text "ELDER: Strength"
+        line "gained through"
+        cont "cruelty will"
+        cont "always fade."
 
-	para "I'd never lose to"
-	line "fools who babble"
+        para "#MON fight for"
+        line "their trainers,"
+        cont "not under them."
+        done
 
-	para "about being nice"
-	line "to #MON."
+SproutTowerRivalFindOwnStrengthText:
+        text "Tch. Save your"
+        line "sermons. Weak"
+        cont "#MON--and weak"
+        cont "trainers--don't"
+        cont "belong in my"
+        cont "way."
 
-	para "I only care about"
-	line "strong #MON"
-	cont "that can win."
-
-	para "I really couldn't"
-	line "care less about"
-	cont "weak #MON."
-	done
+        para "I'll find my own"
+        line "strength. The"
+        cont "kind that doesn't"
+        cont "break."
+        done
 
 SproutTowerRivalUsedEscapeRopeText:
 	text "<RIVAL> used an"
 	line "ESCAPE ROPE!"
+	done
+
+SproutTowerRivalDontFallBehindText:
+    text "…Don't fall"
+    line "behind."
 	done
 
 SageLiSeenText:

@@ -193,7 +193,92 @@ GoldenrodClothingShopOfferPurple:
 	end
 
 GoldenrodClothingShopStylistScript:
-	jumptextfaceplayer GoldenrodClothingShopStylistText
+        faceplayer
+        opentext
+        writetext GoldenrodClothingShopStylistWelcomeText
+        promptbutton
+        checkevent EVENT_GOLDENROD_CLOTHING_SHOP_STYLIST_INTRO
+        iftrue .AskRefresher
+        writetext GoldenrodClothingShopStylistFirstTimeQuestionText
+        yesorno
+        iffalse .DeclineTour
+        closetext
+        sjump .LeadTour
+
+.AskRefresher:
+        writetext GoldenrodClothingShopStylistRefresherQuestionText
+        yesorno
+        iffalse .DeclineTour
+        closetext
+
+.LeadTour:
+        follow GOLDENRODCLOTHINGSHOP_STYLIST, PLAYER
+        applymovement GOLDENRODCLOTHINGSHOP_STYLIST, GoldenrodClothingShopStylistToClerkMovement
+        stopfollow
+		turnobject PLAYER, UP
+        opentext
+        writetext GoldenrodClothingShopStylistPurchaseExplanationText
+        promptbutton
+        closetext
+        follow GOLDENRODCLOTHINGSHOP_STYLIST, PLAYER
+        applymovement GOLDENRODCLOTHINGSHOP_STYLIST, GoldenrodClothingShopStylistToWardrobeSignMovement
+        stopfollow
+		turnobject PLAYER, UP
+        opentext
+        writetext GoldenrodClothingShopStylistSignExplanationText
+        promptbutton
+        closetext
+        turnobject PLAYER, RIGHT
+        faceplayer
+        opentext
+        writetext GoldenrodClothingShopStylistRefresherReminderText
+        waitbutton
+        closetext
+        setevent EVENT_GOLDENROD_CLOTHING_SHOP_STYLIST_INTRO
+        applymovement GOLDENRODCLOTHINGSHOP_STYLIST, GoldenrodClothingShopStylistReturnMovement
+        turnobject GOLDENRODCLOTHINGSHOP_STYLIST, LEFT
+        end
+
+.DeclineTour:
+        writetext GoldenrodClothingShopStylistDeclineText
+        waitbutton
+        closetext
+        end
+
+GoldenrodClothingShopBlueShopperScript:
+        jumptextfaceplayer GoldenrodClothingShopBlueShopperText
+
+GoldenrodClothingShopPurpleShopperScript:
+        jumptextfaceplayer GoldenrodClothingShopPurpleShopperText
+
+GoldenrodClothingShopStylistToClerkMovement:
+        step_up
+        step_up
+        step_left
+        step_left
+        step_up
+		step_left
+		turn_head UP
+        step_end
+
+GoldenrodClothingShopStylistToWardrobeSignMovement:
+        step_right
+        step_right
+        step_up
+		step_up
+		step_right
+		step_right
+		turn_head LEFT
+        step_end
+
+GoldenrodClothingShopStylistReturnMovement:
+        step_down
+        step_down
+        step_down
+        step_down
+		step_down
+		step_left
+        step_end
 
 GoldenrodClothingShopDisplayLeft:
 	jumptext GoldenrodClothingShopDisplayLeftText
@@ -381,10 +466,77 @@ GoldenrodClothingShopNotEnoughMoneyText:
 	done
 
 GoldenrodClothingShopKeepCurrentLookText:
-	text "All right. We'll"
-	line "keep your current"
-	cont "outfit pressed."
-	done
+        text "All right. We'll"
+        line "keep your current"
+        cont "outfit pressed."
+        done
+
+GoldenrodClothingShopStylistWelcomeText:
+        text "Welcome to GOLD-"
+        line "ENROD APPAREL!"
+
+        para "I'm the stylist"
+        line "on duty today."
+        done
+
+GoldenrodClothingShopStylistFirstTimeQuestionText:
+        text "Is this your very"
+        line "first visit?"
+        done
+
+GoldenrodClothingShopStylistRefresherQuestionText:
+        text "Need a refresher"
+        line "on how we work?"
+        done
+
+GoldenrodClothingShopStylistDeclineText:
+        text "No problem. Take"
+        line "your time browsing."
+        done
+
+GoldenrodClothingShopStylistPurchaseExplanationText:
+        text "Each palette you"
+        line "see must be"
+        cont "purchased first."
+
+        para "Once you own a"
+        line "color, it's ready"
+        cont "whenever you"
+        cont "return."
+        done
+
+GoldenrodClothingShopStylistSignExplanationText:
+        text "After buying a"
+        line "palette, touch"
+        cont "this elevator"
+        cont "sign to switch"
+        cont "looks instantly."
+        done
+
+GoldenrodClothingShopStylistRefresherReminderText:
+        text "If you need a"
+        line "refresher, just"
+        cont "let me know!"
+        done
+
+GoldenrodClothingShopBlueShopperText:
+        text "Wearing this BLUE"
+        line "makes me think of"
+
+        para "CHERRYGROVE's"
+        line "little blue lake!"
+        done
+
+GoldenrodClothingShopPurpleShopperText:
+        text "This PURPLE is so"
+        line "nice."
+
+        para "But you know"
+        line "what would go"
+        cont "better with it?"
+
+        para "A tailored suit!"
+        done
 
 GoldenrodClothingShopStylistText:
 	text "Color tells your"
@@ -477,4 +629,6 @@ GoldenrodClothingShop_MapEvents:
 
 	def_object_events
 	object_event  3,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopClerkScript, -1
-	object_event 6,  6, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopStylistScript, -1
+    object_event  6,  6, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopStylistScript, -1
+    object_event  1,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopBlueShopperScript, -1
+    object_event  5,  4, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, GoldenrodClothingShopPurpleShopperScript, -1

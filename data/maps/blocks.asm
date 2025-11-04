@@ -165,6 +165,7 @@ CharcoalKiln_Blocks:
 LakeOfRageHiddenPowerHouse_Blocks:
 LakeOfRageMagikarpHouse_Blocks:
 GoldenrodHappinessRater_Blocks:
+	INCBIN "maps/GoldenrodHappinessRater.blk"
 BillsFamilysHouse_Blocks:
 GoldenrodClothingShop_Blocks:
 	INCBIN "maps/GoldenrodClothingShop.blk"
@@ -804,6 +805,9 @@ RuinsOfAlphResearchCenter_Blocks:
 
 GoldenrodBikeShop_Blocks:
 	INCBIN "maps/GoldenrodBikeShop.blk"
+	
+GoldenrodPoliceStation_Blocks:
+	INCBIN "maps/GoldenrodPoliceStation.blk"
 
 DanceTheater_Blocks:
 	INCBIN "maps/DanceTheater.blk"

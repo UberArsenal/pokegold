@@ -2164,7 +2164,7 @@ TotodileEvosAttacks:
 	db 1, SCRATCH
 	db 1, LEER
 	db 8, WATER_GUN
-	db 13, RAGE
+	db 13, FURY_SWIPES
 	db 19, BITE
 	db 23, BUBBLEBEAM
 	db 27, SCREECH
