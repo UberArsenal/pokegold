@@ -260,3 +260,66 @@ ElmPhoneSilverWarningText:
 	line "<PLAYER>."
 	done
 	
+ElmPhoneShinysAppearText:
+	text "Hey <PLAYER>!"
+	line "I hope I'm not cal-"
+	cont "ling at a bad "
+	cont "time!"
+	
+	para "I don't know if you"
+	line "seen the news lat-"
+	cont "ely."
+	
+	para "There are repor-"
+	line "ts of shiny #-"
+	cont "MON appearing"
+	cont "all over JOHTO!"
+	
+	para "I don't really"
+	line "know why shiny"
+	cont "#MON exist."
+	
+	para "Maybe it's some"
+	line "kind of genetic"
+	cont "mutation?"
+	
+	para "If you catch a"
+	line "shiny, bring it"
+	cont "here so I can"
+	cont "see for myself!"
+	
+	para "Take care,"
+	line "<PLAYER>!"
+	done
+
+ElmPhoneShinyLocations1Text:
+	para "Hello, <PLAYER>?"
+	
+	para "You want to know"
+	line "where to find"
+	cont "one of the shiny"
+	cont "#MON?"
+	
+	para "Well I have two"
+	line "locations right"
+	cont "here!"
+	
+	para "Reports from"
+	line "CHERRYGROVE CI-"
+	cont "TY and also"
+	cont "NATIONAL PARK"
+	cont "have seen dif-"
+	cont "ferent colored"
+	cont "#MON roaming"
+	cont "about."
+	
+	para "Sorry, kid. I"
+	line "can't tell you"
+	cont "what these #-"
+	cont "MON are. You are"
+	cont "gonna have to"
+	cont "investiage yo-"
+	cont "urself."
+	
+	para "Take care, now!"
+	done

@@ -1,6 +1,8 @@
 ElmPhoneCalleeScript:
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus
+	checkevent EVENT_ELM_CALLED_ABOUT_SHINY_POKEMON
+	iftrue .shinylocations1
 	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
 	iftrue .discovery
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
@@ -61,6 +63,11 @@ ElmPhoneCalleeScript:
 	specialphonecall SPECIALCALL_NONE
 	end
 
+.shinylocations1
+	writetext ElmPhoneShinyLocations1Text
+	specialphonecall SPECIALCALL_NONE
+	end
+
 ElmPhoneCallerScript:
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_ROBBED, .disaster
@@ -69,6 +76,7 @@ ElmPhoneCallerScript:
 	ifequal SPECIALCALL_SSTICKET, .gift
 	ifequal SPECIALCALL_MASTERBALL, .gift
 	ifequal SPECIALCALL_SILVERWARNING, .silverwarning
+	ifequal SPECIALCALL_SHINYSAPPEAR, .shinysappear
 	writetext ElmPhoneDiscoveredPokerusText
 	specialphonecall SPECIALCALL_NONE
 	end
@@ -98,6 +106,11 @@ ElmPhoneCallerScript:
 
 .silverwarning
 	writetext ElmPhoneSilverWarningText
+	specialphonecall SPECIALCALL_NONE
+	end
+
+.shinysappear
+	writetext ElmPhoneShinysAppearText
 	specialphonecall SPECIALCALL_NONE
 	end
 
