@@ -1,8 +1,9 @@
 	object_const_def
-	const TEAMROCKETBASEB2F_ROCKET1
-	const TEAMROCKETBASEB2F_ROCKET_GIRL
-	const TEAMROCKETBASEB2F_LANCE
-	const TEAMROCKETBASEB2F_DRAGON
+        const TEAMROCKETBASEB2F_ROCKET1
+        const TEAMROCKETBASEB2F_ROCKET_GIRL
+        const TEAMROCKETBASEB2F_SILVER
+        const TEAMROCKETBASEB2F_FERALIGATR
+        const TEAMROCKETBASEB2F_LANCE
 	const TEAMROCKETBASEB2F_ELECTRODE1
 	const TEAMROCKETBASEB2F_ELECTRODE2
 	const TEAMROCKETBASEB2F_ELECTRODE3
@@ -46,48 +47,68 @@ TeamRocketBaseB2FTransmitterDoorCallback:
 	endcallback
 
 RocketBaseBossFLeft:
-	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
-	sjump RocketBaseBossFScript
+        moveobject TEAMROCKETBASEB2F_SILVER, 9, 13
+        moveobject TEAMROCKETBASEB2F_FERALIGATR, 10, 13
+        moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
+        sjump RocketBaseBossFScript
 
 RocketBaseBossFRight:
-	moveobject TEAMROCKETBASEB2F_ROCKET_GIRL, 21, 16
-	moveobject TEAMROCKETBASEB2F_ROCKET1, 21, 16
-	moveobject TEAMROCKETBASEB2F_DRAGON, 10, 13
-	moveobject TEAMROCKETBASEB2F_LANCE, 10, 13
+        moveobject TEAMROCKETBASEB2F_ROCKET_GIRL, 21, 16
+        moveobject TEAMROCKETBASEB2F_ROCKET1, 21, 16
+        moveobject TEAMROCKETBASEB2F_FERALIGATR, 10, 13
+        moveobject TEAMROCKETBASEB2F_SILVER, 10, 13
+        moveobject TEAMROCKETBASEB2F_LANCE, 10, 13
 RocketBaseBossFScript:
-	appear TEAMROCKETBASEB2F_ROCKET_GIRL
-	appear TEAMROCKETBASEB2F_ROCKET1
-	opentext
-	writetext RocketBaseExecutiveFHoldItText
-	waitbutton
-	closetext
-	turnobject PLAYER, DOWN
-	showemote EMOTE_SHOCK, PLAYER, 15
-	applymovement PLAYER, RocketBasePlayerApproachesBossFMovement
-	playmusic MUSIC_ROCKET_ENCOUNTER
-	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFApproachesPlayerMovement
-	turnobject PLAYER, UP
-	applymovement TEAMROCKETBASEB2F_ROCKET1, RocketBaseGruntApproachesPlayerMovement
-	opentext
-	writetext RocketBaseBossFThrashText
-	waitbutton
-	closetext
-	cry DRAGONITE
-	turnobject TEAMROCKETBASEB2F_ROCKET_GIRL, LEFT
-	turnobject PLAYER, LEFT
-	appear TEAMROCKETBASEB2F_DRAGON
-	applymovement TEAMROCKETBASEB2F_DRAGON, RocketBaseDragoniteAttacksMovement
-	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFHitMovement
-	applymovement TEAMROCKETBASEB2F_ROCKET1, RocketBaseGruntProtectsBossFMovement
-	appear TEAMROCKETBASEB2F_LANCE
-	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceApproachesBossFMovement
-	opentext
-	writetext RocketBaseLanceShareFunText
-	waitbutton
-	closetext
-	turnobject PLAYER, RIGHT
-	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFFacesPlayerMovement
-	opentext
+        appear TEAMROCKETBASEB2F_ROCKET_GIRL
+        appear TEAMROCKETBASEB2F_ROCKET1
+        opentext
+        writetext RocketBaseExecutiveFHoldItText
+        waitbutton
+        closetext
+        turnobject PLAYER, DOWN
+        showemote EMOTE_SHOCK, PLAYER, 15
+        applymovement PLAYER, RocketBasePlayerApproachesBossFMovement
+        playmusic MUSIC_ROCKET_ENCOUNTER
+        applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFApproachesPlayerMovement
+        turnobject PLAYER, UP
+        applymovement TEAMROCKETBASEB2F_ROCKET1, RocketBaseGruntApproachesPlayerMovement
+        opentext
+        writetext RocketBaseBossFThrashText
+        waitbutton
+        closetext
+        cry FERALIGATR
+        turnobject TEAMROCKETBASEB2F_ROCKET_GIRL, LEFT
+        turnobject PLAYER, LEFT
+        appear TEAMROCKETBASEB2F_FERALIGATR
+        applymovement TEAMROCKETBASEB2F_FERALIGATR, RocketBaseDragoniteAttacksMovement
+        applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFHitMovement
+        applymovement TEAMROCKETBASEB2F_ROCKET1, RocketBaseGruntProtectsBossFMovement
+        appear TEAMROCKETBASEB2F_SILVER
+        applymovement TEAMROCKETBASEB2F_SILVER, RocketBaseSilverApproachesBossFMovement
+        opentext
+        writetext RocketBaseSilverPatheticText
+        waitbutton
+        closetext
+        turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
+        opentext
+        writetext RocketBaseSilverDontSaveYouText
+        waitbutton
+        closetext
+        turnobject TEAMROCKETBASEB2F_SILVER, LEFT
+        opentext
+        writetext RocketBaseSilverInMyWayText
+        waitbutton
+        closetext
+        turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
+        pause 5
+        turnobject TEAMROCKETBASEB2F_SILVER, LEFT
+        opentext
+        writetext RocketBaseSilverDontSlowMeDownText
+        waitbutton
+        closetext
+        turnobject PLAYER, RIGHT
+        applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFFacesPlayerMovement
+        opentext
 	writetext RocketBaseBossDontMeddleText
 	waitbutton
 	closetext
@@ -95,34 +116,75 @@ RocketBaseBossFScript:
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFBattlesPlayerMovement
 	winlosstext RocketBaseBossWinText, 0
 	setlasttalked TEAMROCKETBASEB2F_ROCKET_GIRL
-	loadtrainer EXECUTIVEF, EXECUTIVEF_2
-	startbattle
-	disappear TEAMROCKETBASEB2F_DRAGON
-	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
-	setevent EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
-	setevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
-	reloadmapafterbattle
-	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
-	opentext
-	writetext RocketBaseBossRetreatText
-	waitbutton
-	closetext
-	special FadeOutToBlack
-	special ReloadSpritesNoPalettes
-	disappear TEAMROCKETBASEB2F_ROCKET1
-	disappear TEAMROCKETBASEB2F_ROCKET_GIRL
-	disappear TEAMROCKETBASEB2F_ROCKET2
-	disappear TEAMROCKETBASEB2F_ROCKET3
-	disappear TEAMROCKETBASEB2F_ROCKET4
-	pause 15
-	special FadeInFromBlack
-	setscene SCENE_TEAMROCKETBASEB2F_ELECTRODES
-	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
-	turnobject TEAMROCKETBASEB2F_LANCE, DOWN
-	opentext
-	writetext RocketBaseLancePostBattleText
-	waitbutton
-	closetext
+        loadtrainer EXECUTIVEF, EXECUTIVEF_2
+        startbattle
+        disappear TEAMROCKETBASEB2F_FERALIGATR
+        setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
+        setevent EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
+        setevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
+        reloadmapafterbattle
+        setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
+        opentext
+        writetext RocketBaseBossRetreatText
+        waitbutton
+        closetext
+        special FadeOutToBlack
+        special ReloadSpritesNoPalettes
+        disappear TEAMROCKETBASEB2F_ROCKET1
+        disappear TEAMROCKETBASEB2F_ROCKET_GIRL
+        disappear TEAMROCKETBASEB2F_ROCKET2
+        disappear TEAMROCKETBASEB2F_ROCKET3
+        disappear TEAMROCKETBASEB2F_ROCKET4
+        pause 15
+        special FadeInFromBlack
+        setscene SCENE_TEAMROCKETBASEB2F_ELECTRODES
+        turnobject TEAMROCKETBASEB2F_SILVER, LEFT
+        opentext
+        writetext RocketBaseSilverRunText
+        waitbutton
+        closetext
+        turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
+        opentext
+        writetext RocketBaseSilverNotFriendsText
+        waitbutton
+        closetext
+        opentext
+        writetext RocketBaseSilverNothingAlikeText
+        waitbutton
+        closetext
+        applymovement TEAMROCKETBASEB2F_SILVER, RocketBaseSilverLeavesPauseMovement
+        turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
+        opentext
+        writetext RocketBaseSilverStillText
+        waitbutton
+        closetext
+        opentext
+        writetext RocketBaseSilverGutsText
+        waitbutton
+        closetext
+        turnobject TEAMROCKETBASEB2F_SILVER, LEFT
+        opentext
+        writetext RocketBaseSilverDontHeadText
+        waitbutton
+        closetext
+        applymovement TEAMROCKETBASEB2F_SILVER, RocketBaseSilverLeavesBaseMovement
+        disappear TEAMROCKETBASEB2F_SILVER
+        setevent EVENT_TEAM_ROCKET_BASE_B2F_SILVER
+        clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
+        opentext
+        writetext RocketBaseLanceGratefulText
+        waitbutton
+        closetext
+        showemote EMOTE_SHOCK, PLAYER, 15
+        turnobject PLAYER, LEFT
+        moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
+        appear TEAMROCKETBASEB2F_LANCE
+        applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceApproachesBossFMovement
+        turnobject TEAMROCKETBASEB2F_LANCE, DOWN
+        opentext
+        writetext RocketBaseLancePostBattleText
+        waitbutton
+        closetext
 	applymovement TEAMROCKETBASEB2F_LANCE, RocketBaseLanceChecksPlayerMovement
 	turnobject PLAYER, UP
 	opentext
@@ -393,20 +455,38 @@ RocketBaseBossFApproachesPlayerMovement:
 	step_end
 
 RocketBaseGruntApproachesPlayerMovement:
-	big_step LEFT
-	big_step LEFT
-	big_step UP
-	big_step UP
-	big_step LEFT
-	big_step LEFT
-	step_end
+big_step LEFT
+big_step LEFT
+big_step UP
+big_step UP
+big_step LEFT
+big_step LEFT
+step_end
+
+RocketBaseSilverApproachesBossFMovement:
+step RIGHT
+step RIGHT
+step RIGHT
+step_end
 
 RocketBaseDragoniteAttacksMovement:
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	step_end
+big_step RIGHT
+big_step RIGHT
+big_step RIGHT
+big_step RIGHT
+step_end
+
+RocketBaseSilverLeavesPauseMovement:
+step LEFT
+step LEFT
+step_end
+
+RocketBaseSilverLeavesBaseMovement:
+step LEFT
+step LEFT
+step LEFT
+step LEFT
+step_end
 
 RocketBaseBossFHitMovement:
 	fix_facing
@@ -562,34 +642,60 @@ RocketBaseExecutiveFHoldItText:
 	done
 
 RocketBaseBossFThrashText:
-	text "We can't have a"
-	line "brat like you on"
-	cont "the loose."
+        text "We can't have a"
+        line "brat like you on"
+        cont "the loose."
 
-	para "It's harmful to"
-	line "TEAM ROCKET's"
-	cont "pride, you see."
+        para "It's harmful to"
+        line "TEAM ROCKET's"
+        cont "pride, you see."
 
-	para "However strong you"
-	line "may be, you can't"
+        para "However strong you"
+        line "may be, you can't"
 
-	para "take both of us at"
-	line "the same time."
+        para "take both of us at"
+        line "the same time."
 
-	para "Sorry, baby. Now"
-	line "get ready to be"
-	cont "thrashed."
-	done
+        para "Sorry, baby. Now"
+        line "get ready to be"
+        cont "thrashed."
+        done
 
-RocketBaseLanceShareFunText:
-	text "Hey! Don't be so"
-	line "selfish. Spread"
-	cont "the fun around."
-	done
+RocketBaseSilverPatheticText:
+        text "SILVER: ...Pathetic."
+        line "Two versus one?"
+
+        para "Figures TEAM"
+        line "ROCKET would fight"
+        cont "dirty."
+        done
+
+RocketBaseSilverDontSaveYouText:
+        text "SILVER: Don't get"
+        line "the wrong idea"
+
+        para "<PLAYER>. I'm not"
+        line "here to save you."
+        done
+
+RocketBaseSilverInMyWayText:
+        text "SILVER: These"
+        line "losers are in my"
+
+        para "way too. I'll"
+        line "crush them. And"
+        cont "you...?"
+        done
+
+RocketBaseSilverDontSlowMeDownText:
+        text "SILVER: Just try"
+        line "not to slow me"
+        cont "down."
+        done
 
 RocketBaseBossDontMeddleText:
-	text "What? You had an"
-	line "accomplice?"
+text "What? You had an"
+line "accomplice?"
 
 	para "Where is your"
 	line "sense of honor?"
@@ -618,8 +724,8 @@ RocketBaseBossWinText:
 	done
 
 RocketBaseBossRetreatText:
-	text "…This hideout is"
-	line "done for…"
+text "…This hideout is"
+line "done for…"
 
 	para "But that's fine."
 	line "The broadcast ex-"
@@ -642,36 +748,84 @@ RocketBaseBossRetreatText:
 	para "Enjoy yourself"
 	line "while you can…"
 
-	para "Fufufufu…"
-	done
+        para "Fufufufu…"
+        done
+
+RocketBaseSilverRunText:
+        text "SILVER: Hmph. They"
+        line "run when things"
+
+        para "turn against them."
+        line "Typical."
+        done
+
+RocketBaseSilverNotFriendsText:
+        text "SILVER: Don't think"
+        line "this makes us"
+
+        para "friends. The only"
+        line "reason I fought"
+        cont "beside you was to"
+        cont "bring them down"
+        cont "faster."
+        done
+
+RocketBaseSilverNothingAlikeText:
+        text "SILVER: You and I…"
+        line "we're nothing"
+        cont "alike."
+        done
+
+RocketBaseSilverStillText:
+        text "SILVER: ...Still,"
+        line "you didn't"
+        cont "hesitate back"
+        cont "there."
+        done
+
+RocketBaseSilverGutsText:
+        text "SILVER: Guess"
+        line "you've got more"
+        cont "guts than I"
+        cont "thought."
+        done
+
+RocketBaseSilverDontHeadText:
+        text "SILVER: Don't let"
+        line "it get to your"
+        cont "head."
+        done
+
+RocketBaseLanceGratefulText:
+        text "LANCE: For a"
+        line "second, he sounded"
+        cont "grateful there!"
+        done
 
 RocketBaseLancePostBattleText:
-	text "LANCE: That did"
-	line "it. We defeated"
+        text "LANCE: I was"
+        line "concerned about"
 
-	para "all the ROCKETS"
-	line "here."
+        para "him after our"
+        line "battle."
 
-	para "But I'm concerned"
-	line "about the young"
+        para "But it looks like"
+        line "he made the right"
+        cont "call helping you"
+        cont "out."
 
-	para "guy I battled in"
-	line "the process…"
-	done
+        para "Maybe there might"
+        line "be hope for him."
+        done
 
 RocketBaseLancePowerOffText:
-	text "Sorry, <PLAYER>."
-	line "I saw how well you"
+        text "LANCE: Well now,"
+        line "all that's left"
 
-	para "were doing, so I"
-	line "just hung back."
-
-	para "Now all there is"
-	line "left to do is to"
-
-	para "turn off that odd"
-	line "radio signal."
-	done
+        para "to do is to turn"
+        line "off that odd radio"
+        cont "signal."
+        done
 
 RockerBaseLanceElectrodeFaintText:
 	text "It's this machine"
@@ -952,10 +1106,11 @@ TeamRocketBaseB2F_MapEvents:
 	bg_event 26,  7, BGEVENT_ITEM, TeamRocketBaseB2FHiddenFullHeal
 
 	def_object_events
-	object_event 20, 16, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
-	object_event 20, 16, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
-	object_event  5, 13, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
-	object_event  9, 13, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_DRAGONITE
+        object_event 20, 16, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
+        object_event 20, 16, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
+        object_event  5, 13, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_SILVER
+        object_event  9, 13, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_FERALIGATR
+        object_event  5, 13, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	object_event  7,  5, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode1, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	object_event  7,  7, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode2, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	object_event  7,  9, SPRITE_VOLTORB, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketElectrode3, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
