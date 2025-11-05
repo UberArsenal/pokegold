@@ -77,6 +77,9 @@ RocketBaseBossFScript:
         waitbutton
         closetext
         cry FERALIGATR
+		showemote EMOTE_SHOCK, PLAYER, 15
+		showemote EMOTE_SHOCK, TEAMROCKETBASEB2F_ROCKET_GIRL, 15
+		showemote EMOTE_SHOCK, TEAMROCKETBASEB2F_ROCKET1, 15
         turnobject TEAMROCKETBASEB2F_ROCKET_GIRL, LEFT
         turnobject PLAYER, LEFT
         appear TEAMROCKETBASEB2F_FERALIGATR
@@ -89,7 +92,7 @@ RocketBaseBossFScript:
         writetext RocketBaseSilverPatheticText
         waitbutton
         closetext
-        turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
+        turnobject TEAMROCKETBASEB2F_SILVER, DOWN
         opentext
         writetext RocketBaseSilverDontSaveYouText
         waitbutton
@@ -100,13 +103,14 @@ RocketBaseBossFScript:
         waitbutton
         closetext
         turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
-        pause 5
+        pause 10
         turnobject TEAMROCKETBASEB2F_SILVER, LEFT
         opentext
         writetext RocketBaseSilverDontSlowMeDownText
         waitbutton
         closetext
         turnobject PLAYER, RIGHT
+		turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
         applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, RocketBaseBossFFacesPlayerMovement
         opentext
 	writetext RocketBaseBossDontMeddleText
@@ -139,6 +143,7 @@ RocketBaseBossFScript:
         special FadeInFromBlack
         setscene SCENE_TEAMROCKETBASEB2F_ELECTRODES
         turnobject TEAMROCKETBASEB2F_SILVER, LEFT
+		turnobject PLAYER, LEFT
         opentext
         writetext RocketBaseSilverRunText
         waitbutton
@@ -149,10 +154,12 @@ RocketBaseBossFScript:
         waitbutton
         closetext
         opentext
+		turnobject TEAMROCKETBASEB2F_SILVER, LEFT
         writetext RocketBaseSilverNothingAlikeText
         waitbutton
         closetext
         applymovement TEAMROCKETBASEB2F_SILVER, RocketBaseSilverLeavesPauseMovement
+		pause 20
         turnobject TEAMROCKETBASEB2F_SILVER, RIGHT
         opentext
         writetext RocketBaseSilverStillText
@@ -167,6 +174,7 @@ RocketBaseBossFScript:
         writetext RocketBaseSilverDontHeadText
         waitbutton
         closetext
+		pause 20
         applymovement TEAMROCKETBASEB2F_SILVER, RocketBaseSilverLeavesBaseMovement
         disappear TEAMROCKETBASEB2F_SILVER
         setevent EVENT_TEAM_ROCKET_BASE_B2F_SILVER
@@ -474,6 +482,9 @@ big_step RIGHT
 big_step RIGHT
 big_step RIGHT
 big_step RIGHT
+fix_facing
+step LEFT
+remove_fixed_facing
 step_end
 
 RocketBaseSilverLeavesPauseMovement:
@@ -662,7 +673,7 @@ RocketBaseBossFThrashText:
         done
 
 RocketBaseSilverPatheticText:
-        text "SILVER: ...Pathetic."
+        text "SILVER: Pathetic."
         line "Two versus one?"
 
         para "Figures TEAM"
