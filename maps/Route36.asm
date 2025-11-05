@@ -26,21 +26,23 @@ Route36ArthurCallback:
 	endcallback
 
 Route36ShinySudowoodoCallback:
-	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .ShinySudowoodoAppear
-	checkevent EVENT_RED_IN_MT_SILVER
-	iftrue .ShinySudowoodoAppear
-	sjump .NoAppear
-	
-.ShinySudowoodoAppear:
+        checkevent EVENT_FOUGHT_SHINY_SUDOWOODO
+        iftrue .HideShinySudowoodo
+        checkevent EVENT_ROUTE_36_SUDOWOODO
+        iffalse .HideShinySudowoodo
+		checkitem RED_SCALE
+		iftrue .ShowShinySudowoodo
+        appear ROUTE36_WEIRD_TREE2
+        endcallback
+
+.ShowShinySudowoodo:
 	appear ROUTE36_WEIRD_TREE2
-	sjump ShinySudowoodoScript
 	endcallback
-
-.NoAppear
-	disappear ROUTE36_WEIRD_TREE2
-	endcallback
-
+	
+.HideShinySudowoodo:
+        disappear ROUTE36_WEIRD_TREE2
+        endcallback
+	
 ShinySudowoodoScript:
 	checkitem SQUIRTBOTTLE
 	iftrue .ShinyFight
@@ -65,7 +67,7 @@ ShinySudowoodoScript:
 	writetext SudowoodoAttackedText
 	waitbutton
 	closetext
-	loadwildmon SUDOWOODO, 45
+	loadwildmon SUDOWOODO, 40
 	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCESHINY
 	startbattle
 	setevent EVENT_FOUGHT_SHINY_SUDOWOODO

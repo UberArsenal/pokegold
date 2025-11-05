@@ -994,8 +994,8 @@ TitleScreenMain:
 
 ; Clock can be reset by pressing Down + B + Select.
 	ld a, [hl]
-	and PAD_DOWN + PAD_B + PAD_SELECT
-	cp  PAD_DOWN + PAD_B + PAD_SELECT
+	and PAD_DOWN + PAD_B
+	cp  PAD_DOWN + PAD_B
 	jr z, .reset_clock
 
 ; Press Start or A to start the game.
